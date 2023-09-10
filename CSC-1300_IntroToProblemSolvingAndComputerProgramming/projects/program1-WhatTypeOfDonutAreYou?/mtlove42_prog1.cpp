@@ -20,21 +20,13 @@ public:
     }
 };
 
+bool compDonuts(Donut a, Donut b)
+{
+    return (a.points < b.points);
+}
+
 int main()
 {
-    // string donutType[] = {"Glazed", "Chocolate-Covered", "Cream Filled", "Peanut Butter and Jelly", "Blueberry", "Sprinkle", ""};
-    // Donut glazed("Glazed"), chocolate, cream, pbj, blueberry, sprinkle;
-    Donut donuts[] = {
-        Donut("Glazed"),
-        Donut("Chocolate-Covered"),
-        Donut("Cream Filled"),
-        Donut("Peanut Butter and Jelly"),
-        Donut("Blueberry"),
-        Donut("Sprinke")};
-    char response;
-
-    donuts[0];
-
     string indent = "    ";
 
     bool playAgain = true;
@@ -47,6 +39,15 @@ int main()
 
     while (playAgain)
     {
+        Donut donuts[] = {
+            Donut("Glazed"),
+            Donut("Chocolate-Covered"),
+            Donut("Cream Filled"),
+            Donut("Peanut Butter and Jelly"),
+            Donut("Blueberry"),
+            Donut("Sprinkle")};
+        char response;
+
         cout << endl;
         cout << setw(80) << setfill('-') << "" << endl;
         cout << setw(80) << setfill('-') << "" << endl;
@@ -56,7 +57,6 @@ int main()
 
         int questionIndex = 1;
         playAgain = false;
-        glazed.points = chocolate.points = cream.points = pbj.points = blueberry.points = sprinkle.points = 0;
 
         while (questionIndex <= 10)
         {
@@ -239,46 +239,29 @@ int main()
             switch (tolower(response))
             {
             case 'a':
-                glazed.points++;
+                donuts[0].points++;
                 break;
             case 'b':
-                chocolate.points++;
+                donuts[1].points++;
                 break;
             case 'c':
-                cream.points++;
+                donuts[2].points++;
                 break;
             case 'd':
-                pbj.points++;
+                donuts[3].points++;
                 break;
             case 'e':
-                blueberry.points++;
+                donuts[4].points++;
                 break;
             case 'f':
-                sprinkle.points++;
+                donuts[5].points++;
                 break;
             }
 
             questionIndex++;
         }
 
-        // map<int, int> donutMap;
-
-        // donutMap[0] = glazed.points;
-        // donutMap[1] = chocolate.points;
-        // donutMap[2] = cream.points;
-        // donutMap[3] = pbj.points;
-        // donutMap[4] = blueberry.points;
-        // donutMap[5] = sprinkle.points;
-
         // array findMaxDonutPoint[] = {donutPoints};
-
-        for (int i = 1; i < 6; ++i)
-        {
-            if (donutPoints[0] < donutPoints[i])
-            {
-                donutPoints[0] = donutPoints[i];
-            }
-        }
 
         // cout << findMaxDonutPoint[1] << endl;
 
@@ -286,17 +269,10 @@ int main()
 
         // Fix this
 
-        // donutPoints[0] = glazed.points;
-        // donutPoints[1] = chocolate.points;
-        // donutPoints[2] = cream.points;
-        // donutPoints[3] = pbj.points;
-        // donutPoints[4] = blueberry.points;
-        // donutPoints[5] = sprinkle.points;
-
         int maxCount;
         int iMax;
 
-        string donutTypeResponse;
+        int maxOption = max(donuts, compDonuts);
 
         for (int i; i < 6; i++)
         {
