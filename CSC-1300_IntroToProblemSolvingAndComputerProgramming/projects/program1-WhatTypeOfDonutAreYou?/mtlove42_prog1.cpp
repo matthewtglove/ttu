@@ -261,24 +261,42 @@ int main()
             questionIndex++;
         }
 
-        // array findMaxDonutPoint[] = {donutPoints};
-
-        // cout << findMaxDonutPoint[1] << endl;
-
-        int maxPoints = donutPoints[0];
-
-        // Fix this
-
         int maxCount;
-        int iMax;
 
-        int maxOption = max(donuts, compDonuts);
+        // Finding max value
+        int sortedDonutsPoints[] = {donuts[0].points, donuts[1].points, donuts[2].points, donuts[3].points, donuts[4].points, donuts[5].points};
+        for (int i; i < 6; i++)
+        {
+            if (sortedDonutsPoints[0] < sortedDonutsPoints[i])
+            {
+                sortedDonutsPoints[0] = sortedDonutsPoints[i];
+            }
+        }
+
+        int maxPoints = sortedDonutsPoints[0];
 
         for (int i; i < 6; i++)
         {
-            if (donutPoints[i] == maxPoints)
+            if (donuts[i].points == maxPoints)
             {
                 maxCount++;
+            }
+        }
+
+        string donutTypeResult;
+
+        if (!(maxCount == 1))
+        {
+            donutTypeResult = "Sorry, I don't know what type of donut you are. I think you're confused.";
+        }
+        else
+        {
+            for (int i; i < 6; i++)
+            {
+                if (donuts[i].points == maxPoints)
+                {
+                    donutTypeResult = "You are a " + donuts[i].type + " donut!";
+                }
             }
         }
 
@@ -290,35 +308,12 @@ int main()
         cout << endl;
         for (int i; i < 6; i++)
         {
-            cout << indent << donutType[i] << ": " << donutPoints[i] << "\n";
+            cout << indent << donuts[i].type << ": " << donuts[i].points << "\n";
         }
-        // cout << indent << ": " << glazed.points << "\n";
-        // cout << indent << ": " << chocolate.points << "\n";
-        // cout << indent << ": " << cream.points << "\n";
-        // cout << indent << ": " << pbj.points << "\n";
-        // cout << indent << ": " << blueberry.points << "\n";
-        // cout << indent << ": " << sprinkle.points << "\n";
         cout << endl;
-
-        if (!(maxCount == 1))
-        {
-            donutType[6] = "Sorry, I don't know what type of donut you are. I think you're confused.";
-            donutTypeResponse = donutType[6];
-        }
-        else
-        {
-            for (int i; i < 6; i++)
-            {
-                if (donutPoints[i] == maxPoints)
-                {
-                    donutType[i];
-                }
-            }
-        }
-
         cout << setw(80) << setfill('-') << "" << endl;
 
-        // cout << "You are a " << donutType << " donut!" << endl; --- This whole response should change
+        cout << donutTypeResult << endl;
 
         cout << setw(80) << setfill('-') << "" << endl;
         cout << setw(80) << setfill('-') << "" << endl;
