@@ -31,12 +31,6 @@ int main()
 
     bool playAgain = true;
 
-    // TODO:
-    // - Debug max expecting expression
-    // - Fix answering with multiple words (spaces) causing multiple entries
-    // - Get rid of warning
-    // - Anything else?
-
     while (playAgain)
     {
         Donut donuts[] = {
@@ -62,7 +56,7 @@ int main()
         {
             bool validInput = false;
             bool warning = false;
-            string warningReponse = "";
+            string warningReponse = "NOTE: Please enter a, b, c, d, e, or f";
 
             while (!validInput)
             {
@@ -125,7 +119,7 @@ int main()
 
                     cout << indent << "a. Afternoon\n";
                     cout << indent << "b. Night Classes\n";
-                    cout << indent << "c. Mid-Day\n";
+                    cout << indent << "c. Noon\n";
                     cout << indent << "d. Morning\n";
                     cout << indent << "e. Any Time\n";
                     cout << indent << "f. Online\n";
@@ -154,9 +148,10 @@ int main()
                     cout << indent << "a. Edge\n";
                     cout << indent << "b. Chrome\n";
                     cout << indent << "c. Safari\n";
-                    cout << indent << "d. DuckDuckGo and Tor\n";
+                    cout << indent << "d. Tor Onion Browser\n";
                     cout << indent << "e. Brave / FireFox\n";
                     cout << indent << "f. Is that how get to internet?\n";
+
                     cout << endl;
 
                     break;
@@ -166,9 +161,9 @@ int main()
                     cout << "Which Star Wars character is the best?\n\n";
 
                     cout << indent << "a. Luke Skywalker\n";
-                    cout << indent << "b. Han Solo\n";
-                    cout << indent << "c. Princess Leia\n";
-                    cout << indent << "d. Boba Fett\n";
+                    cout << indent << "b. Darth Vader\n";
+                    cout << indent << "c. R2-D2\n";
+                    cout << indent << "d. Jar Jar Binks\n";
                     cout << indent << "e. Yoda\n";
                     cout << indent << "f. Baby Yoda\n";
                     cout << endl;
@@ -222,18 +217,10 @@ int main()
                 cout << "Your answer: ";
 
                 string input;
-                cin >> input;
+                getline(cin, input);
                 response = tolower(input[0]);
 
-                if (response == 'a' || response == 'b' || response == 'c' || response == 'd' || response == 'e' || response == 'f')
-                {
-                    validInput = true;
-                }
-                else
-                {
-                    warning = true;
-                    warningReponse = "NOTE: Please enter a, b, c, d, e, or f";
-                }
+                (response == 'a' || response == 'b' || response == 'c' || response == 'd' || response == 'e' || response == 'f') ? validInput = true : warning = true;
             }
 
             switch (tolower(response))
@@ -261,11 +248,11 @@ int main()
             questionIndex++;
         }
 
-        int maxCount;
+        int maxCount = 0;
 
         // Finding max value
         int sortedDonutsPoints[] = {donuts[0].points, donuts[1].points, donuts[2].points, donuts[3].points, donuts[4].points, donuts[5].points};
-        for (int i; i < 6; i++)
+        for (int i = 0; i < 6; i++)
         {
             if (sortedDonutsPoints[0] < sortedDonutsPoints[i])
             {
@@ -275,7 +262,7 @@ int main()
 
         int maxPoints = sortedDonutsPoints[0];
 
-        for (int i; i < 6; i++)
+        for (int i = 0; i < 6; i++)
         {
             if (donuts[i].points == maxPoints)
             {
@@ -291,7 +278,7 @@ int main()
         }
         else
         {
-            for (int i; i < 6; i++)
+            for (int i = 0; i < 6; i++)
             {
                 if (donuts[i].points == maxPoints)
                 {
@@ -306,11 +293,13 @@ int main()
         cout << setw(80) << setfill('-') << "" << endl;
 
         cout << endl;
-        for (int i; i < 6; i++)
+        for (int i = 0; i < 6; i++)
         {
             cout << indent << donuts[i].type << ": " << donuts[i].points << "\n";
         }
+
         cout << endl;
+
         cout << setw(80) << setfill('-') << "" << endl;
 
         cout << donutTypeResult << endl;
@@ -318,27 +307,78 @@ int main()
         cout << setw(80) << setfill('-') << "" << endl;
         cout << setw(80) << setfill('-') << "" << endl;
         cout << endl;
-    }
 
-    bool validInput = false;
-    while (!validInput)
-    {
-        cout << "Would you like to play again? (y/n) ";
-
-        string input;
-        cin >> input;
-        char playAgainResponse = tolower(input[0]);
-
-        if (playAgainResponse == 'y')
+        bool validInput = false;
+        while (!validInput)
         {
-            validInput = true;
-            playAgain = true;
-        }
-        else if (playAgainResponse == 'n')
-        {
-            validInput = true;
-            playAgain = false;
+            cout << "Would you like to play again? (y/n) ";
+
+            string input;
+            getline(cin, input);
+            char playAgainResponse = tolower(input[0]);
+
+            if (playAgainResponse == 'y')
+            {
+                validInput = true;
+                playAgain = true;
+            }
+            else if (playAgainResponse == 'n')
+            {
+                validInput = true;
+                playAgain = false;
+            }
         }
     }
     return 0;
 }
+
+// *** BELOW IS NOT MY CODE. Credit: Andy Sloane
+
+/* Spinning donut
+
+int k;
+double sin(), cos();
+void spinningDonut()
+{
+    float A = 0, B = 0, i, j, z[1760];
+    char b[1760];
+    printf("\x1b[2J");
+    for (;;)
+    {
+        memset(b, 32, 1760);
+        memset(z, 0, 7040);
+        for (j = 0; 6.28 > j; j += 0.03)
+        {
+            for (i = 0; 6.28 > i; i += 0.0085)
+            {
+                float sini = sin(i),
+                      cosj = cos(j),
+                      sinA = sin(A),
+                      sinj = sin(j),
+                      cosA = cos(A),
+                      cosj2 = cosj + 2,
+                      mess = 1 / (sini * cosj2 * sinA + sinj * cosA + 5),
+                      cosi = cos(i),
+                      cosB = cos(B),
+                      sinB = sin(B),
+                      t = sini * cosj2 * cosA - sinj * sinA;
+                int x = 40 + 30 * mess * (cosi * cosj2 * cosB - t * sinB),
+                    y = 12 + 15 * mess * (cosi * cosj2 * sinB + t * cosB),
+                    o = x + 80 * y,
+                    N = 8 * ((sinj * sinA - sini * cosj * cosA) * cosB - sini * cosj * sinA - sinj * cosA - cosi * cosj * sinB);
+                if (22 > y && y > 0 && x > 0 && 80 > x && mess > z[o])
+                {
+                    z[o] = mess;
+                    b[o] = ".,-~:;=!*#$@"[N > 0 ? N : 0];
+                }
+            }
+        }
+        printf("\x1b[d");
+        for (k = 0; 1761 > k; k++)
+            putchar(k % 80 ? b[k] : 10);
+        A += 0.04;
+        B += 0.02;
+    }
+}
+
+*/
