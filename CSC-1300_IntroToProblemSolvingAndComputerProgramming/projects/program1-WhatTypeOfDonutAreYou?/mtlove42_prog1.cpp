@@ -20,11 +20,6 @@ public:
     }
 };
 
-bool compDonuts(Donut a, Donut b)
-{
-    return (a.points < b.points);
-}
-
 int main()
 {
     string indent = "    ";
