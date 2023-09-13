@@ -28,6 +28,8 @@ int main()
 
     while (playAgain)
     {
+        playAgain = false;
+
         Donut donuts[] = {
             Donut("Glazed"),
             Donut("Chocolate-Covered"),
@@ -45,7 +47,6 @@ int main()
         cout << setw(80) << setfill('-') << "" << endl;
 
         int questionIndex = 1;
-        playAgain = false;
 
         while (questionIndex <= 10)
         {
