@@ -51,12 +51,13 @@ int main()
     }
 
     // Using a ternary operator
-
     /*
-    (screenTime <= 2 && studyTime >= 6) ? cout << "You need to socialize with people more often." << endl :
-    (screenTime > 2 && studyTime >= 6) ? cout << "You need to socialize with people more often and get off that phone." << endl :
-    (screenTime <= 2 && studyTime >= 2) ? cout << "You manage your time well." << endl :
-    (screenTime > 2 && studyTime < 6) ? cout << "What are you going to do if you lose that phone? It is interfering with your ability to have a real life." << endl :
-         cout << "";
+    string advice;
+    (screenTime <= 2 && studyTime >= 6)   ? advice = "You need to socialize with people more often."
+    : (screenTime > 2 && studyTime >= 6)  ? advice = "You need to socialize with people more often and get off that phone."
+    : (screenTime <= 2 && studyTime >= 2) ? advice = "You manage your time well."
+    : (screenTime > 2 && studyTime < 6)   ? advice = "What are you going to do if you lose that phone? It is interfering with your ability to have a real life."
+                                          : advice = "I have no words";
+    cout << advice << endl;
     */
 }
