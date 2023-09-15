@@ -20,16 +20,36 @@ public:
     }
 };
 
+bool askRunAgain(string prompt = "Would you like to run this program again? (y/n) ")
+{
+    while (true)
+    {
+        cout << prompt;
+
+        // Parses user input - repeats only the first character they input
+        string input;
+        getline(cin, input);
+        char runAgainResponse = tolower(input[0]);
+
+        if (runAgainResponse == 'y')
+        {
+            return true;
+            break;
+        }
+        else if (runAgainResponse == 'n')
+        {
+            return false;
+            break;
+        }
+    }
+}
+
 int main()
 {
     string indent = "    ";
 
-    bool playAgain = true;
-
-    while (playAgain)
+    while (true)
     {
-        playAgain = false;
-
         Donut donuts[] = {
             Donut("Glazed"),
             Donut("Chocolate-Covered"),
@@ -304,25 +324,13 @@ int main()
         cout << setw(80) << setfill('-') << "" << endl;
         cout << endl;
 
-        bool validInput = false;
-        while (!validInput)
+        if (askRunAgain("Would you like to play again? (y/n) "))
         {
-            cout << "Would you like to play again? (y/n) ";
-
-            string input;
-            getline(cin, input);
-            char playAgainResponse = tolower(input[0]);
-
-            if (playAgainResponse == 'y')
-            {
-                validInput = true;
-                playAgain = true;
-            }
-            else if (playAgainResponse == 'n')
-            {
-                validInput = true;
-                playAgain = false;
-            }
+            continue;
+        }
+        else
+        {
+            break;
         }
     }
     return 0;

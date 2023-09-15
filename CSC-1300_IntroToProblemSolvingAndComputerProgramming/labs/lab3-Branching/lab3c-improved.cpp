@@ -7,92 +7,69 @@
 
 #include <iostream>
 #include <cstring>
+#include <ctime>
 using namespace std;
 
-// Attempted to make the int validation a function - Error: only returning 0
-/*
-void getIntFromUser(int intName)
+// Requires an int from the user
+int reqIntFromUser()
 {
-    bool validInputInt = false;
-    while (!validInputInt)
+    while (true)
     {
-        string input;
-        // getline(cin, input); // Using getline() breaks the catch for some reason, and the program is terminated
-        cin >> input;
-        bool successfulConversion;
-
         try
         {
-            stoi(input); // Tries to convert to number (should only works if input is number)
-            successfulConversion = true;
+            string input;
+            getline(cin, input);
+            return stoi(input); // Tries to convert to number (should only works if input is number)
+            break;
         }
         catch (...)
         {
-            // default not successful
-        };
-
-        if (!successfulConversion)
-        {
             cout << "Please enter an integer: ";
-        }
-        else
-        {
-            int convertedInput = stoi(input); // Have to use stoi() to assign what was previously a string to int
-            intName = convertedInput;
+            continue;
+        };
+    }
+}
 
-            validInputInt = true;
+// Asks the user if they would like to run the program again. Validates response and only accepts a string begining in 'y' or 'n' (not case sensitive)
+bool askRunAgain(string prompt = "Would you like to run this program again? (y/n) ")
+{
+    while (true)
+    {
+        cout << prompt;
+
+        // Parses user input - repeats only the first character they input
+        string input;
+        getline(cin, input);
+        char runAgainResponse = tolower(input[0]);
+
+        if (runAgainResponse == 'y')
+        {
+            return true;
+            break;
+        }
+        else if (runAgainResponse == 'n')
+        {
+            return false;
+            break;
         }
     }
 }
-*/
 
 int main()
 {
     bool runAgain = true;
 
-    while (runAgain)
+    while (true)
     {
-        runAgain = false;
+        srand(time(0));
+        int num1 = rand() % 99;
+        int num2 = rand() % 99;
+        cout << "What is " << num1 << " + " << num2 << "?" << endl;
 
-        cout << "What is 4 + 18?" << endl;
+        int answer = reqIntFromUser();
+        int correctAnswer = num1 + num2;
 
-        int answer = 0;
-
-        // getIntFromUser(answer);
-
-        // Validates user input - only accepts a number
-        bool validInputInt = false;
-        while (!validInputInt)
-        {
-            string input;
-            // getline(cin, input); // Using getline() breaks the catch for some reason, and the program is terminated
-            cin >> input;
-            bool successfulConversion;
-
-            try
-            {
-                stoi(input); // Tries to convert to number (should only works if input is number)
-                successfulConversion = true;
-            }
-            catch (...)
-            {
-                // default not successful
-            };
-
-            if (!successfulConversion)
-            {
-                cout << "Please enter an integer: ";
-            }
-            else
-            {
-                int convertedInput = stoi(input); // Have to use stoi() to assign what was previously a string to int
-                answer = convertedInput;
-
-                validInputInt = true;
-            }
-        }
-
-        if (answer == 22)
+        if (answer == correctAnswer)
         {
             cout << "Correct! Great job" << endl;
         }
@@ -101,33 +78,18 @@ int main()
             cout << endl;
             cout << "Incorrect.\n"
                  << "Your answer: " << answer << "\n"
-                 << "Expected answer: The right one" << endl;
+                 << "Expected answer: " << correctAnswer << endl;
             cout << endl;
         }
 
-        // Asks the user if they would like to run the program again. Validates response and only accepts a string begining in 'y' or 'n' (not case sensitive)
-        bool validYNInput = false;
-        while (!validYNInput)
+        if (askRunAgain())
         {
-            cout << "Would you like to run this program again? (y/n) ";
-
-            // Parses user input - repeats only the first character they input
-            string input;
-            getline(cin, input);
-            char runAgainResponse = tolower(input[0]);
-
-            if (runAgainResponse == 'y')
-            {
-                validYNInput = true;
-                runAgain = true;
-            }
-            else if (runAgainResponse == 'n')
-            {
-                validYNInput = true;
-                runAgain = false;
-            }
+            continue;
+        }
+        else
+        {
+            break;
         }
     }
-
     return 0;
 }
