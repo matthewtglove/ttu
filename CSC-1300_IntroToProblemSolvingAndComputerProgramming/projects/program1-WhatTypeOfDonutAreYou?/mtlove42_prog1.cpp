@@ -236,7 +236,14 @@ int main()
                 getline(cin, input);
                 response = tolower(input[0]);
 
-                (response == 'a' || response == 'b' || response == 'c' || response == 'd' || response == 'e' || response == 'f') ? validInput = true : warning = true;
+                if (response == 'a' || response == 'b' || response == 'c' || response == 'd' || response == 'e' || response == 'f')
+                {
+                    validInput = true;
+                }
+                else
+                {
+                    warning = true;
+                }
             }
 
             switch (tolower(response))
