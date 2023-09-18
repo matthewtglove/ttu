@@ -1,5 +1,5 @@
 /*
-	Title:    mod5c.cpp
+	Title: mod5c.cpp
 	Author: Matthew Love
 	Date: 2023-09-15, Fri
 	Purpose:  Practice for loops (in-class practice)
@@ -10,22 +10,14 @@
 #include <ctime>
 using namespace std;
 
-int diceRoll()
-{
-	// seed the random number generator
-	srand(time(0));
-
-	return (rand() % 6);
-}
-
-// Function for asking the user if they'd like to roll again
+// Asks the user if they would like to run the program again. Validates response and only accepts a string begining in 'y' or 'n' (not case sensitive)
 bool askRunAgain(string prompt = "Would you like to run this program again? (y/n) ")
 {
 	while (true)
 	{
 		cout << prompt;
 
-		// Parses user input - repeats only the first character they input
+		// Validates user input - reads only the first character they input
 		string input;
 		getline(cin, input);
 		char runAgainResponse = tolower(input[0]);
@@ -45,9 +37,6 @@ bool askRunAgain(string prompt = "Would you like to run this program again? (y/n
 
 int main()
 {
-	int total;		  // total for the particular ability
-	int oddRollCount; // holds the number of times an ODD roll occurred
-
 	cout << "\nDnD Stat Roll\n";
 	cout << "1 - Strength\n";
 	cout << "2 - Dexterity\n";
@@ -63,37 +52,57 @@ int main()
 			"exceeds 20, then the last dice roll is removed.\n\n"
 			"I will then print the result for each ability score.\n\n";
 
-	// ADD ALL YOUR CODE BELOW
-	// MAKE SURE YOU HAVE AT LEAST ONE FOR LOOP AND TWO LOOPS IN TOTAL.
-	// USE THE PROVIDED VARIABLES THAT HAVE BEEN DEFINED
 	while (true)
 	{
-		bool abilityConditionMet = false;
-		int abilityIndex = 1;
-		for (int rollNum = 1; !abilityConditionMet; rollNum++)
+		int total;		  // total for the particular ability
+		int oddRollCount; // holds the number of times an ODD roll occurred
+		int roll;		  // Value of an individual roll
+		int rollIndex;	  // The roll number
+		srand(time(0));
+
+		// Rolls random values for each of the 6 abilities
+		for (int abilityIndex = 1; abilityIndex <= 6; abilityIndex++)
 		{
-			int roll = diceRoll();
-			cout << "roll " << rollNum << ": " << roll << endl;
-			oddRollCount++;
-			total += roll;
+			// Declares the values so that they're reset for every ability
+			total = 0;
+			oddRollCount = 0;
+			rollIndex = 1;
 
-			(oddRollCount > 1 || total >= 20) ? abilityConditionMet = true : abilityConditionMet = false;
-
-			if (abilityConditionMet)
+			// Keeps rolling until 2 odd rolls or the total is 20 or above
+			while (oddRollCount < 2 && total < 20)
 			{
-				cout << ">>>>> Ability " << abilityIndex << " Score is " << total << endl;
-				cout << abilityIndex++;
+				roll = ((rand() % 6) + 1); // Random number 1-6
+				cout << "roll " << rollIndex << ": " << roll << endl;
+
+				// Checks if odd
+				if (roll % 2 == 1)
+				{
+					oddRollCount++;
+				}
+
+				total += roll;
+				rollIndex++;
 			}
+
+			// If total is above 20, it subtracts the last value
+			if (total > 20)
+			{
+				total -= roll;
+			}
+
+			cout << ">>>>> Ability " << abilityIndex << " Score is " << total << endl;
+			cout << endl;
 		}
-		if (askRunAgain("Roll again? (y/n) "))
+
+		// Gets output of askRunAgain to determine if it should run the full program again (the while loop)
+		if (askRunAgain("Roll new abilities? (y/n) "))
 		{
-			continue;
+			continue; // Runs the while loop again
 		}
 		else
 		{
-			break;
+			break; // Breaks out of the while loop
 		}
 	}
-
 	return 0;
 }

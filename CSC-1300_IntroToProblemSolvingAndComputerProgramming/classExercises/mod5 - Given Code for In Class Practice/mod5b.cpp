@@ -1,13 +1,63 @@
 /*
-mod5a In-Class Practice
-Description: Generate random number between 70 and 770. Calculate sum of random numbers. Ask user to guess the random number.
+	Title: mod5b In-Class Practice
+	Author: Matthew Love
+	Date: 2023-09-15, Fri
+	Description: Generate random number between 70 and 770. Calculate sum of random numbers. Ask user to guess the random number. Ask the user if they want to play again after guessing.
 */
 #include <iostream>
+#include <cstring>
 #include <time.h>
 using namespace std;
+
+// Requires the user to input an integer
+int reqIntFromUser()
+{
+	// Keeps prompting the user to input an integer until they do
+	while (true)
+	{
+		try
+		{
+			string input;
+			getline(cin, input);
+			return stoi(input); // Tries to convert to number (should only works if input is number)
+			break;				// Used to exit the while loop
+		}
+		catch (...)
+		{
+			cout << "Please enter an integer: ";
+			continue; // Repeats the while loop
+		};
+	}
+}
+
+// Asks the user if they would like to run the program again. Validates response and only accepts a string begining in 'y' or 'n' (not case sensitive)
+bool askRunAgain(string prompt = "Would you like to run this program again? (y/n) ")
+{
+	while (true)
+	{
+		cout << prompt;
+
+		// Validates user input - reads only the first character they input
+		string input;
+		getline(cin, input);
+		char runAgainResponse = tolower(input[0]);
+
+		if (runAgainResponse == 'y')
+		{
+			return true;
+			break; // Used to exit the while loop
+		}
+		else if (runAgainResponse == 'n')
+		{
+			return false;
+			break; // Used to exit the while loop
+		}
+	}
+}
+
 int main()
 {
-	bool playAgain;
+	bool playAgain = false; // Used to rerun do-while loop
 	do
 	{
 
@@ -21,25 +71,18 @@ int main()
 		// seed the random number generator
 		srand(time(0));
 
-		/*
-			!!!!!!!!!!!!!!!!!!!!!!
-			generate a random number between the low & high range inclusively
-		*/
+		// generates a random number between the low & high range inclusively
 		rnum = rand() % ((high - low) + 1) + low;
 
-		cout << "\n\nGuess a number between " << low << " and " << high << ":  ";
-		cin >> guess;
+		cout << "\n\nGuess a number between " << low << " and " << high << ": ";
+		guess = reqIntFromUser();
 
-		/*
-			!!!!!!!!!!!!!!!!!!!!!!!!!
-			Complete the while loop so that it will validate if the user entered
-			a number in the valid range (7 to 77).  Both 7 & 77 are included in the valid range.
-		*/
+		// Only completes the while loop so that it will validate if the user entered a number in the valid range (7 to 77). Both 7 & 77 are included in the valid range.
 		while (guess < low || guess > high)
 		{
 			cout << "The number is not in the valid range!\n";
 			cout << "Guess a number between " << low << " and " << high << ":  ";
-			cin >> guess;
+			guess = reqIntFromUser(); // Gets a new guess if they don't guess within the range
 		}
 
 		if (guess == rnum)
@@ -48,28 +91,16 @@ int main()
 			cout << "\n\nYou get no super powers.  The random number was " << rnum << endl
 				 << endl;
 
-		playAgain = false;
-		bool validInput = false;
-		do
+		// Uses the boolean returned by askRunAgain() to determine playAgain
+		if (askRunAgain("Would you like to play again? (y/n) "))
 		{
-			cout << "Would you like to play again? (y/n) ";
+			playAgain = true;
+		}
+		else
+		{
+			playAgain = false;
+		}
 
-			// validates reponse - only accepts first character input (not case sensistive)
-			int input;
-			cin >> input;
-			char playAgainResponse = tolower(input);
-
-			if (playAgainResponse == 'y')
-			{
-				validInput = true;
-				playAgain = true;
-			}
-			else if (playAgainResponse == 'n')
-			{
-				validInput = true;
-				playAgain = false;
-			}
-		} while (!validInput);
 	} while (playAgain);
 
 	return 0;

@@ -1,6 +1,8 @@
 /*
-mod5a In-Class Practice
-Description: Generate random number between 70 and 770. Calculate sum of random numbers. Ask user to guess the random number.
+	Title: mod5a In-Class Practice
+	Author: Matthew Love
+	Date: 2023-09-13, Wed
+	Description: Generate random number between 70 and 770. Calculate sum of random numbers. Ask user to guess the random number.
 */
 #include <iostream>
 #include <time.h>
@@ -18,27 +20,21 @@ int main()
 	// seed the random number generator
 	srand(time(0));
 
-	/*
-		!!!!!!!!!!!!!!!!!!!!!!
-		generate a random number between the low & high range inclusively
-	*/
+	// generates a random number between the low & high range inclusively
 	rnum = rand() % ((high - low) + 1) + low;
 
 	cout << "\n\nGuess a number between " << low << " and " << high << ":  ";
 	cin >> guess;
 
-	/*
-		!!!!!!!!!!!!!!!!!!!!!!!!!
-		Complete the while loop so that it will validate if the user entered
-		a number in the valid range (7 to 77).  Both 7 & 77 are included in the valid range.
-	*/
+	// Only completes the while loop so that it will validate if the user entered a number in the valid range (7 to 77). Both 7 & 77 are included in the valid range.
 	while (guess < low || guess > high)
 	{
 		cout << "The number is not in the valid range!\n";
 		cout << "Guess a number between " << low << " and " << high << ":  ";
-		cin >> guess;
+		cin >> guess; // Gets a new guess if they don't guess within the range
 	}
 
+	// The message returned depending on if they guess the random number correctly
 	if (guess == rnum)
 		cout << "\n\nYou have gained the super power where skittles can shoot from your fingertips!\n\n";
 	else
