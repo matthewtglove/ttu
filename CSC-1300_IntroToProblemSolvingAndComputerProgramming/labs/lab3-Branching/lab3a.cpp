@@ -6,29 +6,45 @@
 */
 
 #include <iostream>
+#include <cstring>
 using namespace std;
 
-/*
-TODO:
-- Validate user input
--
+// Requires the user to input an integer
+int reqIntFromUser()
+{
+    // Keeps prompting the user to input an integer until they do
+    while (true)
+    {
+        try
+        {
+            string input;
+            getline(cin, input);
+            return stoi(input); // Tries to convert to number (should only works if input is number)
+            break;              // Used to exit the while loop
+        }
+        catch (...)
+        {
+            cout << "Please enter an integer: ";
+            continue; // Repeats the while loop
+        };
+    }
+}
 
-*/
 int main()
 {
-    int screenTime;
-    int studyTime;
+    int screenTime = 0;
+    int studyTime = 0;
 
     // Intro
     cout << "Welcome! I am the Wizard of Advice. Be warned, my advice is strict and responses are blunt." << endl;
     cout << "Today I will give you advice based on your average daily screen and study time." << endl;
     cout << endl;
 
-    // Receives user's input
+    // Receives user's input, using above function for int validation
     cout << "Please enter your average daily screen time: ";
-    cin >> screenTime;
+    screenTime = reqIntFromUser();
     cout << "Please enter your average daily study time: ";
-    cin >> studyTime;
+    studyTime = reqIntFromUser();
 
     cout << endl;
 

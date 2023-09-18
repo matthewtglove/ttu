@@ -20,7 +20,7 @@ int main()
 
 	cout << endl;
 
-	// Returns a response based on user's grade input (corrects lowercase)
+	// Returns a response based on user's grade input (accepts lowercase)
 	switch (toupper(grade))
 	{
 	case 'A':

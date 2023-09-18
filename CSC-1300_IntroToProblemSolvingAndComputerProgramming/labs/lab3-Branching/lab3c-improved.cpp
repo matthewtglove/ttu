@@ -1,5 +1,5 @@
 /*
-    Title: lab3c.cpp
+    Title: lab3c-improved.cpp
     Author: Matthew Love
     Date: 2023-09-12, Tue
     Purpose: Using while loops by asking user to answer a math problem
@@ -20,7 +20,7 @@ int reqIntFromUser()
             string input;
             getline(cin, input);
             return stoi(input); // Tries to convert to number (should only works if input is number)
-            break;
+            break;              // Used to exit the while loop
         }
         catch (...)
         {
@@ -37,7 +37,7 @@ bool askRunAgain(string prompt = "Would you like to run this program again? (y/n
     {
         cout << prompt;
 
-        // Parses user input - repeats only the first character they input
+        // Validates user input - reads only the first character they input
         string input;
         getline(cin, input);
         char runAgainResponse = tolower(input[0]);
@@ -57,31 +57,32 @@ bool askRunAgain(string prompt = "Would you like to run this program again? (y/n
 
 int main()
 {
-    bool runAgain = true;
-
     while (true)
     {
+        // Gets a random number for the math problem
         srand(time(0));
         int num1 = rand() % 99;
         int num2 = rand() % 99;
         cout << "What is " << num1 << " + " << num2 << "?" << endl;
 
-        int answer = reqIntFromUser();
+        int userAnswer = reqIntFromUser();
         int correctAnswer = num1 + num2;
 
-        if (answer == correctAnswer)
+        if (userAnswer == correctAnswer)
         {
             cout << "Correct! Great job" << endl;
+            cout << endl;
         }
         else
         {
             cout << endl;
             cout << "Incorrect.\n"
-                 << "Your answer: " << answer << "\n"
+                 << "Your answer: " << userAnswer << "\n"
                  << "Expected answer: " << correctAnswer << endl;
             cout << endl;
         }
 
+        // Uses the boolean returned by askRunAgain() to determine playAgain
         if (askRunAgain())
         {
             continue;

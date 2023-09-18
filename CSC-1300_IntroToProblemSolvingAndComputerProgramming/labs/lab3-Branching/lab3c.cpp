@@ -5,12 +5,15 @@
     Purpose: Using while loops by asking user to answer a math problem
 */
 
+// *** See lab3c.improved.cpp for a better version of this program ***
+
 #include <iostream>
 #include <cstring>
 using namespace std;
 
 int main()
 {
+    // Used to determine if the program should be run again
     bool runAgain = true;
 
     while (runAgain)
@@ -19,11 +22,13 @@ int main()
 
         cout << "What is do you get when you add 4 + 18? " << endl;
 
+        // User's answer to the math problem
         int answer;
         cin >> answer;
 
         cout << "Enter the letter 'y' if you want to quit. " << endl;
 
+        // User's response to quitting
         char runAgainResponse;
         cin >> runAgainResponse;
 
