@@ -8,6 +8,7 @@
 #include <iomanip>
 using namespace std;
 
+// Donut type set up to keep the points and type (donut flavor) values of a donut tied together
 class Donut
 {
 public:
@@ -20,13 +21,14 @@ public:
     }
 };
 
+// Asks the user if they would like to run the program again. Validates response and only accepts a string begining in 'y' or 'n' (not case sensitive)
 bool askRunAgain(string prompt = "Would you like to run this program again? (y/n) ")
 {
     while (true)
     {
         cout << prompt;
 
-        // Parses user input - repeats only the first character they input
+        // Validates user input - reads only the first character they input
         string input;
         getline(cin, input);
         char runAgainResponse = tolower(input[0]);
@@ -34,12 +36,12 @@ bool askRunAgain(string prompt = "Would you like to run this program again? (y/n
         if (runAgainResponse == 'y')
         {
             return true;
-            break;
+            break; // Used to exit the while loop
         }
         else if (runAgainResponse == 'n')
         {
             return false;
-            break;
+            break; // Used to exit the while loop
         }
     }
 }
@@ -85,6 +87,7 @@ int main()
 
                 cout << questionIndex << ". ";
 
+                // switch statement used to walk through question indexes
                 switch (questionIndex)
                 {
                 case 1:
@@ -246,6 +249,7 @@ int main()
                 }
             }
 
+            // Adds points to a certain donut depending on user's input a-f
             switch (tolower(response))
             {
             case 'a':
@@ -271,6 +275,7 @@ int main()
             questionIndex++;
         }
 
+        // Number of donuts with the max score
         int maxCount = 0;
 
         // Finding max value
@@ -285,6 +290,7 @@ int main()
 
         int maxPoints = sortedDonutsPoints[0];
 
+        // Finds the number of donuts with the max score
         for (int i = 0; i < 6; i++)
         {
             if (donuts[i].points == maxPoints)
@@ -295,6 +301,7 @@ int main()
 
         string donutTypeResult;
 
+        // If there is more than one top donut, then it returns the first statement, else it prints their top donut
         if (!(maxCount == 1))
         {
             donutTypeResult = "Sorry, I don't know what type of donut you are. I think you're confused.";
@@ -331,6 +338,7 @@ int main()
         cout << setw(80) << setfill('-') << "" << endl;
         cout << endl;
 
+        // Runs the questions again depending on the boolean value of askRunAgain()
         if (askRunAgain("Would you like to play again? (y/n) "))
         {
             continue;
@@ -343,7 +351,7 @@ int main()
     return 0;
 }
 
-// *** BELOW IS NOT MY CODE. Credit: Andy Sloane
+// *** BELOW IS NOT MY CODE. Credit: Andy Sloane https://gist.github.com/gcr/1075131 ***
 
 /* Spinning donut
 
