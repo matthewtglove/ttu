@@ -13,9 +13,8 @@ Idea: A text-based game where you have to choose the right insule reponse agains
 /*
 TODO:
 - Intro
-- Add indents to strings
-- Use .ctype
 - Username code at beginning
+    - Use .ctype
 */
 
 #include <iostream>
@@ -40,7 +39,11 @@ int main()
     cout << "" << endl;
     cout << setw(80) << setfill('-') << "" << endl;
 
-    // Enter username flow
+    cout << endl;
+    // Add enter username flow
+    cout << endl;
+
+    cout << setw(80) << setfill('-') << "" << endl;
 
     // Pirate 1
     {
@@ -72,9 +75,7 @@ int main()
         {
             cout << "> ARRRRR, Pirate 1 deftly swings his blade and drives you off the ship!\n";
             cout << "> You were defeated by Pirate 1!" << endl;
-
             cout << endl;
-            cout << setw(80) << setfill('-') << "" << endl;
 
             firstPirateDefeated = false;
         }
@@ -105,9 +106,7 @@ int main()
             {
                 cout << "> ARRRRR, Pirate 1 deftly swings his blade and drives you off the ship!\n";
                 cout << "> You were defeated by Pirate 1!" << endl;
-
                 cout << endl;
-                cout << setw(80) << setfill('-') << "" << endl;
 
                 firstPirateDefeated = false;
             }
@@ -115,9 +114,7 @@ int main()
             {
                 cout << "> YARRRR! You deal a powerful blow, knocking Pirate 1 off the ship!\n";
                 cout << "> You defeated Pirate 1!" << endl;
-
                 cout << endl;
-                cout << setw(80) << setfill('-') << "" << endl;
 
                 firstPirateDefeated = true;
             }
@@ -154,9 +151,7 @@ int main()
         {
             cout << "> ARRRRRR, you fail to block Pirate 2's attacks and fall to your demise.\n";
             cout << "> You were defeated by Pirate 2!" << endl;
-
             cout << endl;
-            cout << setw(80) << setfill('-') << "" << endl;
 
             secondPirateDefeated = false;
         }
@@ -169,8 +164,8 @@ int main()
                  << endl;
 
             cout << "\t1. Ye be more clueless than a captain without a ship!\n";
-            cout << "\t2. Aye, but ye be gluten free!\n";                      // Yeah I ran out of ideas
-            cout << "\t3. Better clueless than heartless like ye, me mate.\n"; // Not very strong comeback
+            cout << "\t2. Aye, but ye be gluten free!\n"; // Yeah I ran out of ideas
+            cout << "\t3. Better clueless than heartless like ye, me mate.\n";
             cout << endl;
 
             correctResponse = 3;
@@ -187,9 +182,7 @@ int main()
             {
                 cout << "> ARRRRRR, you fail to block Pirate 2's attacks and fall to your demise.\n";
                 cout << "> You were defeated by Pirate 2!" << endl;
-
                 cout << endl;
-                cout << setw(80) << setfill('-') << "" << endl;
 
                 secondPirateDefeated = false;
             }
@@ -197,9 +190,7 @@ int main()
             {
                 cout << "> YARRRR! Pirate 2 is caught off guard and you throw him off the ship!\n";
                 cout << "> You defeated Pirate 2!" << endl;
-
                 cout << endl;
-                cout << setw(80) << setfill('-') << "" << endl;
 
                 secondPirateDefeated = true;
             }
@@ -236,9 +227,7 @@ int main()
         {
             cout << "> ARRRRRRRRR, Pirate 3 disarms you and kicks you overboard!\n";
             cout << "> You were defeated by Pirate 3!" << endl;
-
             cout << endl;
-            cout << setw(80) << setfill('-') << "" << endl;
 
             thirdPirateDefeated = false;
         }
@@ -251,8 +240,8 @@ int main()
             cout << "\"Yer aim be so bad, ye couldn't hit water if ye fell out of a boat!\"" << endl
                  << endl;
 
-            cout << "\t1. Aye, but I can hit the broadside of yer ego!\n"; // Not very strong comeback
-            cout << "\t2. Aye, but when you jump on land it's still a belly flop.\n";
+            cout << "\t1. Aye, but I can hit the broadside of yer ego, me mate!\n";
+            cout << "\t2. Aye, but when you fall on land the earth trembles.\n";
             cout << "\t3. But ye be the one who will fall in the water!\n";
             cout << endl;
 
@@ -270,9 +259,7 @@ int main()
             {
                 cout << "> ARRRRRRRRR, Pirate 3 disarms you and kicks you overboard!\n";
                 cout << "> You were defeated by Pirate 3!" << endl;
-
                 cout << endl;
-                cout << setw(80) << setfill('-') << "" << endl;
 
                 thirdPirateDefeated = false;
             }
@@ -280,16 +267,16 @@ int main()
             {
                 cout << "> YARRRRRRRR! You parry Pirate 3, and drive him off the ship!\n";
                 cout << "> You defeated Pirate 3!" << endl;
-
                 cout << endl;
-                cout << setw(80) << setfill('-') << "" << endl;
 
                 thirdPirateDefeated = true;
             }
         }
     }
 
-    // Final score display with name
+    cout << setw(80) << setfill('-') << "" << endl;
+
+    // Add final score display with name
 
     cout << endl;
     cout << setw(80) << setfill('-') << "" << endl;
