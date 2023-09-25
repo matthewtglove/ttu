@@ -5,18 +5,6 @@
     Purpose: Creating a text-based video game
 */
 
-/*
-Idea: A text-based game where you have to choose the right insule reponse against a pirate. Aka "A roast battle against pirates"
-
-*/
-
-/*
-TODO:
-- Intro
-- Username code at beginning
-    - Use .ctype
-*/
-
 #include <iostream>
 #include <cstring>
 #include <cctype>
@@ -28,22 +16,46 @@ int main()
     bool firstPirateDefeated = false;
     bool secondPirateDefeated = false;
     bool thirdPirateDefeated = false;
+    int totalDefeated = 0;
 
     int userResponse;
     int correctResponse;
 
+    string username;
+
     // Intro
     cout << endl;
-    cout << setw(80) << setfill('-') << "" << endl;
-    cout << setw(80) << setfill('-') << "" << endl;
-    cout << "" << endl;
-    cout << setw(80) << setfill('-') << "" << endl;
+    cout << setw(130) << setfill('-') << "" << endl;
+    cout << setw(130) << setfill('-') << "" << endl;
+    cout << R"(
+               ______                                           ______             _             ______       _   _   _      
+               | ___ \                                          | ___ \           | |            | ___ \     | | | | | |     
+               | |_/ /_   _  ___ ___ __ _ _ __   ___  ___ _ __  | |_/ / __ _ _ __ | |_ ___ _ __  | |_/ / __ _| |_| |_| | ___ 
+               | ___ \ | | |/ __/ __/ _` | '_ \ / _ \/ _ \ '__| | ___ \/ _` | '_ \| __/ _ \ '__| | ___ \/ _` | __| __| |/ _ \
+               | |_/ / |_| | (_| (_| (_| | | | |  __/  __/ |    | |_/ / (_| | | | | ||  __/ |    | |_/ / (_| | |_| |_| |  __/
+               \____/ \__,_|\___\___\__,_|_| |_|\___|\___|_|    \____/ \__,_|_| |_|\__\___|_|    \____/ \__,_|\__|\__|_|\___|
+                                                                                                                                )"
+         << endl;
+    cout << setw(130) << setfill('-') << "" << endl;
 
+    // Gets the users name
     cout << endl;
-    // Add enter username flow
-    cout << endl;
+    cout << "\n\nARRRRR!!! What's ye Name Pirate: ";
+    getline(cin, username);
+    cout << endl
+         << endl;
 
-    cout << setw(80) << setfill('-') << "" << endl;
+    // Loops through the given username and gets rid of non alapha characters
+    for (int i = 0; username.size() > i; i++)
+    {
+        if (!isalpha(username.at(i)))
+        {
+            username.replace(i, 1, "");
+            --i;
+        }
+    }
+    cout << endl;
+    cout << setw(130) << setfill('-') << "" << endl;
 
     // Pirate 1
     {
@@ -64,6 +76,7 @@ int main()
         correctResponse = 3;
         userResponse = 0;
 
+        // Loops through till the user gives a valid response
         do
         {
             cout << "Choose response (1-3): ";
@@ -71,6 +84,7 @@ int main()
             cout << endl;
         } while (userResponse < 1 || userResponse > 3);
 
+        // Determines if the user has been defeated or not
         if (userResponse != correctResponse)
         {
             cout << "> ARRRRR, Pirate 1 deftly swings his blade and drives you off the ship!\n";
@@ -95,6 +109,7 @@ int main()
             correctResponse = 1;
             userResponse = 0;
 
+            // Loops through till the user gives a valid response
             do
             {
                 cout << "Choose response (1-3): ";
@@ -102,6 +117,7 @@ int main()
                 cout << endl;
             } while (userResponse < 1 || userResponse > 3);
 
+            // Determines if the user defeated the pirate
             if (userResponse != correctResponse)
             {
                 cout << "> ARRRRR, Pirate 1 deftly swings his blade and drives you off the ship!\n";
@@ -117,6 +133,7 @@ int main()
                 cout << endl;
 
                 firstPirateDefeated = true;
+                totalDefeated++;
             }
         }
     }
@@ -140,6 +157,7 @@ int main()
         correctResponse = 2;
         userResponse = 0;
 
+        // Loops through till the user gives a valid response
         do
         {
             cout << "Choose response (1-3): ";
@@ -147,6 +165,7 @@ int main()
             cout << endl;
         } while (userResponse < 1 || userResponse > 3);
 
+        // Determines if the user has been defeated or not
         if (userResponse != correctResponse)
         {
             cout << "> ARRRRRR, you fail to block Pirate 2's attacks and fall to your demise.\n";
@@ -171,6 +190,7 @@ int main()
             correctResponse = 3;
             userResponse = 0;
 
+            // Loops through till the user gives a valid response
             do
             {
                 cout << "Choose response (1-3): ";
@@ -178,6 +198,7 @@ int main()
                 cout << endl;
             } while (userResponse < 1 || userResponse > 3);
 
+            // Determines if the user defeated the pirate
             if (userResponse != correctResponse)
             {
                 cout << "> ARRRRRR, you fail to block Pirate 2's attacks and fall to your demise.\n";
@@ -193,6 +214,7 @@ int main()
                 cout << endl;
 
                 secondPirateDefeated = true;
+                totalDefeated++;
             }
         }
     }
@@ -216,6 +238,7 @@ int main()
         correctResponse = 2;
         userResponse = 0;
 
+        // Loops through till the user gives a valid response
         do
         {
             cout << "Choose response (1-3): ";
@@ -223,6 +246,7 @@ int main()
             cout << endl;
         } while (userResponse < 1 || userResponse > 3);
 
+        // Determines if the user has been defeated or not
         if (userResponse != correctResponse)
         {
             cout << "> ARRRRRRRRR, Pirate 3 disarms you and kicks you overboard!\n";
@@ -248,6 +272,7 @@ int main()
             correctResponse = 1;
             userResponse = 0;
 
+            // Loops through till the user gives a valid response
             do
             {
                 cout << "Choose response (1-3): ";
@@ -255,6 +280,7 @@ int main()
                 cout << endl;
             } while (userResponse < 1 || userResponse > 3);
 
+            // Determines if the user defeated the pirate
             if (userResponse != correctResponse)
             {
                 cout << "> ARRRRRRRRR, Pirate 3 disarms you and kicks you overboard!\n";
@@ -270,17 +296,86 @@ int main()
                 cout << endl;
 
                 thirdPirateDefeated = true;
+                totalDefeated++;
             }
         }
     }
 
-    cout << setw(80) << setfill('-') << "" << endl;
+    cout << setw(130) << setfill('-') << "" << endl;
 
-    // Add final score display with name
+    // Determines how many pirates were defeated
+    if (firstPirateDefeated)
+        cout << "Pirate 1 was plundered!\n";
+    if (secondPirateDefeated)
+        cout << "Pirate 2 kicked the bucket!\n";
+    if (thirdPirateDefeated)
+        cout << "Pirate 3 visited Davy Jone's Locker!\n";
+    cout << endl;
+
+    cout << username << " defeated " << totalDefeated << " out of 3 pirates." << endl;
 
     cout << endl;
-    cout << setw(80) << setfill('-') << "" << endl;
-    cout << setw(80) << setfill('-') << "" << endl;
+    cout << setw(130) << setfill('-') << "" << endl;
+    cout << endl
+         << endl;
+
+    // Gives the user a pirate name
+    cout << username << "'s new pirate name is:\n";
+    cout << setw(130) << setfill('-') << "" << endl;
+
+    if (totalDefeated == 0)
+    {
+        cout << R"(
+                     _____           _ _                                    __   _____ _                          
+                    /  ___|         | | |                                  / _| /  ___| |                         
+                    \ `--.  ___ __ _| | |_   ___      ____ _  __ _    ___ | |_  \ `--.| |__   __ _ _ __ ___   ___ 
+                     `--. \/ __/ _` | | | | | \ \ /\ / / _` |/ _` |  / _ \|  _|  `--. \ '_ \ / _` | '_ ` _ \ / _ \
+                    /\__/ / (_| (_| | | | |_| |\ V  V / (_| | (_| | | (_) | |   /\__/ / | | | (_| | | | | | |  __/
+                    \____/ \___\__,_|_|_|\__, | \_/\_/ \__,_|\__, |  \___/|_|   \____/|_| |_|\__,_|_| |_| |_|\___|
+                                          __/ |               __/ |                                               
+                                          |___/               |___/                                                )"
+             << endl;
+    }
+    else if (totalDefeated == 1)
+    {
+        cout << R"(
+                     _           _     _                        __   _                            _     _                 
+                    | |         | |   | |                      / _| | |                          | |   (_)                
+                    | |    _   _| |__ | |__   ___ _ __    ___ | |_  | |     __ _ _ __ ___   ___  | |    _ _ __   ___  ___ 
+                    | |   | | | | '_ \| '_ \ / _ \ '__|  / _ \|  _| | |    / _` | '_ ` _ \ / _ \ | |   | | '_ \ / _ \/ __|
+                    | |___| |_| | |_) | |_) |  __/ |    | (_) | |   | |___| (_| | | | | | |  __/ | |___| | | | |  __/\__ \
+                    \_____/\__,_|_.__/|_.__/ \___|_|     \___/|_|   \_____/\__,_|_| |_| |_|\___| \_____/_|_| |_|\___||___/
+                                                                                                      )"
+             << endl;
+    }
+    else if (totalDefeated == 2)
+    {
+        cout << R"(
+                     _____             _        _         _____       _   _   _                     _   
+                    /  __ \           | |      (_)       /  __ \     | | | | | |                   | |  
+                    | /  \/ __ _ _ __ | |_ __ _ _ _ __   | /  \/_   _| |_| |_| |__  _ __ ___   __ _| |_ 
+                    | |    / _` | '_ \| __/ _` | | '_ \  | |   | | | | __| __| '_ \| '__/ _ \ / _` | __|
+                    | \__/\ (_| | |_) | || (_| | | | | | | \__/\ |_| | |_| |_| | | | | | (_) | (_| | |_ 
+                    \____/\__,_| .__/ \__\__,_|_|_| |_|  \____/\__,_|\__|\__|_| |_|_|  \___/ \__,_|\__|
+                               | |                                                                     
+                               |_|                                                                     )"
+             << endl;
+    }
+    else if (totalDefeated == 3)
+    {
+        cout << R"(
+                    ___  ___          _                     __  ___  ___           _                   
+                    |  \/  |         | |                   / _| |  \/  |          | |                  
+                    | .  . | __ _ ___| |_ ___ _ __    ___ | |_  | .  . | ___   ___| | _____ _ __ _   _ 
+                    | |\/| |/ _` / __| __/ _ \ '__|  / _ \|  _| | |\/| |/ _ \ / __| |/ / _ \ '__| | | |
+                    | |  | | (_| \__ \ ||  __/ |    | (_) | |   | |  | | (_) | (__|   <  __/ |  | |_| |
+                    \_|  |_/\__,_|___/\__\___|_|     \___/|_|   \_|  |_/\___/ \___|_|\_\___|_|   \__, |
+                                                                                                  __/ |
+                                                                                                  |___/ )"
+             << endl;
+    }
+
+    cout << setw(130) << setfill('-') << "" << endl;
 
     return 0;
 }
