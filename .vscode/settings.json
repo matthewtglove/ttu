@@ -8,6 +8,7 @@
         "string": "cpp",
         "cstring": "cpp",
         "cctype": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "fstream": "cpp"
     }
 }
