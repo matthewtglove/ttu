@@ -1,5 +1,4 @@
-
-srand(time(0));
+#include "luckyguess.h"
 
 bool luckyGuess(int guess)
 {

@@ -1,21 +1,15 @@
 /*
-    Title: mod7c.cpp
+    Title: mod7d.cpp
     Author: Matthew Love
     Date: 2023-10-13, Fri
-    Purpose: Pass by reference
+    Purpose: Splitting up program into multiple files
 */
 
-#include <iostream>
-#include <string>
-#include <ctime>
-using namespace std;
-
-bool luckyGuess(int guess);
-
-void getUserData(string &userName, string &userFavoriteFood, int &userFavoriteNumber);
+#include "luckyguess.h"
 
 int main()
 {
+    srand(time(0));
 
     string name;
     string favoriteFood;
