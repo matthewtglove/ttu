@@ -22,6 +22,7 @@ int main()
     cout << "\nSplendid. Yet another day at Gringott's bank." << endl;
     int countDisplayCoolMessage = 0;
 
+    // To keep the program running till the user chooses to end it
     bool runAgain = true;
     while (runAgain)
     {
@@ -43,6 +44,7 @@ int main()
         {
             cout << "\n";
 
+            // Differing message depending on number of times the user displayed the COOL MESSAGE
             if (countDisplayCoolMessage == 0)
             {
                 cout << "You didn't even display the cool message. How unfortunate." << endl;
@@ -65,6 +67,7 @@ int main()
     return 0;
 }
 
+// To validate user input (integer min-max)
 int GetIntInRange(int minRange, int maxRange, string invalidInputMessage = "Absolutely unnacceptable input.")
 {
     int choice;
@@ -142,7 +145,6 @@ void GoblinSickDays()
 
 void DisplayCoolMessages(int &countTimesDisplayed)
 {
-
     switch (countTimesDisplayed % 4)
     {
     case 0:
