@@ -1,0 +1,48 @@
+DINOSAUR NAME:	Tyrannosaurus Rex
+HEIGHT/LENGTH:	12 to 20 feet tall
+MASS:		9,900 to 31,000 lbs
+EATS:		Triceratops, Edmontosaurus, Corythosaurus, Tyrannosaurus
+DESCRIPTION;	Tyrannosaurus rex was one of the most ferocious predators to ever walk the Earth. With a massive body, sharp teeth, and jaws so powerful they could crush a car, this famous carnivore dominated the forested river valleys in western North America during the late Cretaceous period, 68 million years ago.
+
+DINOSAUR NAME:	Velociraptor
+HEIGHT/LENGTH:	6.8 feet long, 1.6 feet tall
+MASS:		20 to 40 lbs
+EATS:		Protoceratops, Shuvuuia
+DESCRIPTION;	The Velociraptor lived in a desert like environment. Fossil specimens have been found in northern China and Mongolia in the Gobi desert. The incubation period of the eggs is roughly 10 days. they can care for themselves at around 3 months old. The young Velociraptor reaches maturity in about a year's time. The adult Velociraptor will meet a mate & lay eggs of it's own. Researchers have long suspected that Velociraptors were feathered rather than covered with reptilian scales. In 2007, a study published in the journal Science found that a Velociraptor mongoliensis fossil had quill knobs—bumps along its forearm that anchor feather quills to the bone and are common in modern birds.
+
+DINOSAUR NAME:	Spinosaurus
+HEIGHT/LENGTH:	14 to 24 feet tall,5 feet long
+MASS:		14,000 to 17,000 lbs
+EATS:		Onchopristis, Mawsonia
+DESCRIPTION;	Like other spinosaurids, Spinosaurus possessed a long, narrow skull resembling that of a crocodile and nostrils near the eyes instead of the end of the snout. Spinosaurus lived in a habitat that may have been humid, like a swamp, where it could hunt coelacants, sawfish, groupers and ambush small crocodiles. Its fossils have been found in Egypt and Morocco, with possibly a similar dinosaur called Oxalaia found in South America.
+
+DINOSAUR NAME:	Giganotosaurus
+HEIGHT/LENGTH:	44 to 46 feet long
+MASS:		9,300 to 30,000 lbs
+EATS:		Argentinosaurus, Sauropod
+DESCRIPTION;	The longest meat-eating dinosaur yet discovered is Giganotosaurus who stood 12 feet tall (at the hips). It walked on two legs, had a brain the size of a banana, and had enormous jaws with 8-inch long serrated teeth in a 6-foot (1.8 m) long skull. Giganotosaurus had the same flat, serrated teeth that are characteristic of other carcharodontosaurids, which would have allowed it to easily slice through the flesh of its prey.
+
+DINOSAUR NAME:	Tyrannosaurus Rex
+HEIGHT/LENGTH:	12 to 20 feet tall
+MASS:		9,900 to 31,000 lbs
+EATS:		Triceratops, Edmontosaurus, Corythosaurus, Tyrannosaurus
+DESCRIPTION;	Tyrannosaurus rex was one of the most ferocious predators to ever walk the Earth. With a massive body, sharp teeth, and jaws so powerful they could crush a car, this famous carnivore dominated the forested river valleys in western North America during the late Cretaceous period, 68 million years ago.
+
+DINOSAUR NAME:	Velociraptor
+HEIGHT/LENGTH:	6.8 feet long, 1.6 feet tall
+MASS:		20 to 40 lbs
+EATS:		Protoceratops, Shuvuuia
+DESCRIPTION;	The Velociraptor lived in a desert like environment. Fossil specimens have been found in northern China and Mongolia in the Gobi desert. The incubation period of the eggs is roughly 10 days. they can care for themselves at around 3 months old. The young Velociraptor reaches maturity in about a year's time. The adult Velociraptor will meet a mate & lay eggs of it's own. Researchers have long suspected that Velociraptors were feathered rather than covered with reptilian scales. In 2007, a study published in the journal Science found that a Velociraptor mongoliensis fossil had quill knobs—bumps along its forearm that anchor feather quills to the bone and are common in modern birds.
+
+DINOSAUR NAME:	Spinosaurus
+HEIGHT/LENGTH:	14 to 24 feet tall,5 feet long
+MASS:		14,000 to 17,000 lbs
+EATS:		Onchopristis, Mawsonia
+DESCRIPTION;	Like other spinosaurids, Spinosaurus possessed a long, narrow skull resembling that of a crocodile and nostrils near the eyes instead of the end of the snout. Spinosaurus lived in a habitat that may have been humid, like a swamp, where it could hunt coelacants, sawfish, groupers and ambush small crocodiles. Its fossils have been found in Egypt and Morocco, with possibly a similar dinosaur called Oxalaia found in South America.
+
+DINOSAUR NAME:	Giganotosaurus
+HEIGHT/LENGTH:	44 to 46 feet long
+MASS:		9,300 to 30,000 lbs
+EATS:		Argentinosaurus, Sauropod
+DESCRIPTION;	The longest meat-eating dinosaur yet discovered is Giganotosaurus who stood 12 feet tall (at the hips). It walked on two legs, had a brain the size of a banana, and had enormous jaws with 8-inch long serrated teeth in a 6-foot (1.8 m) long skull. Giganotosaurus had the same flat, serrated teeth that are characteristic of other carcharodontosaurids, which would have allowed it to easily slice through the flesh of its prey.
+
