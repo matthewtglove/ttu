@@ -17,6 +17,13 @@ bool searchHerbivore(string);
 void printDino(ofstream &, ifstream &, string, int, int &);
 bool overTenGrand(string);
 
+/* TODO
+- Validate the printDino for whitespace
+- Place a comment above each function telling the function name & purpose.
+- Name your variables where they describe what they hold.  Accumulator variables should have the word “total” or
+“sum” in them
+*/
+
 int main()
 {
     ifstream sourceFile;
@@ -45,9 +52,117 @@ int main()
     int totalSaurusInName;
     int totalNonDinosaurs;
 
-    // Start the loop to read from the file. I recommend your loop header be the following line:
-    // while(getline(dinoDirFile, tempString, ‘#’))
+    while (!sourceFile.eof())
+    {
+        string dinoName = "";
+
+        getline(sourceFile, dinoName, '#');
+        // printDino(...);
+
+        cout << dinoName << endl; // TEST
+
+        // Incrementing totals
+        totalDinosaurs++;
+
+        bool containsSaurus = (dinoName.find('s'));
+    }
+
+    /*
+    while (getline(sourceFile, currentItem, '#'))
+    {
+        int dinoIndex = 0;
+        do
+        {
+            dinoIndex = (fileIndex % 5) + 1;
+
+            string dinoName = "";
+            string dinoSize = "";
+            string dinoMass = "";
+            string dinoFood = "";
+            string dinoDescription = "";
+
+            switch (dinoIndex)
+            {
+            case 1:
+            {
+                cout << currentItem << endl; // TEST
+                dinoName = currentItem;
+                totalDinosaurs++;
+                break;
+            }
+
+            case 2:
+            {
+            }
+            }
+
+            fileIndex++;
+        } while (dinoIndex != 1);
+    }
+    */
 
     sourceFile.close();
     return 0;
+}
+
+bool searchCarnivore(string dinoName)
+{
+    ifstream carnivoreSource;
+    carnivoreSource.open("carinvores.txt");
+
+    bool isCarnivore;
+    while (!carnivoreSource.eof() || isCarnivore)
+    {
+        string carnivore;
+        getline(carnivoreSource, carnivore);
+        isCarnivore = (dinoName == carnivore);
+    }
+
+    return isCarnivore;
+}
+
+bool searchHerbivore(string dinoName)
+{
+    ifstream herbivoreSource;
+    herbivoreSource.open("carinvores.txt");
+
+    bool isHerbivore;
+    while (!herbivoreSource.eof() || isHerbivore)
+    {
+        string herbivore;
+        getline(herbivoreSource, herbivore);
+        isHerbivore = (dinoName == herbivore);
+    }
+
+    return isHerbivore;
+}
+
+int carnOrHerb(string dinoName)
+{
+    if (searchCarnivore(dinoName))
+    {
+        return 1;
+    }
+    else if (searchHerbivore(dinoName))
+    {
+        return 2;
+    }
+    else
+    {
+        return -1;
+    }
+}
+
+void printDino(ofstream &outFile, ifstream &inFile, string inputDinoName, int totalCarnivores, int totalHerbivores, int totalNonDinosaurs, int &totalTenThousandPounds)
+{
+    string dinoName = inputDinoName;
+    string dinoSize = "";
+    string dinoMass = "";
+    string dinoFood = "";
+    string dinoDescription = "";
+
+    getline(inFile, dinoSize, '#');
+    getline(inFile, dinoMass, '#');
+    getline(inFile, dinoFood, '#');
+    getline(inFile, dinoDescription, '#');
 }
