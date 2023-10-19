@@ -57,49 +57,66 @@ int main()
         string dinoName = "";
 
         getline(sourceFile, dinoName, '#');
-        // printDino(...);
-
-        cout << dinoName << endl; // TEST
 
         // Incrementing totals
-        totalDinosaurs++;
-
-        bool containsSaurus = (dinoName.find('s'));
-    }
-
-    /*
-    while (getline(sourceFile, currentItem, '#'))
-    {
-        int dinoIndex = 0;
-        do
+        size_t containsSaurus = dinoName.find("saurus");
+        if (!(containsSaurus = string::npos))
         {
-            dinoIndex = (fileIndex % 5) + 1;
+            totalSaurusInName++;
+        }
 
-            string dinoName = "";
-            string dinoSize = "";
-            string dinoMass = "";
-            string dinoFood = "";
-            string dinoDescription = "";
+        switch (carnOrHerb(dinoName))
+        {
+        case 1:
+        {
+            totalCarinvores++;
+            cout << dinoName << " is being printed to the CARNIVORE file!" << endl;
 
-            switch (dinoIndex)
-            {
-            case 1:
-            {
-                cout << currentItem << endl; // TEST
-                dinoName = currentItem;
-                totalDinosaurs++;
-                break;
-            }
+            ofstream carnivoresFile;
+            carnivoresFile.open("carnOutFile.txt", ios::app);
 
-            case 2:
-            {
-            }
-            }
+            printDino(carnivoresFile, sourceFile, dinoName, totalCarinvores, totalTenThousandPounds);
 
-            fileIndex++;
-        } while (dinoIndex != 1);
+            carnivoresFile.close();
+
+            break;
+        }
+        case 2:
+        {
+            totalHerbivores++;
+            cout << dinoName << " is being printed to the HERBIVORE file!" << endl;
+
+            ofstream herbivoresFile;
+            herbivoresFile.open("herbOutFile.txt", ios::app);
+
+            printDino(herbivoresFile, sourceFile, dinoName, totalHerbivores, totalTenThousandPounds);
+
+            herbivoresFile.close();
+
+            break;
+        }
+        case 3:
+        {
+            totalNonDinosaurs++;
+            cout << dinoName << " is being printed to the OTHER file!" << endl;
+
+            ofstream nonDinosaursFile;
+            nonDinosaursFile.open("otherOutFile.txt", ios::app);
+
+            printDino(nonDinosaursFile, sourceFile, dinoName, totalNonDinosaurs, totalTenThousandPounds);
+
+            nonDinosaursFile.close();
+
+            break;
+        }
+        }
+
+        // Printing to file
+
+        // printDino()
     }
-    */
+
+    totalDinosaurs = totalCarinvores + totalHerbivores;
 
     sourceFile.close();
     return 0;
@@ -153,7 +170,7 @@ int carnOrHerb(string dinoName)
     }
 }
 
-void printDino(ofstream &outFile, ifstream &inFile, string inputDinoName, int totalCarnivores, int totalHerbivores, int totalNonDinosaurs, int &totalTenThousandPounds)
+void printDino(ofstream &outFile, ifstream &inFile, string inputDinoName, int totalOfAnimalAccumulator, int &totalTenThousandPounds)
 {
     string dinoName = inputDinoName;
     string dinoSize = "";
@@ -165,4 +182,18 @@ void printDino(ofstream &outFile, ifstream &inFile, string inputDinoName, int to
     getline(inFile, dinoMass, '#');
     getline(inFile, dinoFood, '#');
     getline(inFile, dinoDescription, '#');
+
+    outFile << setw(50) << setfill('-') << "\n";
+    outFile << totalOfAnimalAccumulator << "\n";
+    outFile << "\tNAME: " << dinoName << "\n";
+    outFile << "\tHEIGHT/LENGTH: " << dinoSize << "\n";
+    outFile << "\tMASS: " << dinoMass << "\n";
+    outFile << "\tANIMAL FOOD: " << dinoFood << "\n";
+    outFile << "\tDESCRIPTION: " << dinoDescription << "\n";
+    outFile << endl;
+}
+
+bool overTenGrand(string dinoMass)
+{
+    // Check the STRING, getting rid of the commas then converting to int
 }

@@ -9,6 +9,10 @@
         "cstring": "cpp",
         "cctype": "cpp",
         "ios": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "__bit_reference": "cpp",
+        "__hash_table": "cpp",
+        "string_view": "cpp",
+        "unordered_map": "cpp"
     }
 }
