@@ -1,0 +1,208 @@
+-------------------------------------------------
+1
+	NAME: Gerbil
+	HEIGHT/LENGTH: 4.4 inches long
+	MASS: 0 to 1 lbs
+	ANIMAL FOOD: seeds of various grasses, bulbs, and a range of leaves and herbs
+	DESCRIPTION: Gerbils were originally known as desert rats before they were introduced to North America and Europe as a companion species. Although they are rodents, they are a distinct group of animals from rats. Gerbils are able to shed their tail if it gets caught. This self-defence adaptation allows them to escape predators that are able to catch their tail as they try to flee. Their tails are around the same size as the rest of their body and their whole body, including their tail is covered in fur. Gerbils build extensive networks of underground tunnels. They spend most of their time in these burrows, only tending to leave to find food and water.
+
+-------------------------------------------------
+2
+	NAME: Aye-Aye
+	HEIGHT/LENGTH: 1.5 feet long
+	MASS: 4 lbs
+	ANIMAL FOOD: seeds, fruits, nectar and fungi, insect larvae and honey
+	DESCRIPTION: The aye-aye is a long-fingered lemur, a strepsirrhine primate native to Madagascar with rodent-like teeth that perpetually grow and a special thin middle finger.  It is the world's largest nocturnal primate and is characterized by its unusual method of finding food: it taps on trees to find grubs, then gnaws holes in the wood using its forward-slanting incisors to create a small hole into which it inserts its narrow middle finger to pull the grubs out.
+
+-------------------------------------------------
+1
+	NAME: Gerbil
+	HEIGHT/LENGTH: 4.4 inches long
+	MASS: 0 to 1 lbs
+	FOOD: seeds of various grasses, bulbs, and a range of leaves and herbs
+	DESCRIPTION: Gerbils were originally known as desert rats before they were introduced to North America and Europe as a companion species. Although they are rodents, they are a distinct group of animals from rats. Gerbils are able to shed their tail if it gets caught. This self-defence adaptation allows them to escape predators that are able to catch their tail as they try to flee. Their tails are around the same size as the rest of their body and their whole body, including their tail is covered in fur. Gerbils build extensive networks of underground tunnels. They spend most of their time in these burrows, only tending to leave to find food and water.
+
+-------------------------------------------------
+2
+	NAME: Aye-Aye
+	HEIGHT/LENGTH: 1.5 feet long
+	MASS: 4 lbs
+	FOOD: seeds, fruits, nectar and fungi, insect larvae and honey
+	DESCRIPTION: The aye-aye is a long-fingered lemur, a strepsirrhine primate native to Madagascar with rodent-like teeth that perpetually grow and a special thin middle finger.  It is the world's largest nocturnal primate and is characterized by its unusual method of finding food: it taps on trees to find grubs, then gnaws holes in the wood using its forward-slanting incisors to create a small hole into which it inserts its narrow middle finger to pull the grubs out.
+
+-------------------------------------------------
+1
+	NAME: Gerbil
+	HEIGHT/LENGTH: 4.4 inches long
+	MASS: 0 to 1 lbs
+	FOOD: seeds of various grasses, bulbs, and a range of leaves and herbs
+	DESCRIPTION: Gerbils were originally known as desert rats before they were introduced to North America and Europe as a companion species. Although they are rodents, they are a distinct group of animals from rats. Gerbils are able to shed their tail if it gets caught. This self-defence adaptation allows them to escape predators that are able to catch their tail as they try to flee. Their tails are around the same size as the rest of their body and their whole body, including their tail is covered in fur. Gerbils build extensive networks of underground tunnels. They spend most of their time in these burrows, only tending to leave to find food and water.
+
+-------------------------------------------------
+2
+	NAME: Aye-Aye
+	HEIGHT/LENGTH: 1.5 feet long
+	MASS: 4 lbs
+	FOOD: seeds, fruits, nectar and fungi, insect larvae and honey
+	DESCRIPTION: The aye-aye is a long-fingered lemur, a strepsirrhine primate native to Madagascar with rodent-like teeth that perpetually grow and a special thin middle finger.  It is the world's largest nocturnal primate and is characterized by its unusual method of finding food: it taps on trees to find grubs, then gnaws holes in the wood using its forward-slanting incisors to create a small hole into which it inserts its narrow middle finger to pull the grubs out.
+
+-------------------------------------------------
+1
+	NAME: Gerbil
+	HEIGHT/LENGTH: 4.4 inches long
+	MASS: 0 to 1 lbs
+	FOOD: seeds of various grasses, bulbs, and a range of leaves and herbs
+	DESCRIPTION: Gerbils were originally known as desert rats before they were introduced to North America and Europe as a companion species. Although they are rodents, they are a distinct group of animals from rats. Gerbils are able to shed their tail if it gets caught. This self-defence adaptation allows them to escape predators that are able to catch their tail as they try to flee. Their tails are around the same size as the rest of their body and their whole body, including their tail is covered in fur. Gerbils build extensive networks of underground tunnels. They spend most of their time in these burrows, only tending to leave to find food and water.
+
+-------------------------------------------------
+2
+	NAME: Aye-Aye
+	HEIGHT/LENGTH: 1.5 feet long
+	MASS: 4 lbs
+	FOOD: seeds, fruits, nectar and fungi, insect larvae and honey
+	DESCRIPTION: The aye-aye is a long-fingered lemur, a strepsirrhine primate native to Madagascar with rodent-like teeth that perpetually grow and a special thin middle finger.  It is the world's largest nocturnal primate and is characterized by its unusual method of finding food: it taps on trees to find grubs, then gnaws holes in the wood using its forward-slanting incisors to create a small hole into which it inserts its narrow middle finger to pull the grubs out.
+
+-------------------------------------------------
+1
+	NAME: Gerbil
+	HEIGHT/LENGTH: 4.4 inches long
+	MASS: 0 to 1 lbs
+	FOOD: seeds of various grasses, bulbs, and a range of leaves and herbs
+	DESCRIPTION: Gerbils were originally known as desert rats before they were introduced to North America and Europe as a companion species. Although they are rodents, they are a distinct group of animals from rats. Gerbils are able to shed their tail if it gets caught. This self-defence adaptation allows them to escape predators that are able to catch their tail as they try to flee. Their tails are around the same size as the rest of their body and their whole body, including their tail is covered in fur. Gerbils build extensive networks of underground tunnels. They spend most of their time in these burrows, only tending to leave to find food and water.
+
+-------------------------------------------------
+2
+	NAME: Aye-Aye
+	HEIGHT/LENGTH: 1.5 feet long
+	MASS: 4 lbs
+	FOOD: seeds, fruits, nectar and fungi, insect larvae and honey
+	DESCRIPTION: The aye-aye is a long-fingered lemur, a strepsirrhine primate native to Madagascar with rodent-like teeth that perpetually grow and a special thin middle finger.  It is the world's largest nocturnal primate and is characterized by its unusual method of finding food: it taps on trees to find grubs, then gnaws holes in the wood using its forward-slanting incisors to create a small hole into which it inserts its narrow middle finger to pull the grubs out.
+
+-------------------------------------------------
+1
+	NAME: Gerbil
+	HEIGHT/LENGTH: 4.4 inches long
+	MASS: 0 to 1 lbs
+	FOOD: seeds of various grasses, bulbs, and a range of leaves and herbs
+	DESCRIPTION: Gerbils were originally known as desert rats before they were introduced to North America and Europe as a companion species. Although they are rodents, they are a distinct group of animals from rats. Gerbils are able to shed their tail if it gets caught. This self-defence adaptation allows them to escape predators that are able to catch their tail as they try to flee. Their tails are around the same size as the rest of their body and their whole body, including their tail is covered in fur. Gerbils build extensive networks of underground tunnels. They spend most of their time in these burrows, only tending to leave to find food and water.
+
+-------------------------------------------------
+2
+	NAME: Aye-Aye
+	HEIGHT/LENGTH: 1.5 feet long
+	MASS: 4 lbs
+	FOOD: seeds, fruits, nectar and fungi, insect larvae and honey
+	DESCRIPTION: The aye-aye is a long-fingered lemur, a strepsirrhine primate native to Madagascar with rodent-like teeth that perpetually grow and a special thin middle finger.  It is the world's largest nocturnal primate and is characterized by its unusual method of finding food: it taps on trees to find grubs, then gnaws holes in the wood using its forward-slanting incisors to create a small hole into which it inserts its narrow middle finger to pull the grubs out.
+
+-------------------------------------------------
+1
+	NAME: Gerbil
+	HEIGHT/LENGTH: 4.4 inches long
+	MASS: 0 to 1 lbs
+	FOOD: seeds of various grasses, bulbs, and a range of leaves and herbs
+	DESCRIPTION: Gerbils were originally known as desert rats before they were introduced to North America and Europe as a companion species. Although they are rodents, they are a distinct group of animals from rats. Gerbils are able to shed their tail if it gets caught. This self-defence adaptation allows them to escape predators that are able to catch their tail as they try to flee. Their tails are around the same size as the rest of their body and their whole body, including their tail is covered in fur. Gerbils build extensive networks of underground tunnels. They spend most of their time in these burrows, only tending to leave to find food and water.
+
+-------------------------------------------------
+2
+	NAME: Aye-Aye
+	HEIGHT/LENGTH: 1.5 feet long
+	MASS: 4 lbs
+	FOOD: seeds, fruits, nectar and fungi, insect larvae and honey
+	DESCRIPTION: The aye-aye is a long-fingered lemur, a strepsirrhine primate native to Madagascar with rodent-like teeth that perpetually grow and a special thin middle finger.  It is the world's largest nocturnal primate and is characterized by its unusual method of finding food: it taps on trees to find grubs, then gnaws holes in the wood using its forward-slanting incisors to create a small hole into which it inserts its narrow middle finger to pull the grubs out.
+
+-------------------------------------------------
+1
+                       	NAME: Gerbil
+              	HEIGHT/LENGTH: 4.4 inches long
+                       	MASS: 0 to 1 lbs
+                       	FOOD: seeds of various grasses, bulbs, and a range of leaves and herbs
+                	DESCRIPTION: Gerbils were originally known as desert rats before they were introduced to North America and Europe as a companion species. Although they are rodents, they are a distinct group of animals from rats. Gerbils are able to shed their tail if it gets caught. This self-defence adaptation allows them to escape predators that are able to catch their tail as they try to flee. Their tails are around the same size as the rest of their body and their whole body, including their tail is covered in fur. Gerbils build extensive networks of underground tunnels. They spend most of their time in these burrows, only tending to leave to find food and water.
+
+-------------------------------------------------
+2
+                       	NAME: Aye-Aye
+              	HEIGHT/LENGTH: 1.5 feet long
+                       	MASS: 4 lbs
+                       	FOOD: seeds, fruits, nectar and fungi, insect larvae and honey
+                	DESCRIPTION: The aye-aye is a long-fingered lemur, a strepsirrhine primate native to Madagascar with rodent-like teeth that perpetually grow and a special thin middle finger.  It is the world's largest nocturnal primate and is characterized by its unusual method of finding food: it taps on trees to find grubs, then gnaws holes in the wood using its forward-slanting incisors to create a small hole into which it inserts its narrow middle finger to pull the grubs out.
+
+-------------------------------------------------
+1
+                       	NAME:   Gerbil
+              	HEIGHT/LENGTH: 4.4 inches long
+                       	MASS: 0 to 1 lbs
+                       	FOOD: seeds of various grasses, bulbs, and a range of leaves and herbs
+                	DESCRIPTION: Gerbils were originally known as desert rats before they were introduced to North America and Europe as a companion species. Although they are rodents, they are a distinct group of animals from rats. Gerbils are able to shed their tail if it gets caught. This self-defence adaptation allows them to escape predators that are able to catch their tail as they try to flee. Their tails are around the same size as the rest of their body and their whole body, including their tail is covered in fur. Gerbils build extensive networks of underground tunnels. They spend most of their time in these burrows, only tending to leave to find food and water.
+
+-------------------------------------------------
+2
+                       	NAME:  Aye-Aye
+              	HEIGHT/LENGTH: 1.5 feet long
+                       	MASS:    4 lbs
+                       	FOOD: seeds, fruits, nectar and fungi, insect larvae and honey
+                	DESCRIPTION: The aye-aye is a long-fingered lemur, a strepsirrhine primate native to Madagascar with rodent-like teeth that perpetually grow and a special thin middle finger.  It is the world's largest nocturnal primate and is characterized by its unusual method of finding food: it taps on trees to find grubs, then gnaws holes in the wood using its forward-slanting incisors to create a small hole into which it inserts its narrow middle finger to pull the grubs out.
+
+-------------------------------------------------
+1
+                                                     	NAME: Gerbil
+                                            	HEIGHT/LENGTH: 4.4 inches long
+                                                     	MASS: 0 to 1 lbs
+                                                     	FOOD: seeds of various grasses, bulbs, and a range of leaves and herbs
+                                              	DESCRIPTION: Gerbils were originally known as desert rats before they were introduced to North America and Europe as a companion species. Although they are rodents, they are a distinct group of animals from rats. Gerbils are able to shed their tail if it gets caught. This self-defence adaptation allows them to escape predators that are able to catch their tail as they try to flee. Their tails are around the same size as the rest of their body and their whole body, including their tail is covered in fur. Gerbils build extensive networks of underground tunnels. They spend most of their time in these burrows, only tending to leave to find food and water.
+
+-------------------------------------------------
+2
+                                                     	NAME: Aye-Aye
+                                            	HEIGHT/LENGTH: 1.5 feet long
+                                                     	MASS: 4 lbs
+                                                     	FOOD: seeds, fruits, nectar and fungi, insect larvae and honey
+                                              	DESCRIPTION: The aye-aye is a long-fingered lemur, a strepsirrhine primate native to Madagascar with rodent-like teeth that perpetually grow and a special thin middle finger.  It is the world's largest nocturnal primate and is characterized by its unusual method of finding food: it taps on trees to find grubs, then gnaws holes in the wood using its forward-slanting incisors to create a small hole into which it inserts its narrow middle finger to pull the grubs out.
+
+-------------------------------------------------
+1
+	NAME: Gerbil
+	HEIGHT/LENGTH: 4.4 inches long
+	MASS: 0 to 1 lbs
+	FOOD: seeds of various grasses, bulbs, and a range of leaves and herbs
+	DESCRIPTION: Gerbils were originally known as desert rats before they were introduced to North America and Europe as a companion species. Although they are rodents, they are a distinct group of animals from rats. Gerbils are able to shed their tail if it gets caught. This self-defence adaptation allows them to escape predators that are able to catch their tail as they try to flee. Their tails are around the same size as the rest of their body and their whole body, including their tail is covered in fur. Gerbils build extensive networks of underground tunnels. They spend most of their time in these burrows, only tending to leave to find food and water.
+
+-------------------------------------------------
+2
+	NAME: Aye-Aye
+	HEIGHT/LENGTH: 1.5 feet long
+	MASS: 4 lbs
+	FOOD: seeds, fruits, nectar and fungi, insect larvae and honey
+	DESCRIPTION: The aye-aye is a long-fingered lemur, a strepsirrhine primate native to Madagascar with rodent-like teeth that perpetually grow and a special thin middle finger.  It is the world's largest nocturnal primate and is characterized by its unusual method of finding food: it taps on trees to find grubs, then gnaws holes in the wood using its forward-slanting incisors to create a small hole into which it inserts its narrow middle finger to pull the grubs out.
+
+-------------------------------------------------
+1
+                                                     	NAME: Gerbil
+                                            	HEIGHT/LENGTH: 4.4 inches long
+                                                     	MASS: 0 to 1 lbs
+                                                     	FOOD: seeds of various grasses, bulbs, and a range of leaves and herbs
+                                              	DESCRIPTION: Gerbils were originally known as desert rats before they were introduced to North America and Europe as a companion species. Although they are rodents, they are a distinct group of animals from rats. Gerbils are able to shed their tail if it gets caught. This self-defence adaptation allows them to escape predators that are able to catch their tail as they try to flee. Their tails are around the same size as the rest of their body and their whole body, including their tail is covered in fur. Gerbils build extensive networks of underground tunnels. They spend most of their time in these burrows, only tending to leave to find food and water.
+
+-------------------------------------------------
+2
+                                                     	NAME: Aye-Aye
+                                            	HEIGHT/LENGTH: 1.5 feet long
+                                                     	MASS: 4 lbs
+                                                     	FOOD: seeds, fruits, nectar and fungi, insect larvae and honey
+                                              	DESCRIPTION: The aye-aye is a long-fingered lemur, a strepsirrhine primate native to Madagascar with rodent-like teeth that perpetually grow and a special thin middle finger.  It is the world's largest nocturnal primate and is characterized by its unusual method of finding food: it taps on trees to find grubs, then gnaws holes in the wood using its forward-slanting incisors to create a small hole into which it inserts its narrow middle finger to pull the grubs out.
+
+-------------------------------------------------
+1
+	NAME: Gerbil
+	HEIGHT/LENGTH: 4.4 inches long
+	MASS: 0 to 1 lbs
+	FOOD: seeds of various grasses, bulbs, and a range of leaves and herbs
+	DESCRIPTION: Gerbils were originally known as desert rats before they were introduced to North America and Europe as a companion species. Although they are rodents, they are a distinct group of animals from rats. Gerbils are able to shed their tail if it gets caught. This self-defence adaptation allows them to escape predators that are able to catch their tail as they try to flee. Their tails are around the same size as the rest of their body and their whole body, including their tail is covered in fur. Gerbils build extensive networks of underground tunnels. They spend most of their time in these burrows, only tending to leave to find food and water.
+
+-------------------------------------------------
+2
+	NAME: Aye-Aye
+	HEIGHT/LENGTH: 1.5 feet long
+	MASS: 4 lbs
+	FOOD: seeds, fruits, nectar and fungi, insect larvae and honey
+	DESCRIPTION: The aye-aye is a long-fingered lemur, a strepsirrhine primate native to Madagascar with rodent-like teeth that perpetually grow and a special thin middle finger.  It is the world's largest nocturnal primate and is characterized by its unusual method of finding food: it taps on trees to find grubs, then gnaws holes in the wood using its forward-slanting incisors to create a small hole into which it inserts its narrow middle finger to pull the grubs out.
+

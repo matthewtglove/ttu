@@ -18,7 +18,6 @@ void printDino(ofstream &, ifstream &, string, int, int &);
 bool overTenGrand(string);
 
 /* TODO
-- Validate the printDino for whitespace
 - Place a comment above each function telling the function name & purpose.
 - Name your variables where they describe what they hold.  Accumulator variables should have the word “total” or
 “sum” in them
@@ -36,46 +35,46 @@ int main()
         getline(cin, userFile);
 
         sourceFile.open(userFile);
-        sourceFileIsOpen = !sourceFile.is_open();
+        sourceFileIsOpen = sourceFile.is_open();
 
         if (!sourceFile.is_open())
         {
             cout << "Could not open file " << userFile << endl;
         }
-    } while (sourceFileIsOpen);
+    } while (!sourceFileIsOpen);
 
     // Running totals
-    int totalDinosaurs;
-    int totalCarinvores;
-    int totalHerbivores;
-    int totalTenThousandPounds;
-    int totalSaurusInName;
-    int totalNonDinosaurs;
+    int totalDinosaurs = 0;
+    int totalCarnivores = 0;
+    int totalHerbivores = 0;
+    int totalNonDinosaurs = 0;
+    int totalSaurusInName = 0;
+    int totalTenThousandPounds = 0;
 
-    while (!sourceFile.eof())
+    string dinoName;
+    while (getline(sourceFile, dinoName, '#'))
     {
-        string dinoName = "";
-
-        getline(sourceFile, dinoName, '#');
-
-        // Incrementing totals
         size_t containsSaurus = dinoName.find("saurus");
-        if (!(containsSaurus = string::npos))
+        if (containsSaurus != string::npos)
         {
             totalSaurusInName++;
         }
+
+        // cout << dinoName << endl; // test
+
+        // cout << carnOrHerb(dinoName) << endl; // test
 
         switch (carnOrHerb(dinoName))
         {
         case 1:
         {
-            totalCarinvores++;
+            totalCarnivores++;
             cout << dinoName << " is being printed to the CARNIVORE file!" << endl;
 
             ofstream carnivoresFile;
             carnivoresFile.open("carnOutFile.txt", ios::app);
 
-            printDino(carnivoresFile, sourceFile, dinoName, totalCarinvores, totalTenThousandPounds);
+            printDino(carnivoresFile, sourceFile, dinoName, totalCarnivores, totalTenThousandPounds);
 
             carnivoresFile.close();
 
@@ -95,7 +94,7 @@ int main()
 
             break;
         }
-        case 3:
+        case -1:
         {
             totalNonDinosaurs++;
             cout << dinoName << " is being printed to the OTHER file!" << endl;
@@ -110,50 +109,78 @@ int main()
             break;
         }
         }
-
-        // Printing to file
-
-        // printDino()
     }
 
-    totalDinosaurs = totalCarinvores + totalHerbivores;
+    totalDinosaurs = totalCarnivores + totalHerbivores;
 
     sourceFile.close();
+
+    // Outputting to user
+    cout << setw(50) << setfill('-') << "\n";
+    cout << "TOTAL DINOS: " << totalDinosaurs << "\n";
+    cout << "TOTAL CARNIVORE DINOS: " << totalCarnivores << "\n";
+    cout << "TOTAL HERBIVORE DINOS: " << totalHerbivores << "\n";
+    cout << "DINOS OVER 10,000 LBS: " << totalTenThousandPounds << "\n";
+    cout << "DINO NAMES END IN 'SAURUS': " << totalSaurusInName << "\n";
+    cout << "ANIMALS NOT DINOS: " << totalNonDinosaurs << "\n";
+    cout << setw(50) << setfill('-') << endl;
+
     return 0;
 }
 
+// To check if an animal is a carnivore
 bool searchCarnivore(string dinoName)
 {
     ifstream carnivoreSource;
-    carnivoreSource.open("carinvores.txt");
+    carnivoreSource.open("carnivores.txt");
 
-    bool isCarnivore;
-    while (!carnivoreSource.eof() || isCarnivore)
+    if (!carnivoreSource.is_open())
     {
-        string carnivore;
-        getline(carnivoreSource, carnivore);
-        isCarnivore = (dinoName == carnivore);
+        cout << "ERROR: Could not open carnivores.txt" << endl;
+        return false;
     }
 
-    return isCarnivore;
+    string carnivore;
+    while (getline(carnivoreSource, carnivore, '#'))
+    {
+        if (dinoName == carnivore)
+        {
+            carnivoreSource.close();
+            return true;
+        }
+    }
+
+    carnivoreSource.close();
+    return false;
 }
 
+// To check if an animal is a herbivore
 bool searchHerbivore(string dinoName)
 {
     ifstream herbivoreSource;
-    herbivoreSource.open("carinvores.txt");
+    herbivoreSource.open("herbivores.txt");
 
-    bool isHerbivore;
-    while (!herbivoreSource.eof() || isHerbivore)
+    if (!herbivoreSource.is_open())
     {
-        string herbivore;
-        getline(herbivoreSource, herbivore);
-        isHerbivore = (dinoName == herbivore);
+        cout << "ERROR: Could not open herbivores.txt" << endl;
+        return false;
     }
 
-    return isHerbivore;
+    string herbivore;
+    while (getline(herbivoreSource, herbivore, '#'))
+    {
+        if (dinoName == herbivore)
+        {
+            herbivoreSource.close();
+            return true;
+        }
+    }
+
+    herbivoreSource.close();
+    return false;
 }
 
+// To return whether an animal is a carnivore, herbivore, or neither
 int carnOrHerb(string dinoName)
 {
     if (searchCarnivore(dinoName))
@@ -170,6 +197,7 @@ int carnOrHerb(string dinoName)
     }
 }
 
+// To print out the data from the source file to individual files based on the animal type
 void printDino(ofstream &outFile, ifstream &inFile, string inputDinoName, int totalOfAnimalAccumulator, int &totalTenThousandPounds)
 {
     string dinoName = inputDinoName;
@@ -188,12 +216,14 @@ void printDino(ofstream &outFile, ifstream &inFile, string inputDinoName, int to
     outFile << "\tNAME: " << dinoName << "\n";
     outFile << "\tHEIGHT/LENGTH: " << dinoSize << "\n";
     outFile << "\tMASS: " << dinoMass << "\n";
-    outFile << "\tANIMAL FOOD: " << dinoFood << "\n";
+    outFile << "\tFOOD: " << dinoFood << "\n";
     outFile << "\tDESCRIPTION: " << dinoDescription << "\n";
     outFile << endl;
 }
 
 bool overTenGrand(string dinoMass)
 {
-    // Check the STRING, getting rid of the commas then converting to int
+    // Unfortunately, I ran out of time to figure out how to do this corrently
+    size_t isTenthousand = dinoMass.find("10," || "11," || "30," || "31," || "17,");
+    return isTenthousand;
 }
