@@ -2,6 +2,12 @@
 #include <string>
 using namespace std;
 
+/*
+THESE NEED TO BE FIXED
+
+The sizeof() is generating an error and these are not working
+*/
+
 int getMaxValue(int inputArray[])
 {
     int arrayLength = (sizeof(inputArray) / sizeof(int));
@@ -18,7 +24,7 @@ int getMaxValue(int inputArray[])
     return maxValue;
 }
 
-int findIndexMaxValue(int inputArray[])
+int indexOfMaxValue(int inputArray[])
 {
     int arrayLength = (sizeof(inputArray) / sizeof(int));
 
@@ -52,7 +58,7 @@ int getMinValue(int inputArray[])
     return minValue;
 }
 
-int findIndexMinValue(int inputArray[])
+int indexOfMinValue(int inputArray[])
 {
     int arrayLength = (sizeof(inputArray) / sizeof(int));
 
@@ -68,4 +74,17 @@ int findIndexMinValue(int inputArray[])
     }
 
     return minIndex;
+}
+
+int getAverage(int inputArray[])
+{
+    int arrayLength = (sizeof(inputArray) / sizeof(int));
+
+    int arrayTotal;
+    for (int i = 0; i < arrayLength; i++)
+    {
+        arrayTotal += inputArray[i];
+    }
+
+    return arrayTotal / arrayLength;
 }
