@@ -21,12 +21,13 @@ int main()
 	int highestIndex;
 
 	cout << "\n\nHello!  What is the name of your elephant zoo?\n";
-	// Using a character array
+	// Using a character array which limits the input to 100 characters
 	cin.getline(zooName, 100);
 
 	getElephantData(elephantFood, elephantNames);
 	getStats(elephantFood, total, average, highestIndex);
 
+	// Outputs stats on amount of food consumed by elephants
 	cout << "-----------------------------------------------------------------";
 	cout << "\nThe total amount of food consumed by all " << SIZE << " elephants\nat ";
 	cout << zooName << " is " << total << " pounds in one month.\n\n";

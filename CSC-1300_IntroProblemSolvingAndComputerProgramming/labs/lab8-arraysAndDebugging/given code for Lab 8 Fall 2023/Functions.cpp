@@ -11,6 +11,7 @@
 ********************************************************************/
 #include "Elephant.h"
 
+// For getting the elephant name and amount of food eaten by it
 void getElephantData(float food[], string names[])
 {
 	cout << "\n\nEnter the name and how many pounds of food each elephant ate last month.\n";
@@ -25,6 +26,12 @@ void getElephantData(float food[], string names[])
 	}
 }
 
+/*
+For generating stats based on input food amounts:
+- Total food amount consumed at the zoo
+- Average food amount consumed by an elephant
+- The array index of the highest food amount
+*/
 void getStats(float food[], float &total, float &average, int &highestIndex)
 {
 	float highestAmt = 0.0;
