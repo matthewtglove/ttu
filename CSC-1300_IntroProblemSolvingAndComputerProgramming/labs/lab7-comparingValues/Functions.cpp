@@ -32,10 +32,11 @@ void getData(string &hero1Name, string &hero2Name, int &hero1Age, int &hero2Age,
 
 bool calculateResults(string hero1Name, string hero2Name, int hero1Age, int hero2Age, string hero1Pet, string hero2Pet)
 {
-    // Check 1 - Name ASCII value within 50 of each other
+    // CHECK 1 - Name ASCII value within 50 of each other
     bool check1;
     int hero1NameValue = 0;
 
+    // For getting the sum of ASCII value of each letter in name
     int testTimesRun1;
     for (int i = 0; i < hero1Name.length(); i++)
     {
@@ -58,24 +59,28 @@ bool calculateResults(string hero1Name, string hero2Name, int hero1Age, int hero
     int nameDifference = abs(hero1NameValue - hero2NameValue);
     check1 = nameDifference <= 50;
 
+    // Ternary operator for converting output text based on check boolean
     string check1Text = check1 ? "true" : "false";
     cout << "Check 1 is " << check1Text << "." << endl;
 
-    // Check 2 - Age within 10 years of each other
+    // CHECK 2 - Age within 10 years of each other
     bool check2;
 
     int ageDifference = abs(hero1Age - hero2Age);
     check2 = ageDifference <= 10;
 
+    // Ternary operator for converting output text based on check boolean
     string check2Text = check2 ? "true" : "false";
     cout << "Check 2 is " << check2Text << "." << endl;
 
-    // Check 3 - Same favorite pet
+    // CHECK 3 - Same favorite pet
     int check3 = hero1Pet == hero2Pet;
 
+    // Ternary operator for converting output text based on check boolean
     string check3Text = check3 ? "true" : "false";
     cout << "Check 2 is " << check3Text << "." << endl;
 
+    // At least two checks must pass for the function to be equal to true
     int countPassed = 0;
     if (check1)
     {
@@ -89,6 +94,5 @@ bool calculateResults(string hero1Name, string hero2Name, int hero1Age, int hero
     {
         countPassed++;
     }
-
     return (countPassed >= 2);
 }

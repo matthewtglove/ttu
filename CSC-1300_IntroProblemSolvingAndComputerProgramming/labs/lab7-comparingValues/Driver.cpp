@@ -13,6 +13,7 @@ int main()
     cout << "Welcome to the Super Hero Roommate Compatibility Checker! Please input your Super Hero details.\n"
          << endl;
 
+    // All of the two heros' details
     string hero1Name;
     string hero2Name;
     int hero1Age;
