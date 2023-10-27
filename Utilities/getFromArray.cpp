@@ -5,12 +5,14 @@ using namespace std;
 /*
 THESE NEED TO BE FIXED
 
-The sizeof() is generating an error and these are not working
+- The sizeof() is generating an error and these are not working
+- Logic is wrong for lowest (also using int for double array)
+- Get rid of the getMaxValue, as returning the index is really what you should be doing, not the max value. That's bad practice
 */
 
 int getMaxValue(int inputArray[])
 {
-    int arrayLength = (sizeof(inputArray) / sizeof(int));
+    int arrayLength = sizeof(inputArray) / sizeof(inputArray[0]);
 
     int maxValue = inputArray[0];
     for (int i = 0; i < arrayLength; i++)
@@ -26,7 +28,7 @@ int getMaxValue(int inputArray[])
 
 int indexOfMaxValue(int inputArray[])
 {
-    int arrayLength = (sizeof(inputArray) / sizeof(int));
+    int arrayLength = sizeof(inputArray) / sizeof(inputArray[0]);
 
     int maxValue = inputArray[0];
     int maxIndex;
@@ -44,7 +46,7 @@ int indexOfMaxValue(int inputArray[])
 
 int getMinValue(int inputArray[])
 {
-    int arrayLength = (sizeof(inputArray) / sizeof(int));
+    int arrayLength = sizeof(inputArray) / sizeof(inputArray[0]);
 
     int minValue = inputArray[0];
     for (int i = 0; i < arrayLength; i++)
@@ -60,13 +62,13 @@ int getMinValue(int inputArray[])
 
 int indexOfMinValue(int inputArray[])
 {
-    int arrayLength = (sizeof(inputArray) / sizeof(int));
+    int arrayLength = sizeof(inputArray) / sizeof(inputArray[0]);
 
     int minValue = inputArray[0];
     int minIndex;
     for (int i = 0; i < arrayLength; i++)
     {
-        if (inputArray[i] > minValue)
+        if (inputArray[i] < minValue)
         {
             minValue = inputArray[i];
             minIndex = i;
@@ -78,7 +80,7 @@ int indexOfMinValue(int inputArray[])
 
 int getAverage(int inputArray[])
 {
-    int arrayLength = (sizeof(inputArray) / sizeof(int));
+    int arrayLength = sizeof(inputArray) / sizeof(inputArray[0]);
 
     int arrayTotal;
     for (int i = 0; i < arrayLength; i++)
