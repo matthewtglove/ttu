@@ -7,51 +7,59 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
 using namespace std;
 
+// For getting the index of the highest value
 double findHighest(double inputArray[])
 {
     int arrayLength = 10;
 
     double maxValue = inputArray[0];
+    int maxIndex = 0;
     for (int i = 0; i < arrayLength; i++)
     {
         if (inputArray[i] > maxValue)
         {
             maxValue = inputArray[i];
+            maxIndex = i;
         }
     }
 
-    return maxValue;
+    return maxIndex;
 }
 
+// For getting the index of the lowest value
 double findLowest(double inputArray[])
 {
     int arrayLength = 10;
 
     double minValue = inputArray[0];
+    int minIndex = 0;
     for (int i = 0; i < arrayLength; i++)
     {
         if (inputArray[i] < minValue)
         {
             minValue = inputArray[i];
+            minIndex = i;
         }
     }
 
-    return minValue;
+    return minIndex;
 }
 
+// For getting the average of all of the values of the array
 double findAverage(double inputArray[])
 {
-    int arrayLength = 10;
+    double arrayLength = 10.0;
 
-    double arrayTotal;
+    double arrayTotal = 0.0;
     for (int i = 0; i < arrayLength; i++)
     {
         arrayTotal += inputArray[i];
     }
 
-    return arrayTotal / arrayLength;
+    return (arrayTotal / arrayLength);
 }
 
 int main()
@@ -67,14 +75,13 @@ int main()
         cout << "Useful thing " << i + 1 << ": ";
         getline(cin, thing[i]);
 
-        string priceString = "";
         cout << "Price for thing " << i + 1 << ": ";
-        getline(cin, priceString);
-        price[i] = stoi(priceString);
+        cin >> price[i];
+        cin.ignore();
     }
 
     cout << endl;
-
+    cout << setprecision(2) << fixed;
     cout << "Your list of useful items include:\n";
     for (int i = 0; i < 10; i++)
     {
@@ -84,13 +91,13 @@ int main()
     cout << endl;
 
     int iHighestPrice = findHighest(price);
-    int iLowestPrice = findHighest(price);
-    int averagePrice = findAverage(price);
+    int iLowestPrice = findLowest(price);
+    double averagePrice = findAverage(price);
 
     cout << "*****RESULTS*****\n";
     cout << "HIGHEST PRICE: " << thing[iHighestPrice] << " with price $" << price[iHighestPrice] << "\n";
     cout << "LOWEST PRICE: " << thing[iLowestPrice] << " with price $" << price[iLowestPrice] << "\n";
-    cout << "AVERAGE PRICE: " << averagePrice << "\n";
+    cout << "AVERAGE PRICE: $" << averagePrice << "\n";
 
     return 0;
 }
