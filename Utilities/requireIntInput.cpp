@@ -16,6 +16,7 @@ int requireIntInput(int minRange = INT_MIN, int maxRange = INT_MAX, string inval
             {
                 string input;
                 getline(cin, input);
+                // Should fail if user did not input a number
                 convertedInput = stoi(input);
                 successfulConversion = true;
             }
