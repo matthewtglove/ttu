@@ -12,7 +12,7 @@
 using namespace std;
 
 int getMenuOption();
-int requireIntInput(int minRange = INT_MIN, int maxRange = INT_MAX, string invalidInputMessage = "Invalid input.");
+int requireIntInput(int minRange, int maxRange, string invalidInputMessage);
 void addCandy(int &countCandies, int candyType[], string candyFlavor[], float costMaterials[], int numberOompas[], float askingPrice[]);
 void calculateTotals(int candyTableType, int countCandies, int candyType[], string candyFlavor[], float costMaterials[], int numberOompas[], float askingPrice[]);
 float calculatePrice(float costMaterials[], int numberOompas[]);
