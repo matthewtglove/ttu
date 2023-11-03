@@ -4,7 +4,9 @@ int main()
 {
     // Type of the candy (1 = Wonka Bar, 2 = Everlasting Gobstoppers, 3 = Hair Toffee)
     int candyType[50] = {0};
+    // This is used to prevent having to use a switch statement everywhere the NAME of the candy type is needed
     string candyTypeName[3] = {"Wonka Bar", "Everlasting Gobstoppers", "Hair Toffee"};
+
     // Holds a custom flavor for the candy
     string candyFlavor[50] = {""};
     float costMaterials[50] = {0.0};
@@ -16,6 +18,7 @@ int main()
     cout << "A very Willy Wonka Welcome to you!" << endl;
     cout << endl;
 
+    // To run until the user decides to exit
     bool exitManagementSoftware = false;
     do
     {
@@ -29,6 +32,7 @@ int main()
         }
         case 2:
         {
+            // For checking that candy actually exists in inventory
             if (totalCountCandy < 1)
             {
                 cout << endl;
@@ -96,6 +100,7 @@ int main()
         }
     } while (!exitManagementSoftware);
 
+    // Differing end message depnding on if the user actually added candy to inventory
     if (totalCountCandy < 1)
     {
         cout << endl;

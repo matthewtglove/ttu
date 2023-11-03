@@ -1,5 +1,6 @@
 #include "mtlove42_prog3.h"
 
+// For validating input - Checks both type (should be integer) and range
 int requireIntInput(int minRange = INT_MIN, int maxRange = INT_MAX, string invalidInputMessage = "Invalid input.")
 {
     int userInput = 0;
@@ -36,6 +37,7 @@ int requireIntInput(int minRange = INT_MIN, int maxRange = INT_MAX, string inval
     return userInput;
 }
 
+// For validing input - double type and within range
 double requireDoubleInput(double minRange = INT_MIN, double maxRange = INT_MAX, string invalidInputMessage = "Invalid input.")
 {
     double userInput = 0;
@@ -72,6 +74,7 @@ double requireDoubleInput(double minRange = INT_MIN, double maxRange = INT_MAX, 
     return userInput;
 }
 
+// For displaying the management menu and getitng the user's choice
 int getMenuOption()
 {
     cout << "Wonka's Candy Management System: \n";
@@ -88,6 +91,7 @@ int getMenuOption()
     return userChoice;
 }
 
+// For adding a candy to inventory
 void addCandy(int &countCandies, int candyType[], string candyFlavor[], float costMaterials[], int numberOompas[], float askingPrice[])
 {
     if (countCandies >= 50)
@@ -127,6 +131,7 @@ void addCandy(int &countCandies, int candyType[], string candyFlavor[], float co
     countCandies++;
 }
 
+// For outputting a table with totals on candy
 void calculateTotals(int candyTableType, int countCandies, int candyType[], string candyTypeName[], string candyFlavor[], float costMaterials[], int numberOompas[], float askingPrice[])
 {
 
@@ -176,12 +181,13 @@ void calculateTotals(int candyTableType, int countCandies, int candyType[], stri
     cout << right << setw(widthColumnPrice) << setprecision(2) << totalPrice << endl;
     cout << endl;
 }
-
+// For calculating the price for the candy
 float calculatePrice(int countCandies, float costMaterials[], int numberOompas[])
 {
     return numberOompas[countCandies] * COST_OOMPAS + costMaterials[countCandies];
 }
 
+// For outputting a table of the profit received from candy
 void calculateProfit(int candyTableType, int countCandies, int candyType[], string candyTypeName[], float costMaterials[], float askingPrice[])
 {
     bool returnAllCandy = (candyTableType == 4);
@@ -219,6 +225,7 @@ void calculateProfit(int candyTableType, int countCandies, int candyType[], stri
     cout << endl;
 }
 
+// For getting the candy with the max price
 float getMaxPrice(int countCandies, float askingPrice[], int &iMaxPrice)
 {
     int maxPrice = askingPrice[0];
