@@ -12,7 +12,7 @@ THESE NEED TO BE FIXED
 
 int getMaxValue(int inputArray[])
 {
-    int arrayLength = sizeof(inputArray) / sizeof(inputArray[0]);
+    // int arrayLength = size(inputArray);
 
     int maxValue = inputArray[0];
     for (int i = 0; i < arrayLength; i++)
