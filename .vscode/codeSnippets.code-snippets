@@ -18,33 +18,16 @@
 }
 {
 	"Initial Comment Block": {
-		"scope": "javascript,typescript",
-		"prefix": "testSnippet",
+		"prefix": "comment",
 		"body": [
-			"this is test snippet" 
+			"/*
+			Title:
+			Author: Matthew Love
+			Date:
+			Purpose:
+		*/" 
 		],
 		"description": "Inserts the initial comment block that should be put at the top of a program"
 	}
 }
-{
-	"Print to console": {
-		"scope": "javascript,typescript",
-		"prefix": "log",
-		"body": [
-			"console.log('$1');",
-			"$2"
-		],
-		"description": "Log output to console"
-	}
-}
-{
-	"Print to console": {
-		"scope": "javascript,typescript",
-		"prefix": "rog",
-		"body": [
-			"console.log('$1');",
-			"$2"
-		],
-		"description": "Log output to console"
-	}
-}
+
