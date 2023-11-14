@@ -1,0 +1,14 @@
+Author: Matthew Love
+Date: 2023-11-13, Mon
+
+1. The '*' symbol is the dereferencing operator. It is also called the indirection operator.
+2. The '&' symbol means "address of" and is called the address operator.
+3. The name of an array, without any brackets, acts as a reference to the starting address of the array.
+4. A pointer variable can hold the memory address of a variable.
+
+5. an address
+6. 3.75
+7. an address
+8. 3.75
+9. Yes. `ptr = &another_pay;`
+10. No. A double pointer cannot point to an integer.
