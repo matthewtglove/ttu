@@ -22,7 +22,14 @@ int requireIntInput(int minRange = INT_MIN, int maxRange = INT_MAX, string inval
             }
             catch (...)
             {
-                cout << invalidInputMessage << " Please enter an integer " << minRange << "-" << maxRange << endl;
+                if (minRange == INT_MIN && maxRange == INT_MAX)
+                {
+                    cout << invalidInputMessage << " Please enter an integer." << endl;
+                }
+                else
+                {
+                    cout << invalidInputMessage << " Please enter an integer " << minRange << " to " << maxRange << endl;
+                }
             };
         } while (!(successfulConversion));
 
@@ -31,7 +38,7 @@ int requireIntInput(int minRange = INT_MIN, int maxRange = INT_MAX, string inval
         validRange = (userInput >= minRange && userInput <= maxRange);
         if (!validRange)
         {
-            cout << invalidInputMessage << " Please enter " << minRange << "-" << maxRange << endl;
+            cout << invalidInputMessage << " Please enter " << minRange << " to " << maxRange << endl;
         }
     } while (!validRange);
 
