@@ -57,6 +57,7 @@ int requireIntInput(int minRange = INT_MIN, int maxRange = INT_MAX, string inval
     return userInput;
 }
 
+// For validating input - Checks both type (should be float) and range
 float requireFloatInput(float minRange = -1000000000, float maxRange = 1000000000, string invalidInputMessage = "Invalid input.")
 {
     float userInput = 0;
@@ -103,6 +104,7 @@ float requireFloatInput(float minRange = -1000000000, float maxRange = 100000000
     return userInput;
 }
 
+// For validating input - Ensures user gave a yes/no answer ('y' or 'n')
 bool requireYNInput(string prompt)
 {
     bool response = false;
@@ -151,6 +153,7 @@ int getMenuOption()
     return userChoice;
 }
 
+// For adding vehicles to the vehicle array, either by importing a file or manually adding a vehicle
 int enterVehicles(int countVehicles, Vehicles vehicle[])
 {
     if (countVehicles >= GARAGE_SIZE)
@@ -168,6 +171,7 @@ int enterVehicles(int countVehicles, Vehicles vehicle[])
 
     switch (requireIntInput(1, 2))
     {
+    // Import file
     case 1:
     {
         ifstream vehicleFile;
@@ -220,6 +224,7 @@ int enterVehicles(int countVehicles, Vehicles vehicle[])
 
             string numRepairHours = "";
             getline(vehicleFile, numRepairHours, '#');
+            vehicle[countVehicles].cost.numRepairHours = convertToFloat(numRepairHours);
 
             string repairHour = "";
             getline(vehicleFile, repairHour, '#');
@@ -243,6 +248,7 @@ int enterVehicles(int countVehicles, Vehicles vehicle[])
         cout << "✅ Successfully imported vehicle data from file" << endl;
         break;
     }
+    // Manually add
     case 2:
     {
         bool addAgain = true;
@@ -309,6 +315,7 @@ int enterVehicles(int countVehicles, Vehicles vehicle[])
     return countVehicles;
 }
 
+// For removing vehicles from the vehicle array
 int deleteVehicle(int countVehicles, Vehicles vehicle[])
 {
     cout << "The following is a list of all the vehicles you take care of:" << endl;
@@ -357,6 +364,7 @@ int deleteVehicle(int countVehicles, Vehicles vehicle[])
     }
 }
 
+// For shifting an entire array to overwrite the deleted index
 bool moveArrayElements(string removedVehicle, bool &userConfirmDelete, int countVehicles, Vehicles vehicle[])
 {
     bool validVehicle = false;
@@ -393,6 +401,7 @@ bool moveArrayElements(string removedVehicle, bool &userConfirmDelete, int count
     }
 }
 
+// For printing the vehicles with all their data to the console or to a file
 void printVehicles(int countVehicles, Vehicles vehicle[])
 {
     cout << "How would you like to print vehicle data?\n";
@@ -423,11 +432,9 @@ void printVehicles(int countVehicles, Vehicles vehicle[])
             cout << left << setw(26) << "Has weapons: ";
             cout << left << setw(120) << (vehicle[i].hasWeapons ? "Yes" : "No") << "\n";
 
-            cout << setprecision(0) << fixed;
+            cout << setprecision(2) << fixed;
             cout << left << setw(26) << "Hours needed for repair: ";
             cout << left << setw(120) << vehicle[i].cost.numRepairHours << "\n";
-
-            cout << setprecision(2) << fixed;
             cout << left << setw(26) << "Cost per hour: ";
             cout << left << setw(1) << "$";
             cout << left << setw(119) << vehicle[i].cost.repairHour << "\n";
@@ -439,6 +446,7 @@ void printVehicles(int countVehicles, Vehicles vehicle[])
             cout << left << setw(119) << vehicle[i].cost.materials << "\n";
         }
         cout << setw(80) << setfill('-') << "" << endl;
+        cout << setfill(' ');
         cout << setprecision(defaultPrecision) << defaultfloat;
         break;
     }
@@ -474,11 +482,9 @@ void printVehicles(int countVehicles, Vehicles vehicle[])
             printFile << left << setw(26) << "Has weapons: ";
             printFile << left << setw(120) << (vehicle[i].hasWeapons ? "Yes" : "No") << "\n";
 
-            printFile << setprecision(0) << fixed;
+            printFile << setprecision(2) << fixed;
             printFile << left << setw(26) << "Hours needed for repair: ";
             printFile << left << setw(120) << vehicle[i].cost.numRepairHours << "\n";
-
-            printFile << setprecision(2) << fixed;
             printFile << left << setw(26) << "Cost per hour: ";
             printFile << left << setw(1) << "$";
             printFile << left << setw(119) << vehicle[i].cost.repairHour << "\n";
@@ -492,6 +498,7 @@ void printVehicles(int countVehicles, Vehicles vehicle[])
             cout << "✏️  Wrote " << vehicle[i].name << "\n";
         }
         printFile << setw(80) << setfill('-') << "" << endl;
+        printFile << setfill(' ');
         printFile << setprecision(defaultPrecision) << defaultfloat;
 
         printFile.close();
@@ -501,6 +508,7 @@ void printVehicles(int countVehicles, Vehicles vehicle[])
     }
 }
 
+// For printing the overall cost of each vehicle to the screen
 void printStatistics(int countVehicles, Vehicles vehicle[])
 {
     float cost = 0;
@@ -543,17 +551,19 @@ void saveVehiclesToFile(int countVehicles, Vehicles vehicle[])
     cout << endl;
     cout << "📂 Opened " << userFileLocation << endl;
 
-    saveFile << endl;
     for (int i = 0; i < countVehicles; i++)
     {
-
-        saveFile << left << setw(120) << vehicle[i].name << "#";
-        saveFile << left << setw(120) << vehicle[i].description << "#";
-        saveFile << left << setw(120) << vehicle[i].hasWeapons << "#";
-        saveFile << left << setw(120) << vehicle[i].cost.numRepairHours << "#";
-        saveFile << left << setw(119) << vehicle[i].cost.repairHour << "#";
-        saveFile << left << setw(119) << vehicle[i].cost.parts << "#";
-        saveFile << left << setw(119) << vehicle[i].cost.materials << "#";
+        if (i > 0)
+        {
+            saveFile << "#";
+        }
+        saveFile << vehicle[i].name;
+        saveFile << "#" << vehicle[i].description;
+        saveFile << "#" << vehicle[i].hasWeapons;
+        saveFile << "#" << vehicle[i].cost.numRepairHours;
+        saveFile << "#" << vehicle[i].cost.repairHour;
+        saveFile << "#" << vehicle[i].cost.parts;
+        saveFile << "#" << vehicle[i].cost.materials;
 
         cout << "💾 Saved " << vehicle[i].name << "\n";
     }
