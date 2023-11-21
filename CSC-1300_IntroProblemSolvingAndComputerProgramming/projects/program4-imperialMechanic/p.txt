@@ -1,0 +1,52 @@
+
+--------------------------------------------------------------------------------
+VEHICLE 1:
+Name:                     AT-AT                                                                                                                   
+Description:              The All Terrain Armored Transport, or AT-AT walker, is a four-legged transport and combat vehicle used by the Imperial ground forces.
+
+Has weapons:              Yes                                                                                                                     
+Hours needed for repair:  0                                                                                                                       
+Cost per hour:            $5000.00                                                                                                                
+Cost for parts:           $1000.00                                                                                                                
+Cost for supplies:        $1000.00                                                                                                                
+--------------------------------------------------------------------------------
+VEHICLE 2:
+Name:                     Podracer                                                                                                                
+Description:              Capable of achieving speeds over 700 kilometers per hour, podracers were used in the similarly named sport of podracing.
+
+Has weapons:              No                                                                                                                      
+Hours needed for repair:  0                                                                                                                       
+Cost per hour:            $500.00                                                                                                                 
+Cost for parts:           $1000.00                                                                                                                
+Cost for supplies:        $200.00                                                                                                                 
+--------------------------------------------------------------------------------
+VEHICLE 3:
+Name:                     TIE Fighter                                                                                                             
+Description:              Propelled by Twin Ion Engines, TIE fighters are fast, agile, yet fragile starfighters produced by Sienar Fleet Systems for the Galactic Empire.
+
+Has weapons:              Yes                                                                                                                     
+Hours needed for repair:  0                                                                                                                       
+Cost per hour:            $75000.00                                                                                                               
+Cost for parts:           $75000.00                                                                                                               
+Cost for supplies:        $75000.00                                                                                                               
+--------------------------------------------------------------------------------
+VEHICLE 4:
+Name:                     TIE Intercepter                                                                                                         
+Description:              Faster, more maneuverable, and far more lethal than the standard TIE Fighter.                                           
+
+Has weapons:              Yes                                                                                                                     
+Hours needed for repair:  0                                                                                                                       
+Cost per hour:            $75000.00                                                                                                               
+Cost for parts:           $75000.00                                                                                                               
+Cost for supplies:        $75000.00                                                                                                               
+--------------------------------------------------------------------------------
+VEHICLE 5:
+Name:                     Star Destroyer                                                                                                          
+Description:              A single Star Destroyer could project considerable influence over a solar system in the name of the Empire: each can be deployed individually as both a forward operating base and as mobile weapon systems platform responsible for safeguarding multiple planets, trade routes and systems, and carried enough firepower to subdue an entire planetary system or annihilate a small rebel fleet.
+
+Has weapons:              Yes                                                                                                                     
+Hours needed for repair:  0                                                                                                                       
+Cost per hour:            $1000.00                                                                                                                
+Cost for parts:           $2000.00                                                                                                                
+Cost for supplies:        $30000.00                                                                                                               
+--------------------------------------------------------------------------------
