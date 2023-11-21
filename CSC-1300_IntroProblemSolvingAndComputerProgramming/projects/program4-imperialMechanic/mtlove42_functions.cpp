@@ -194,7 +194,7 @@ int enterVehicles(int countVehicles, Vehicles vehicle[])
             }
             else
             {
-                cout << "Could not open file " << userFileLocation << ". Please try again" << endl;
+                cout << "❌ Could not open file " << userFileLocation << ". Please try again" << endl;
             }
         } while (!fileFound);
 
