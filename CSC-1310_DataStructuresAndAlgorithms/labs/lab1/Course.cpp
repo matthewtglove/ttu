@@ -18,8 +18,6 @@ Course *createCourse(string name, string location, int numSections, int numCredi
 
     pNewCourse->pSections = new string[numSections];
 
-    // Fill out the sections
-
     return pNewCourse;
 }
 
