@@ -21,7 +21,7 @@ struct Course
 };
 
 Course *createCourse(string name, string location, int numSections, int numCredits);
-Course *destroyCourse(Course *myCourse);
-Course *printCourse(Course *myCourse);
+void destroyCourse(Course *myCourse);
+void printCourse(Course *myCourse);
 
 #endif

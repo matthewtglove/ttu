@@ -7,6 +7,7 @@
 
 #include "Course.h"
 
+// For creating Courses
 Course *createCourse(string name, string location, int numSections, int numCredits)
 {
     Course *pNewCourse;
@@ -21,13 +22,15 @@ Course *createCourse(string name, string location, int numSections, int numCredi
     return pNewCourse;
 }
 
-Course *destroyCourse(Course *myCourse)
+// For deallocating memory
+void destroyCourse(Course *myCourse)
 {
     delete[] myCourse->pSections;
     delete myCourse;
 }
 
-Course *printCourse(Course *myCourse)
+// For outputting the input courses into the console
+void printCourse(Course *myCourse)
 {
     cout << "Course name: " << myCourse->name << endl;
     cout << "Course location: " << myCourse->location << endl;
