@@ -115,8 +115,13 @@ int main()
 			}
 
 			// print out whether the user's string is a palindrome or not here.
-			// when you print out the user's string, print out the uppercase version that doesn't have the spaces removed.
-
+			cout << endl;
+			if (isPalindrome(userStrModified))
+			{
+				cout << "Your string " << userString << " is a palindrome! How cool is that!" << endl;
+				break;
+			}
+			cout << "Your string " << userString << " is not a palidrome. Big sad." << endl;
 			break;
 
 		case 5:
@@ -126,6 +131,8 @@ int main()
 			cout << "\nEnter in the second integer:  ";
 			cin >> num2;
 			// print out the value returned from the multiply function here
+			cout << endl;
+			cout << "The product of these two values is: " << multiply(num1, num2) << endl;
 
 			break;
 		}
@@ -135,14 +142,14 @@ int main()
 	return 0;
 }
 
-// implement the five recursive functions below!!!!
 int sumOfNumbers(int sum)
 {
-	if (sum != 0)
+	// The check to stop the recursion once the sum reaches 0 (aka Base Case)
+	if (sum == 0)
 	{
-		return sum + sumOfNumbers(sum - 1);
+		return sum;
 	}
-	return sum;
+	return sum + sumOfNumbers(sum - 1);
 }
 
 bool isMember(int *inputArray, int key, int size)
@@ -151,7 +158,7 @@ bool isMember(int *inputArray, int key, int size)
 	{
 		return false;
 	}
-	if (inputArray[size] == key)
+	if (inputArray[size - 1] == key)
 	{
 		return true;
 	}
@@ -160,10 +167,44 @@ bool isMember(int *inputArray, int key, int size)
 
 void stringReverser(string inputString, int length)
 {
-	// Must compare the first and last character in the string
-	// Must return a substring without the first and last letter
+	// The below 4 lines are a completely optional check, they just prevent the program from outputting nothing to the console in the case of an even string
+	if (length == 0)
+	{
+		return;
+	}
+
+	cout << inputString[length - 1];
+
+	// The check to stop the recursion entirely
+	if (length <= 1)
+	{
+		return;
+	}
+	stringReverser(inputString.substr(1, length - 2), length - 2);
+	cout << inputString[0];
 }
 
-bool isPalindrome(string);
+bool isPalindrome(string inputString)
+{
+	// The check to stop the recursion (if there is only one or 0 more letters to check in the string, then it must be a palidrome!)
+	if (inputString.length() <= 1)
+	{
+		return true;
+	}
+	if (inputString[0] == inputString[inputString.length() - 1])
+	{
+		return isPalindrome(inputString.substr(1, inputString.length() - 2));
+	}
+	return false;
+}
 
-int multiply(int, int);
+int multiply(int num1, int num2)
+{
+	// The Base Case
+	if (num1 == 0)
+	{
+		return 0;
+	}
+
+	return num2 + multiply(num1 - 1, num2);
+}
