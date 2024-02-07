@@ -19,6 +19,7 @@
         "__split_buffer": "cpp",
         "array": "cpp",
         "bitset": "cpp",
-        "initializer_list": "cpp"
+        "initializer_list": "cpp",
+        "__locale": "cpp"
     }
 }
