@@ -1,7 +1,7 @@
 /*
 	Title:  Lab2.cpp
-	Author: YOUR NAME HERE!!!
-	Date:  TODAY'S DATE HERE!!!
+	Author: Matthew Love
+	Date:  2024-01-31, Wed
 	Purpose:  Demonstrate your knowledge of recursive functions
 */
 
