@@ -1,0 +1,19 @@
+5
+1
+invalid_filename.txt
+1
+twenty_games.txt
+2
+duck.txt
+3
+Halo 2
+XBox One, PC, XBox
+2004
+Shooter
+M17+
+85
+5
+4
+4
+5
+6
