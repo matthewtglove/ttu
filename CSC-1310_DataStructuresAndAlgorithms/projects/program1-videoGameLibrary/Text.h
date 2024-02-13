@@ -14,8 +14,8 @@ public:
     Text(char *inputText);
     ~Text();
     void displayText();
-    const char *getText();
-    int getLength();
+    const char *getText() const;
+    int getLength() const;
 };
 
 #endif

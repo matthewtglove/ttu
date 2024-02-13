@@ -3,10 +3,10 @@
 
 Text::Text(char *inputText)
 {
-    char *text = new char[strlen(inputText) + 1];
+    textLength = strlen(inputText) + 1;
+    char *text = new char[textLength];
     strcpy(text, inputText);
     textArray = text;
-    textLength = strlen(inputText) + 1;
 }
 
 Text::~Text()
@@ -23,12 +23,12 @@ void Text::displayText()
     }
 }
 
-const char *Text::getText()
+const char *Text::getText() const
 {
     return textArray;
 }
 
-int Text::getLength()
+int Text::getLength() const
 {
     return textLength;
 }

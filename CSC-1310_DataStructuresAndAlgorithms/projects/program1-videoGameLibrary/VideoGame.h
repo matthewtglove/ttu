@@ -18,9 +18,9 @@ private:
 public:
     VideoGame(Text *title, Text *platform, int year, Text *genre, Text *ageRating, double userRating);
     ~VideoGame();
-    void printVideoGameDetails();
-    void printVideoGameDetailsToFile(ifstream destinationFile);
-    Text *getVideoGameTitle();
+    void printVideoGameDetails() const;
+    void printVideoGameDetailsToFile(ifstream destinationFile) const;
+    Text *getVideoGameTitle() const;
 };
 
 #endif

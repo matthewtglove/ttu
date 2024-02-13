@@ -18,19 +18,19 @@ VideoGame::~VideoGame()
     delete this->ageRating;
 }
 
-void VideoGame::printVideoGameDetails()
+void VideoGame::printVideoGameDetails() const
 {
     // Some cool video game listing
     // Remember to use displayText()
 }
 
-void VideoGame::printVideoGameDetailsToFile(ifstream destinationFile)
+void VideoGame::printVideoGameDetailsToFile(ifstream destinationFile) const
 {
     // Print to the file
     // Remember to use getText()
 }
 
-Text *VideoGame::getVideoGameTitle()
+Text *VideoGame::getVideoGameTitle() const
 {
-    return title;
+    return this->title;
 }
