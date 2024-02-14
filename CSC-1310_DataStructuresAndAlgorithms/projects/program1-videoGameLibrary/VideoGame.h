@@ -19,7 +19,7 @@ public:
     VideoGame(Text *title, Text *platform, int year, Text *genre, Text *ageRating, double userRating);
     ~VideoGame();
     void printVideoGameDetails() const;
-    void printVideoGameDetailsToFile(ifstream destinationFile) const;
+    void printVideoGameDetailsToFile(ofstream destinationFile) const;
     Text *getVideoGameTitle() const;
 };
 

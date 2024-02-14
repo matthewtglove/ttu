@@ -9,16 +9,15 @@
 int main()
 {
     // TEST
-    VideoGameLibrary *library = new VideoGameLibrary(5);
-    library->addVideoGameToArray();
-    library->addVideoGameToArray();
-    library->addVideoGameToArray();
+    VideoGameLibrary *library = new VideoGameLibrary(50);
+    library->loadVideoGamesFromFile("three_games.txt");
 
     cout << endl;
     cout << endl;
     cout << endl;
     cout << endl;
     library->displayVideoGameTitles();
+    library->displayVideoGames();
 
     return 0;
 }

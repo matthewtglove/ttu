@@ -12,41 +12,39 @@ private:
 public:
     VideoGameLibrary(int maxGames)
     {
-        videoGamesArray = new VideoGame *[maxGames];
-        // this->maxGames = maxGames;
-        numGames = 0;
+        this->videoGamesArray = new VideoGame *[this->maxGames];
+        this->maxGames = maxGames;
+        this->numGames = 0;
     }
 
     ~VideoGameLibrary()
     {
-        for (int i = 0; i < numGames; i++)
+        for (int i = 0; i < this->numGames; i++)
         {
-            delete videoGamesArray[i];
+            delete this->videoGamesArray[i];
         }
-        delete[] videoGamesArray;
+        delete[] this->videoGamesArray;
     }
 
-    void resizeVideoGameArray()
+    void resizeVideoGameArray() // TODO: I'm not sure if this is right
     {
-        // This function called by addVideoGameToArray
-        // When array is not big enough for new video game, create a new array double the size and move all the old items to this new array
         this->maxGames *= 2;
         VideoGame **resizedVideoGamesArray = new VideoGame *[this->maxGames];
         for (int i = 0; i < this->numGames; i++)
         {
-            resizedVideoGamesArray[i] = videoGamesArray[i];
+            resizedVideoGamesArray[i] = this->videoGamesArray[i];
         }
 
         // resizedVideoGamesArray is pointing to the same VideoGames in memory, so we don't want to delete the video games, just the old videoGamesArray
-        delete[] videoGamesArray;
+        delete[] this->videoGamesArray;
 
         // Now we make the empty videoGamesArray into the new array
-        videoGamesArray = resizedVideoGamesArray;
+        this->videoGamesArray = resizedVideoGamesArray;
     }
 
     void addVideoGameToArray()
     {
-        int maxInputLength = 200;
+        int maxInputLength = 1000;
 
         cout << "New video game:\n"
              << endl;
@@ -87,29 +85,134 @@ public:
         {
             resizeVideoGameArray();
         }
-        videoGamesArray[this->numGames] = newGame;
+        this->videoGamesArray[this->numGames] = newGame;
         this->numGames++;
     }
 
-    void displayVideoGames()
+    void displayVideoGames() const
     {
-        // call each VideoGame's printVideoGameDetails function
+        for (int i = 0; i < this->numGames; i++)
+        {
+            this->videoGamesArray[i]->printVideoGameDetails();
+        }
     }
 
-    void displayVideoGameTitles()
+    void displayVideoGameTitles() const
     {
+        if (this->numGames < 1)
+        {
+            cout << "You have no video games :(" << endl;
+            return;
+        }
+
         cout << "Video Game Library:\n"
              << endl;
         for (int i = 0; i < this->numGames; i++)
         {
             Text *text = this->videoGamesArray[i]->getVideoGameTitle();
-            cout << "- " << text->getText() << endl;
+            cout << i + 1 << ". " << text->getText() << endl;
         }
         cout << endl;
     }
 
-    void loadVideoGamesFromFile(char *filename[10000])
+    void loadVideoGamesFromFile(const char *filename)
     {
-        // Read in the contents of the file
+        ifstream inputFile;
+
+        inputFile.open(filename);
+        if (!inputFile.is_open())
+        {
+            cout << "Error opening file: " << filename << endl;
+            return;
+        }
+
+        int maxInputLength = 1000;
+
+        char inputTitle[maxInputLength];
+        while (inputFile.getline(inputTitle, maxInputLength, '\n'))
+        {
+
+            Text *title = new Text(inputTitle);
+
+            char inputPlatform[maxInputLength];
+            inputFile.getline(inputPlatform, maxInputLength, '\n');
+            Text *platform = new Text(inputPlatform);
+
+            char inputCharYear[maxInputLength];
+            inputFile.getline(inputCharYear, maxInputLength, '\n');
+            int year = atoi(inputCharYear);
+
+            char inputGenre[maxInputLength];
+            inputFile.getline(inputGenre, maxInputLength, '\n');
+            Text *genre = new Text(inputGenre);
+
+            char inputAge[maxInputLength];
+            inputFile.getline(inputAge, maxInputLength, '\n');
+            Text *ageRating = new Text(inputAge);
+
+            char inputCharUserRating[maxInputLength];
+            inputFile.getline(inputCharUserRating, maxInputLength, '\n');
+            double userRating = strtod(inputCharUserRating, nullptr);
+
+            VideoGame *newGame = new VideoGame(title, platform, year, genre, ageRating, userRating);
+
+            // TEST
+            cout << "numGames is " << this->numGames << endl;
+            cout << "maxGames is " << this->maxGames << endl;
+
+            if (this->numGames == this->maxGames)
+            {
+                resizeVideoGameArray();
+            }
+            this->videoGamesArray[this->numGames] = newGame;
+            this->numGames++;
+
+            cout << newGame->getVideoGameTitle() << " was added to the video game library!" << endl;
+        }
+    }
+
+    void removeVideoGameFromArray()
+    {
+        if (this->numGames < 1)
+        {
+            cout << "You have no video games :(\nThere must be 1 or more video games in your library to remove video games." << endl;
+            return;
+        }
+
+        cout << "Which video game would you like to remove?"
+             << " Choose 1-" << this->numGames << endl;
+        displayVideoGameTitles();
+
+        cout << "SELECT: ";
+        int iDeletedVideoGame = requireIntInput(1, this->numGames) - 1;
+
+        cout << "Are you sure you want to remove \"" << this->videoGamesArray[iDeletedVideoGame]->getVideoGameTitle() << "\"? (y/n)" << endl;
+        cout << "CONFIRM REMOVE? ";
+        char userConfirmDelete;
+        cin >> userConfirmDelete;
+        bool confirmDelete = (userConfirmDelete == 'y');
+
+        if (!confirmDelete)
+        {
+            cout << this->videoGamesArray[iDeletedVideoGame]->getVideoGameTitle() << " was not removed." << endl;
+            return;
+        }
+
+        this->numGames--;
+        delete this->videoGamesArray[iDeletedVideoGame];
+        for (int i = iDeletedVideoGame; i < this->numGames; i++)
+        {
+            this->videoGamesArray[i] = this->videoGamesArray[i + 1];
+        }
+        // This will leave two duplicates of each other at the end of the array, but the second will not affect the library as it is outside of what numGames would call
+
+        cout << this->videoGamesArray[iDeletedVideoGame]->getVideoGameTitle() << " has successfully been removed." << endl;
+    }
+
+    void saveToFile(char *filename) const
+    {
+        // Open file
+        // call printVideoGameDetailsToFile()
+        // Format everything with new lines (no extra linebreaks between games). That way the output file can be read in again, it's just a line break separated file
     }
 };
