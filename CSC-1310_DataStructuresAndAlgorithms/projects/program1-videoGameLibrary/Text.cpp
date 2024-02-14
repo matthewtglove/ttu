@@ -24,6 +24,8 @@ void Text::displayText()
     {
         cout << textArray[i];
     }
+    cout << "";
+    cout << flush;
 }
 
 const char *Text::getText() const

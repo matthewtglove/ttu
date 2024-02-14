@@ -31,10 +31,7 @@ void VideoGameLibrary::resizeVideoGameArray()
         resizedVideoGamesArray[i] = this->videoGamesArray[i];
     }
 
-    for (int i = 0; i < this->numGames; i++)
-    {
-        delete this->videoGamesArray[i];
-    }
+    // Only delete the array, not the items
     delete[] this->videoGamesArray;
 
     // Now we make the empty videoGamesArray into the new and improved array
@@ -141,6 +138,22 @@ void VideoGameLibrary::loadVideoGamesFromFile(const char *filename)
     char inputLine[maxInputLength];
     while (inputFile.getline(inputLine, maxInputLength))
     {
+        // The provided text files sabatoge Unix users - getline includes the carraige return which breaks cout
+        // This manually removes the carraige return
+        int i = 0;
+        char c = inputLine[i];
+
+        while (c != '\0')
+        {
+            if (c == '\r')
+            {
+                inputLine[i] = c = '\0';
+                break;
+            }
+            i++;
+            c = inputLine[i];
+        }
+
         Text *title;
         Text *platform;
         int year;
@@ -181,8 +194,8 @@ void VideoGameLibrary::loadVideoGamesFromFile(const char *filename)
                 resizeVideoGameArray();
             }
             this->videoGamesArray[this->numGames] = newGame;
+            cout << "✅ ";
             newGame->getVideoGameTitle()->displayText();
-            cout << flush;
             cout << " was added to the video game library!" << endl;
             this->numGames++;
 
@@ -221,6 +234,7 @@ void VideoGameLibrary::removeVideoGameFromArray()
 
     if (!confirmDelete)
     {
+        cout << "✔️";
         this->videoGamesArray[iDeletedVideoGame]->getVideoGameTitle()->displayText();
         cout << " was not removed." << endl;
         return;
@@ -235,6 +249,7 @@ void VideoGameLibrary::removeVideoGameFromArray()
     // The above will leave two duplicates of each other at the end of the array, so...
     this->videoGamesArray[this->numGames] = nullptr;
 
+    cout << "✔️ ";
     this->videoGamesArray[iDeletedVideoGame]->getVideoGameTitle()->displayText();
     cout << " has successfully been removed." << endl;
 }
