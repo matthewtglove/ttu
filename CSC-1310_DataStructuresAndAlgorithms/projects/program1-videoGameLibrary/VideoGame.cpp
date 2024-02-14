@@ -12,12 +12,25 @@ VideoGame::VideoGame(Text *title, Text *platform, int year, Text *genre, Text *a
 
 VideoGame::~VideoGame()
 {
-     delete this->title;
-     delete this->platform;
-     delete this->genre;
-     delete this->ageRating;
+     if (this->title != nullptr)
+     {
+          delete this->title;
+     }
+     if (this->platform != nullptr)
+     {
+          delete this->platform;
+     }
+     if (this->genre != nullptr)
+     {
+          delete this->genre;
+     }
+     if (this->ageRating != nullptr)
+     {
+          delete this->ageRating;
+     }
 }
 
+// Print an entire game with its details
 void VideoGame::printVideoGameDetails() const
 {
      cout << setw(80) << setfill('-') << "" << endl;
@@ -50,13 +63,13 @@ void VideoGame::printVideoGameDetails() const
 
      cout << "IGDB User Rating:" << endl;
      cout << this->userRating;
-     cout << endl
-          << endl;
+     cout << endl;
 
      cout << setw(80) << setfill('-') << "" << endl;
      cout << setfill(' ');
 }
 
+// Save to file
 void VideoGame::printVideoGameDetailsToFile(ofstream &destinationFile) const
 {
      if (!destinationFile.is_open())
