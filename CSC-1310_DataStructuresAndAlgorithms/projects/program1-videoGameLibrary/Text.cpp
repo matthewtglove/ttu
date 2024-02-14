@@ -17,7 +17,7 @@ Text::~Text()
 
 void Text::displayText()
 {
-    for (int i = 1; i < textLength; i++)
+    for (int i = 0; i < textLength; i++)
     {
         cout << textArray[i];
     }

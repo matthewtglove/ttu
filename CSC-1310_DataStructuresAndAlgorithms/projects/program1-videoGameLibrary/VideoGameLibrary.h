@@ -26,7 +26,7 @@ public:
         delete[] this->videoGamesArray;
     }
 
-    void resizeVideoGameArray() // TODO: I'm not sure if this is right
+    void resizeVideoGameArray()
     {
         this->maxGames *= 2;
         VideoGame **resizedVideoGamesArray = new VideoGame *[this->maxGames];
@@ -35,10 +35,14 @@ public:
             resizedVideoGamesArray[i] = this->videoGamesArray[i];
         }
 
-        // resizedVideoGamesArray is pointing to the same VideoGames in memory, so we don't want to delete the video games, just the old videoGamesArray
+        for (int i = 0; i < this->numGames; i++)
+        {
+            delete this->videoGamesArray[i];
+        }
+
         delete[] this->videoGamesArray;
 
-        // Now we make the empty videoGamesArray into the new array
+        // Now we make the empty videoGamesArray into the new and improved array
         this->videoGamesArray = resizedVideoGamesArray;
     }
 
@@ -75,8 +79,9 @@ public:
         Text *ageRating = new Text(inputAge);
 
         cout << "IGDB USER RATING (1-100): ";
-        double userRating;
-        requireFloatInput(0, 100);
+        int userRating;
+        cin >> userRating;
+        cin.ignore();
 
         cout << endl;
 
@@ -115,6 +120,7 @@ public:
         cout << endl;
     }
 
+    // TODO: This is broken
     void loadVideoGamesFromFile(const char *filename)
     {
         ifstream inputFile;
@@ -128,46 +134,61 @@ public:
 
         int maxInputLength = 1000;
 
-        char inputTitle[maxInputLength];
-        while (inputFile.getline(inputTitle, maxInputLength, '\n'))
+        int lineNumber = 1;
+        char inputLine[maxInputLength];
+        while (inputFile.getline(inputLine, maxInputLength, '\n'))
         {
+            Text *title;
+            Text *platform;
+            int year;
+            Text *genre;
+            Text *ageRating;
+            int userRating;
 
-            Text *title = new Text(inputTitle);
-
-            char inputPlatform[maxInputLength];
-            inputFile.getline(inputPlatform, maxInputLength, '\n');
-            Text *platform = new Text(inputPlatform);
-
-            char inputCharYear[maxInputLength];
-            inputFile.getline(inputCharYear, maxInputLength, '\n');
-            int year = atoi(inputCharYear);
-
-            char inputGenre[maxInputLength];
-            inputFile.getline(inputGenre, maxInputLength, '\n');
-            Text *genre = new Text(inputGenre);
-
-            char inputAge[maxInputLength];
-            inputFile.getline(inputAge, maxInputLength, '\n');
-            Text *ageRating = new Text(inputAge);
-
-            char inputCharUserRating[maxInputLength];
-            inputFile.getline(inputCharUserRating, maxInputLength, '\n');
-            double userRating = strtod(inputCharUserRating, nullptr);
-
-            VideoGame *newGame = new VideoGame(title, platform, year, genre, ageRating, userRating);
-
-            // TEST
-            cout << "numGames is " << this->numGames << endl;
-            cout << "maxGames is " << this->maxGames << endl;
-
-            if (this->numGames == this->maxGames)
+            switch (lineNumber % 6)
             {
-                resizeVideoGameArray();
-            }
-            this->videoGamesArray[this->numGames] = newGame;
-            this->numGames++;
+            case 1:
+                title = new Text(inputLine);
+                break;
 
-            cout << newGame->getVideoGameTitle() << " was added to the video game library!" << endl;
+            case 2:
+                platform = new Text(inputLine);
+                break;
+
+            case 3:
+                year = atoi(inputLine);
+                break;
+
+            case 4:
+                genre = new Text(inputLine);
+                break;
+
+            case 5:
+                ageRating = new Text(inputLine);
+                break;
+
+            case 6:
+                userRating = atoi(inputLine);
+
+                VideoGame *newGame = new VideoGame(title, platform, year, genre, ageRating, userRating);
+
+                // TEST
+                cout << "numGames is " << this->numGames << endl;
+                cout << "maxGames is " << this->maxGames << endl;
+
+                if (this->numGames == this->maxGames)
+                {
+                    resizeVideoGameArray();
+                }
+                this->videoGamesArray[this->numGames] = newGame;
+                this->numGames++;
+
+                cout << newGame->getVideoGameTitle() << " was added to the video game library!" << endl;
+
+                break;
+            }
+
+            lineNumber++;
         }
     }
 
@@ -211,8 +232,15 @@ public:
 
     void saveToFile(char *filename) const
     {
-        // Open file
-        // call printVideoGameDetailsToFile()
-        // Format everything with new lines (no extra linebreaks between games). That way the output file can be read in again, it's just a line break separated file
+        ofstream outputFile;
+        outputFile.open(filename);
+        for (int i = 0; i < this->numGames; i++)
+        {
+            videoGamesArray[i]->printVideoGameDetailsToFile(outputFile);
+        }
+
+        outputFile.close();
+
+        cout << "All the video games have successfully been printed to " << filename << endl;
     }
 };

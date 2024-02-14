@@ -1,6 +1,6 @@
 #include "VideoGame.h"
 
-VideoGame::VideoGame(Text *title, Text *platform, int year, Text *genre, Text *ageRating, double userRating)
+VideoGame::VideoGame(Text *title, Text *platform, int year, Text *genre, Text *ageRating, int userRating)
 {
      this->title = title;
      this->platform = platform;
@@ -57,23 +57,21 @@ void VideoGame::printVideoGameDetails() const
      cout << setfill(' ');
 }
 
-void VideoGame::printVideoGameDetailsToFile(ofstream destinationFile) const
+void VideoGame::printVideoGameDetailsToFile(ofstream &destinationFile) const
 {
-     destinationFile.open("VideoGameOutput");
      if (!destinationFile.is_open())
      {
           cout << "Error opening/creating file" << endl;
           return;
      }
 
-     destinationFile << this->title->getText();
-     destinationFile << this->platform->getText();
-     destinationFile << this->year;
-     destinationFile << this->genre->getText();
-     destinationFile << this->ageRating->getText();
-     destinationFile << this->userRating;
-
-     destinationFile.close();
+     // Formatted simply with line breaks so this file can be used as an input file
+     destinationFile << this->title->getText() << "\n";
+     destinationFile << this->platform->getText() << "\n";
+     destinationFile << this->year << "\n";
+     destinationFile << this->genre->getText() << "\n";
+     destinationFile << this->ageRating->getText() << "\n";
+     destinationFile << this->userRating << "\n";
 }
 
 Text *VideoGame::getVideoGameTitle() const

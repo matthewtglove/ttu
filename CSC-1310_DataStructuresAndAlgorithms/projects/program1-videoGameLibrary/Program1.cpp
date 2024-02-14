@@ -10,7 +10,8 @@ int main()
 {
     // TEST
     VideoGameLibrary *library = new VideoGameLibrary(50);
-    library->loadVideoGamesFromFile("three_games.txt");
+    // library->loadVideoGamesFromFile("three_games.txt");
+    library->addVideoGameToArray();
 
     cout << endl;
     cout << endl;
@@ -18,6 +19,7 @@ int main()
     cout << endl;
     library->displayVideoGameTitles();
     library->displayVideoGames();
+    library->saveToFile("COOLTESTFILE.txt");
 
     return 0;
 }

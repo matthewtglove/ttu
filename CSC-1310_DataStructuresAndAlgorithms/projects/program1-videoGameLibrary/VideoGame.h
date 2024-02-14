@@ -13,13 +13,13 @@ private:
     int year;
     Text *genre;
     Text *ageRating;
-    double userRating;
+    int userRating;
 
 public:
-    VideoGame(Text *title, Text *platform, int year, Text *genre, Text *ageRating, double userRating);
+    VideoGame(Text *title, Text *platform, int year, Text *genre, Text *ageRating, int userRating);
     ~VideoGame();
     void printVideoGameDetails() const;
-    void printVideoGameDetailsToFile(ofstream destinationFile) const;
+    void printVideoGameDetailsToFile(ofstream &destinationFile) const;
     Text *getVideoGameTitle() const;
 };
 
