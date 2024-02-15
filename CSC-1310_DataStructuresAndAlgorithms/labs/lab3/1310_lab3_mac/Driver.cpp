@@ -1,3 +1,9 @@
+/*
+	LAB 3
+	Editor: Matthew Love
+	Date: 2024-02-8, Wed
+*/
+
 #include "Song.h"
 #include "Timer.h"
 #include <iostream>
@@ -6,6 +12,9 @@ using namespace std;
 
 // LOOK!!  ENTER YOUR FUNCTION PROTOTYPES HERE
 void insertionSort(int *array, int size);
+void reverseBubbleSort(int *array, int size);
+void quickSort(int *arr, int low, int high);
+int partition(int *array, int left, int right);
 
 int main()
 {
@@ -46,6 +55,7 @@ int main()
 	start = getTime(); // Starts timer.
 
 	// LOOK!!!!  CALL THE INSERTION SORT ALGORITHM HERE
+	insertionSort(mySongArray, numSongs);
 
 	end = getTime(); // Ends timer.
 	outFile.open("sortFileInsertion.txt");
@@ -128,9 +138,52 @@ void reverseBubbleSort(int *array, int size)
 }
 
 // LOOK!  WRITE YOUR RECURSIVE QUICK SORT FUNCTION HERE
-void quickSort()
+void quickSort(int *arr, int low, int high)
 {
 	int pivotLocation = 0;
+
+	if (low >= high)
+	{
+		return;
+	}
+
+	pivotLocation = partition(arr, low, high);
+	cout << endl
+		 << endl;
+	quickSort(arr, low, pivotLocation);
+	cout << endl
+		 << endl;
+	quickSort(arr, pivotLocation + 1, high);
 }
 
 // LOOK!  WRITE YOUR PARTITION FUNCTION HERE
+int partition(int *array, int left, int right)
+{
+	int pivot;
+	int temp;
+
+	pivot = array[left];
+	int l = left - 1;
+	int r = right + 1;
+
+	while (l < r)
+	{
+		do
+		{
+			r--;
+		} while (array[r] > pivot);
+
+		do
+		{
+			l++;
+		} while (array[l] < pivot);
+
+		if (l < r)
+		{
+			int temp = array[l];
+			array[l] = array[r];
+			array[r] = array[l];
+		}
+	}
+	return r;
+}
