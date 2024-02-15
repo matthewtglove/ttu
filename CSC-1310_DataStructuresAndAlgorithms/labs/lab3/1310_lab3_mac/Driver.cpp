@@ -11,10 +11,10 @@
 using namespace std;
 
 // LOOK!!  ENTER YOUR FUNCTION PROTOTYPES HERE
-void insertionSort(int *array, int size);
-void reverseBubbleSort(int *array, int size);
-void quickSort(int *arr, int low, int high);
-int partition(int *array, int left, int right);
+void insertionSort(Song *array, int size);
+void reverseBubbleSort(Song *array, int size);
+void quickSort(Song *array, int low, int high);
+int partition(Song *array, int left, int right);
 
 int main()
 {
@@ -99,16 +99,16 @@ int main()
 }
 
 // LOOK!  WRITE YOUR INSERTION SORT FUNCTION HERE
-void insertionSort(int *array, int size)
+void insertionSort(Song *array, int size)
 {
-	int key;
-	int j;
+	string key;
+	string j;
 
 	for (int i = 1; i < size; i++)
 	{
-		key = array[i];
+		key = array[i].getTitle();
 		j = i - 1;
-		while (j >= 0 && array[j] > key)
+		while (j >= 0 && array[j].getTitle() > key)
 		{
 			array[j + 1] = array[j];
 			j--;
@@ -118,7 +118,7 @@ void insertionSort(int *array, int size)
 }
 
 // LOOK!  WRITE YOUR REVERSE BUBBLE SORT FUNCTION HERE
-void reverseBubbleSort(int *array, int size)
+void reverseBubbleSort(Song *array, int size)
 {
 	int tempForSwap;
 
@@ -138,7 +138,7 @@ void reverseBubbleSort(int *array, int size)
 }
 
 // LOOK!  WRITE YOUR RECURSIVE QUICK SORT FUNCTION HERE
-void quickSort(int *arr, int low, int high)
+void quickSort(Song *array, int low, int high)
 {
 	int pivotLocation = 0;
 
@@ -147,13 +147,13 @@ void quickSort(int *arr, int low, int high)
 		return;
 	}
 
-	pivotLocation = partition(arr, low, high);
+	pivotLocation = partition(array, low, high);
 	cout << endl
 		 << endl;
-	quickSort(arr, low, pivotLocation);
+	quickSort(array, low, pivotLocation);
 	cout << endl
 		 << endl;
-	quickSort(arr, pivotLocation + 1, high);
+	quickSort(array, pivotLocation + 1, high);
 }
 
 // LOOK!  WRITE YOUR PARTITION FUNCTION HERE
