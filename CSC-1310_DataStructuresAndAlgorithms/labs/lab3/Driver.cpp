@@ -70,6 +70,7 @@ int main()
 	start = getTime(); // Starts timer.
 
 	// LOOK!!!!  CALL THE REVERSE BUBBLE SORT ALGORITHM HERE
+	reverseBubbleSort(mySongArray, numSongs);
 
 	end = getTime(); // Ends timer.
 	outFile.open("sortFileReverseBubble.txt");
@@ -84,6 +85,7 @@ int main()
 	start = getTime(); // Starts timer.
 
 	// LOOK!!!!  CALL THE QUICKSORT ALGORITHM HERE
+	quickSort(mySongArray, 1, numSongs);
 
 	end = getTime(); // Ends timer.
 	cout << "\nQuicksort: " << totalTime(start, end) << " seconds\n\n";
@@ -101,14 +103,14 @@ int main()
 // LOOK!  WRITE YOUR INSERTION SORT FUNCTION HERE
 void insertionSort(Song *array, int size)
 {
-	string key;
-	string j;
+	Song key;
+	int j;
 
 	for (int i = 1; i < size; i++)
 	{
-		key = array[i].getTitle();
+		key = array[i];
 		j = i - 1;
-		while (j >= 0 && array[j].getTitle() > key)
+		while (j >= 0 && array[j].getTitle().compare(key.getTitle()) > 0)
 		{
 			array[j + 1] = array[j];
 			j--;
@@ -120,16 +122,15 @@ void insertionSort(Song *array, int size)
 // LOOK!  WRITE YOUR REVERSE BUBBLE SORT FUNCTION HERE
 void reverseBubbleSort(Song *array, int size)
 {
-	int tempForSwap;
+	Song tempForSwap;
 
-	// TODO: THe below is Bubble Sort. Change it to be Reverse Bubble Sort
 	for (int maxElement = (size - 1); maxElement > 0; maxElement--)
 	{
 		for (int i = 0; i < maxElement; i++)
 		{
-			if (array[i] > array[i + 1])
+			if (array[i].getTitle().compare(array[i + 1].getTitle()) < 0)
 			{
-				tempForSwap = array[i];
+				Song tempForSwap = array[i];
 				array[i] = array[i + 1];
 				array[i + 1] = tempForSwap;
 			}
@@ -148,21 +149,17 @@ void quickSort(Song *array, int low, int high)
 	}
 
 	pivotLocation = partition(array, low, high);
-	cout << endl
-		 << endl;
 	quickSort(array, low, pivotLocation);
-	cout << endl
-		 << endl;
 	quickSort(array, pivotLocation + 1, high);
 }
 
 // LOOK!  WRITE YOUR PARTITION FUNCTION HERE
-int partition(int *array, int left, int right)
+int partition(Song *array, int left, int right)
 {
-	int pivot;
-	int temp;
+	string pivot;
+	Song tempForSwap;
 
-	pivot = array[left];
+	pivot = array[left].getTitle();
 	int l = left - 1;
 	int r = right + 1;
 
@@ -171,18 +168,18 @@ int partition(int *array, int left, int right)
 		do
 		{
 			r--;
-		} while (array[r] > pivot);
+		} while (array[r].getTitle().compare(pivot) > 0);
 
 		do
 		{
 			l++;
-		} while (array[l] < pivot);
+		} while (array[l].getTitle().compare(pivot) < 0);
 
 		if (l < r)
 		{
-			int temp = array[l];
+			Song tempForSwap = array[l];
 			array[l] = array[r];
-			array[r] = array[l];
+			array[r] = tempForSwap;
 		}
 	}
 	return r;
