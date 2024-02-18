@@ -1,0 +1,157 @@
+{
+  "main": {
+    "id": "5f9ea2ef8682c741",
+    "type": "split",
+    "children": [
+      {
+        "id": "5358428233c625c3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "01628fc063a569c6",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "Untitled.canvas",
+                "viewState": {
+                  "x": 782.1220556043484,
+                  "y": 199.56613009156845,
+                  "zoom": 0.05199994097153275
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "8a18d88a8e79b7d8",
+    "type": "split",
+    "children": [
+      {
+        "id": "b6de35c4c43cdc1a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "23ace938ac0d2390",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "7b6f3c81a390db17",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "e32f04637451f69e",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "38ddc3df1c2212a4",
+    "type": "split",
+    "children": [
+      {
+        "id": "ba9fd10a5fb773b2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fbe1da9d1ebbb860",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Untitled.canvas",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "7f32aad7b5db8638",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Untitled.canvas",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "72060dbdb8d76b4d",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "62f6cb96a0e6149c",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Untitled.canvas"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "01628fc063a569c6",
+  "lastOpenFiles": [
+    "Untitled.canvas",
+    "CSC-1300_IntroProblemSolvingAndComputerProgramming/projects/program3-WillyWonkaChocolateFactory/CSC 1300 Program 3 Fall 2023.pdf"
+  ]
+}
