@@ -47,6 +47,7 @@ public:
         }
     }
 
+    // !head is used a lot, so this is made for more clarity in every instance
     bool isEmpty()
     {
         return (!head);
@@ -54,8 +55,6 @@ public:
 
     void appendNode(string newValue)
     {
-        // § dynamically allocate a new ListNode and set the ListNode’s value to the string sent to this function
-        // § place the new node at the end of the linked list (use the tail pointer to help!)
         ListNode *newNode;
 
         newNode = new ListNode;
@@ -71,15 +70,14 @@ public:
 
         // Make the CURRENT last node point to the new value (instead of pointing to NULL, like it was before)
         tail->next = newNode;
-        // Then, make the last value the new value
+        // Then, redefine the last node to the new node
         tail = newNode;
     }
 
     void insertNode(string newValue)
     {
-        //         accept a string as a parameter
-        // § dynamically allocate a new ListNode and set the ListNode’s value to the string sent to  this function
-        // § place the new node in the linked list alphabetically based on the string values.
+        // This function inserts the new value in the list alphabetically (before the first value that is greater)
+        
         if (isEmpty())
         {
             appendNode(newValue);
@@ -116,8 +114,6 @@ public:
 
     void deleteNode(string deleteValue)
     {
-        //         accept a string as a parameter
-        // § traverse the linked list to search for a node with the same value and delete it when found
         if (isEmpty())
         {
             cout << "[The list is empty]" << endl;
@@ -133,6 +129,7 @@ public:
             return;
         }
 
+        // Already checked head
         while (currentNode->next->value != deleteValue)
         {
             if (currentNode == tail)
