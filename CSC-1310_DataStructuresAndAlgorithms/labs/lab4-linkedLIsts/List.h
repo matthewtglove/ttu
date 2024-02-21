@@ -55,9 +55,7 @@ public:
 
     void appendNode(string newValue)
     {
-        ListNode *newNode;
-
-        newNode = new ListNode;
+        ListNode *newNode = new ListNode;
         newNode->value = newValue;
         newNode->next = NULL;
 
@@ -77,14 +75,14 @@ public:
     void insertNode(string newValue)
     {
         // This function inserts the new value in the list alphabetically (before the first value that is greater)
-        
+
         if (isEmpty())
         {
             appendNode(newValue);
+            return;
         }
-        ListNode *newNode;
 
-        newNode = new ListNode;
+        ListNode *newNode = new ListNode;
         newNode->value = newValue;
 
         // To handle inserting at the head
@@ -97,6 +95,7 @@ public:
 
             return;
         }
+
         ListNode *currentNode = head;
         // Skipping the head since we have already checked it
         while (currentNode->next->value < newNode->value)
@@ -122,28 +121,42 @@ public:
 
         ListNode *currentNode = head;
 
-        if (head->value == deleteValue)
-        {
-            head = head->next;
-            delete currentNode;
-            return;
-        }
+        ListNode *previousNode;
 
-        // Already checked head
-        while (currentNode->next->value != deleteValue)
+        while (currentNode->value != deleteValue)
         {
-            if (currentNode == tail)
+            if (currentNode->next == NULL)
             {
                 cout << "[Value not found in list]" << endl;
                 return;
             }
+
+            // Only increments previousNode after currentNode is ahead
+            {
+                // NOTE TO GRADER. Both methods below do the exact same thing. Is the use of a ternary operator acceptable in assignment submissions?
+
+                // First method: Using a ternary operator
+                previousNode = ((currentNode == head) ? head : previousNode->next);
+
+                // Second method: Using if-else
+                /*
+                if (currentNode == head)
+                {
+                    previousNode = head;
+                }
+                else
+                {
+                    previousNode = previousNode->next;
+                }
+                */
+            }
             currentNode = currentNode->next;
         }
 
-        ListNode *deleteNode = currentNode->next;
-        currentNode->next = deleteNode->next;
+        // Set the previous node to the node ahead of the node that is about to be deleted
+        previousNode->next = currentNode->next;
 
-        delete deleteNode;
+        delete currentNode;
     }
 
     void displayList()

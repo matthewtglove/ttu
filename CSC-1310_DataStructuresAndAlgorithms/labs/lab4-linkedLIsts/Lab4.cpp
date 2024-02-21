@@ -22,18 +22,22 @@ int main()
 	halloweenList.appendNode("scarecrow");
 	halloweenList.appendNode("witch");
 	halloweenList.appendNode("zombie");
+	// halloweenList.appendNode("zzzombie");
+	// halloweenList.appendNode("zombie");
 
 	halloweenList.displayList();
 
 	// Insert
 	cout << "\n\nI am inserting vampire in the list.\n\n";
 	halloweenList.insertNode("vampire");
+	// halloweenList.insertNode("vampire");
 
 	halloweenList.displayList();
 
 	// Delete
 	cout << "\n\nI am deleting ghost from the list.\n\n";
 	halloweenList.deleteNode("ghost");
+	// halloweenList.deleteNode("ghost");
 
 	halloweenList.displayList();
 
