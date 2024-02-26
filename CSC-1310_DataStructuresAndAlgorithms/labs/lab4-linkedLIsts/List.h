@@ -102,6 +102,7 @@ public:
         {
             if (currentNode->next == tail)
             {
+                // -5 -> insert: You have a case on line 105 where you call append with the newNode->value but you should delete newNode after this is called since append makes another node in its function.
                 appendNode(newNode->value);
                 return;
             }
@@ -152,6 +153,7 @@ public:
             }
             currentNode = currentNode->next;
         }
+        // -5 -> delete: Very clever using the ternary op to assign prevNode; however, you don't have a case to reset the head of the list in the event of deleting the head. This would cause head to point to junk data, resulting in a crash if accessed later. (But its fine in this case since delete is the last thing done with the list.)
 
         // Set the previous node to the node ahead of the node that is about to be deleted
         previousNode->next = currentNode->next;
