@@ -14,13 +14,13 @@ private:
     ListNode *top;
 
 public:
-    LinkedList()
+    DynamicStack()
     {
         top = NULL;
     }
     bool isEmpty() const;
     void push(T value);
-    void pop(T item);
+    void pop(T &item);
 };
 
 template <typename T>
@@ -35,25 +35,29 @@ void DynamicStack<T>::push(T value)
     ListNode *newNode = new ListNode;
     newNode->value = value;
 
-    // Makes the new value point next to what is currently on top (NULL if thte stack is empty)
-    isEmpty() ? newNode->next = NULL : newNode->next = top;
+    // Makes the new value point next to what is currently on top
+    {
+        // isEmpty() ? newNode->next = NULL : newNode->next = top;
+        // The above check is not needed, as the newNode would be set to NULL even if the stack is empty because top would be NULL
+        newNode->next = top;
+    }
 
     // Then redefines the top to the new value that was placed on top
     top = newNode;
 }
 
 template <typename T>
-void DynamicStack<T>::pop(T item)
+void DynamicStack<T>::pop(T &item)
 {
     if (isEmpty())
     {
         return;
     }
 
-    ListNode deletedNode = top;
+    ListNode *deleteNode = top;
     top = top->next;
-    item = deletedNode->value;
-    delete deletedNode;
+    item = deleteNode->value;
+    delete deleteNode;
 }
 
 #endif

@@ -12,10 +12,8 @@ using namespace std;
 
 int main()
 {
-	// LOOK!!  -------------------create your InventoryItem stack on the line below and name it "stack"
 	DynamicStack<InvItem> stack;
-
-	// LOOK!! ---------------------create an inventory item object and name it "item"
+	InvItem item;
 
 	int choice;	  // Menu choice
 	long serial;  // Serial number
@@ -41,7 +39,6 @@ int main()
 		// Act on the user's choice.
 		switch (choice)
 		{
-
 		case 1:
 			// Enter a part into inventory.
 			cout << "\nYou have chosen to add an item to the inventory bin.\n\n";
