@@ -2,11 +2,9 @@
 #define DYNAMICSTACK_H
 
 template <typename T>
-class DynamicStack
-{
+class DynamicStack {
 private:
-    struct ListNode
-    {
+    struct ListNode {
         T value;
         ListNode *next;
     };
@@ -14,8 +12,7 @@ private:
     ListNode *top;
 
 public:
-    DynamicStack()
-    {
+    DynamicStack() {
         top = NULL;
     }
     bool isEmpty() const;
@@ -24,14 +21,12 @@ public:
 };
 
 template <typename T>
-bool DynamicStack<T>::isEmpty() const
-{
+bool DynamicStack<T>::isEmpty() const {
     return (!top);
 }
 
 template <typename T>
-void DynamicStack<T>::push(T value)
-{
+void DynamicStack<T>::push(T value) {
     ListNode *newNode = new ListNode;
     newNode->value = value;
 
@@ -47,10 +42,8 @@ void DynamicStack<T>::push(T value)
 }
 
 template <typename T>
-void DynamicStack<T>::pop(T &item)
-{
-    if (isEmpty())
-    {
+void DynamicStack<T>::pop(T &item) {
+    if (isEmpty()) {
         return;
     }
 

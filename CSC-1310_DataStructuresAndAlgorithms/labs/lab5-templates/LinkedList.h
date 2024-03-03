@@ -109,7 +109,14 @@ void LinkedList<T>::deleteNode(int position)
 	if (position == 0)
 	{
 		cout << "DELETING the node with address: " << head << endl;
-		delete head;
+		// -10 -> delete: You will leak the entire list if you try to delete the head node (will also crash your program). This is because your head case only deletes what head is pointing to, but doesn't reassign the head to the next element after it. Without head, we have no way of navigating the entire list, so we will end up losing it.
+		// delete head;
+
+		// Fix: 
+		ListNode *currentHead = head;
+		head = head->next;
+		delete currentHead;
+
 		return;
 	}
 
