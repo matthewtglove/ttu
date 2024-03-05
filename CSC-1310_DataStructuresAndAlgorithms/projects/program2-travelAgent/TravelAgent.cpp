@@ -14,6 +14,7 @@
 #include <string>
 using namespace std;
 
+// The man, the myth, the legend
 void adamSavage() {
     cout << endl;
     cout << "Hello! My name is Adam Savage and I am your professional travel agent, tour director, and guide!" << endl
@@ -83,6 +84,7 @@ void adamSavage() {
     cout << endl;
 }
 
+// Input validation
 float requireFloatFromUser(float min = numeric_limits<float>::lowest(), float max = numeric_limits<float>::max(), string invalidInputMessage = "I have no idea what you just input.") {
     string minString = (min == numeric_limits<float>::lowest()) ? "-∞" : to_string(min);
     string maxString = (max == numeric_limits<float>::max()) ? "∞" : to_string(max);
@@ -97,6 +99,7 @@ float requireFloatFromUser(float min = numeric_limits<float>::lowest(), float ma
     }
 
     string range = " (" + minString + " to " + maxString + ")";
+    // The range should only be displayed if it has a custom value
     bool displayRange = !(min == numeric_limits<float>::lowest() && max == numeric_limits<float>::max());
 
     float input;
@@ -114,6 +117,7 @@ float requireFloatFromUser(float min = numeric_limits<float>::lowest(), float ma
     return input;
 }
 
+// Input validation
 bool requireYNFromUser(string invalidInputMessage = "I have no idea what you just input.") {
     char input;
     cout << "Y or N: ";
@@ -132,6 +136,7 @@ bool requireYNFromUser(string invalidInputMessage = "I have no idea what you jus
     return (tolower(input) == 'y');
 }
 
+// To pace the execution of the program
 void enterToContinue() {
     cout << endl
          << "(Press Enter to continue)";
@@ -147,10 +152,10 @@ void enterToContinue() {
     cout << "\033[2K";
 }
 
-// Fixes the bad default rand
+// Fixes the bad normal rand (see README)
 int rand() {
     // Casts to int
-    // Should I use static_cast here?
+    // Question to grader: Should I use static_cast here?
     return abs((int)arc4random());
 }
 
@@ -181,7 +186,7 @@ int main() {
     float travelCost = 0;
     int dangerScore = 0;
     while (getline(outputFile, lineValue, '#')) {
-        // Assigns values based on where they are in the 4-line bunch
+        // Assigns each line based on where they are in the 4-line bunch
         switch (((lineNumber - 1) % 4) + 1) {
         case 1: {
             placeName = lineValue;
