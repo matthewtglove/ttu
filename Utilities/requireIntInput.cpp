@@ -2,32 +2,23 @@
 #include <string>
 using namespace std;
 
-int requireIntInput(int minRange = INT_MIN, int maxRange = INT_MAX, string invalidInputMessage = "Invalid input.")
-{
+int requireIntInput(int minRange = INT_MIN, int maxRange = INT_MAX, string invalidInputMessage = "Invalid input.") {
     int userInput = 0;
     bool validRange = false;
-    do
-    {
+    do {
         int convertedInput;
         bool successfulConversion = false;
-        do
-        {
-            try
-            {
+        do {
+            try {
                 string input;
                 getline(cin, input);
                 // Should fail if user did not input a number
                 convertedInput = stoi(input);
                 successfulConversion = true;
-            }
-            catch (...)
-            {
-                if (minRange == INT_MIN && maxRange == INT_MAX)
-                {
+            } catch (...) {
+                if (minRange == INT_MIN && maxRange == INT_MAX) {
                     cout << invalidInputMessage << " Please enter an integer." << endl;
-                }
-                else
-                {
+                } else {
                     cout << invalidInputMessage << " Please enter an integer " << minRange << " to " << maxRange << endl;
                 }
             };
@@ -36,8 +27,7 @@ int requireIntInput(int minRange = INT_MIN, int maxRange = INT_MAX, string inval
         userInput = convertedInput;
 
         validRange = (userInput >= minRange && userInput <= maxRange);
-        if (!validRange)
-        {
+        if (!validRange) {
             cout << invalidInputMessage << " Please enter " << minRange << " to " << maxRange << endl;
         }
     } while (!validRange);

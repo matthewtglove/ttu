@@ -2,12 +2,7 @@
     Title: Program 2
     Author: Matthew Love
     Date: 2024-03-01, Fri
-    Purpose: Using a linked list
-*/
-
-/* TODO
-- Validate input name (should not accept only a line break)
-- Test and submit!
+    Purpose: Using a linked list and input validation
 */
 
 #include "Destination.h"
@@ -89,9 +84,9 @@ void adamSavage() {
 }
 
 float requireFloatFromUser(float min = numeric_limits<float>::lowest(), float max = numeric_limits<float>::max(), string invalidInputMessage = "I have no idea what you just input.") {
-    // Format range by removing trailing zeros and decimal point
     string minString = (min == numeric_limits<float>::lowest()) ? "-∞" : to_string(min);
     string maxString = (max == numeric_limits<float>::max()) ? "∞" : to_string(max);
+    // Format range by removing trailing zeros and decimal point
     minString.erase(minString.find_last_not_of('0') + 1, string::npos);
     maxString.erase(maxString.find_last_not_of('0') + 1, string::npos);
     if (minString.back() == '.') {
@@ -119,7 +114,7 @@ float requireFloatFromUser(float min = numeric_limits<float>::lowest(), float ma
     return input;
 }
 
-bool requireYNFromUser(string invalidInputMessage = "I have no idea what you just input. ") {
+bool requireYNFromUser(string invalidInputMessage = "I have no idea what you just input.") {
     char input;
     cout << "Y or N: ";
     cin >> input;
@@ -144,9 +139,10 @@ void enterToContinue() {
 
     // Move cursor up one line
     cout << "\033[A";
-    // Clear the entire line (again, in case it was partially cleared)
+    // Clear the entire line
     cout << "\033[2K";
 
+    // Does it again
     cout << "\033[A";
     cout << "\033[2K";
 }
@@ -154,6 +150,7 @@ void enterToContinue() {
 // Fixes the bad default rand
 int rand() {
     // Casts to int
+    // Should I use static_cast here?
     return abs((int)arc4random());
 }
 
@@ -243,7 +240,12 @@ int main() {
 
     cout << "\t1. So traveler, what's your name? ";
     string userName;
-    getline(cin, userName);
+    bool validUserName = false;
+    do {
+        getline(cin, userName);
+        validUserName = (userName != "");
+        cout << (validUserName ? "" : "Username cannot be blank: ");
+    } while (!validUserName);
     cout << endl;
 
     cout << "\t2. How much money do you make per year? ";

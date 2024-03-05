@@ -21,6 +21,13 @@
         "bitset": "cpp",
         "initializer_list": "cpp",
         "__locale": "cpp",
-        "limits": "cpp"
+        "limits": "cpp",
+        "__node_handle": "cpp",
+        "deque": "cpp",
+        "__memory": "cpp",
+        "optional": "cpp",
+        "ratio": "cpp",
+        "system_error": "cpp",
+        "tuple": "cpp"
     }
 }
