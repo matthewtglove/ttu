@@ -267,7 +267,7 @@ int main() {
     cout << endl;
 
     cout << "\t4. Would dropping a penny off the Empire State Building kill someone? ";
-    bool thinksDroppingAPennyOffTheEmpireStateBuildingWouldKillSomeone = requireYNFromUser(); // :D
+    bool thinksDroppingAPennyOffTheEmpireStateBuildingWouldKillSomeone = requireYNFromUser(); // :D this is a joke variable name
     if (thinksDroppingAPennyOffTheEmpireStateBuildingWouldKillSomeone) {
         cout << endl
              << "\tYou're entirely wrong. You should watch " << (watchesMythBusters ? "more " : "") << "MythBusters!" << endl;
