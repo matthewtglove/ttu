@@ -5,10 +5,11 @@
     Purpose: Using a linked list and input validation
 */
 
+// NOTE TO GRADER: See README.md
+
 #include "Destination.h"
 #include "LinkedList.h"
 #include <fstream>
-#include <iomanip>
 #include <iostream>
 #include <limits>
 #include <string>
@@ -152,14 +153,16 @@ void enterToContinue() {
     cout << "\033[2K";
 }
 
-// Fixes the bad normal rand (see README)
+// NOTE TO GRADER: Fixes the bad normal rand on MacOS (see README). If on Windows, comment out this function and uncomment the below srand in the main
 int rand() {
     // Casts to int
-    // Question to grader: Should I use static_cast here?
     return abs((int)arc4random());
 }
 
 int main() {
+    // NOTE TO GRADER: If on Windows, uncomment this
+    // srand(time(0));
+
     LinkedList<Destination *> destinationsList;
 
     adamSavage();
