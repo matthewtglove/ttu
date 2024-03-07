@@ -1,0 +1,98 @@
+2
+1
+Jim Halpert
+1
+1
+Pam Beesly
+1
+1
+Andy Bernard
+1
+1
+Robert California
+1
+1
+Dwight Schrute
+5
+2
+1
+Stanley Hudson
+2
+1
+Kevin Malone
+1
+1
+Meredith Palmer
+1
+1
+Angela Martin
+1
+1
+Oscar Martinez
+2
+1
+Phyllis Vance
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+1
+Roy Anderson
+1
+1
+Jan Levinson
+2
+1
+Toby Flenderson
+1
+1
+Kelly Kapoor
+1
+1
+Karen Filipelli
+1
+1
+Creed Bratton
+1
+1
+Darryl Philbin
+1
+1
+Erin Hannon
+1
+1
+Gabe Lewis
+1
+1
+Holly Flax
+1
+1
+Nellie Bertram
+1
+1
+David Wallace
+2
+5
+1
+Michael Scott
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+3
+
+
