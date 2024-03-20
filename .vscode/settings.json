@@ -28,6 +28,8 @@
         "optional": "cpp",
         "ratio": "cpp",
         "system_error": "cpp",
-        "tuple": "cpp"
+        "tuple": "cpp",
+        "queue": "cpp",
+        "__config": "cpp"
     }
 }
