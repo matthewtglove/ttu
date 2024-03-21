@@ -49,11 +49,14 @@ public:
     }
 
     void enqueue(string newRider) {
+        // Should increment on all control paths
         this->nodesCount++;
+
         QueueNode *newNode = new QueueNode;
         newNode->riderName = newRider;
         newNode->next = nullptr;
 
+        // In case of 1st node
         if (nodesCount == 1) {
             head = newNode;
             tail = newNode;
@@ -68,6 +71,7 @@ public:
             cout << "The queue is empty" << endl;
             return "EMPTY";
         }
+        
         nodesCount--;
         QueueNode *deleteNode = head;
         string rider = deleteNode->riderName;

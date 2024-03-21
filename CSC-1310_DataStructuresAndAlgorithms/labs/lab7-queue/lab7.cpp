@@ -7,6 +7,7 @@
 
 #include "Queue.h"
 
+// Input validation
 int requireIntInput(int minRange = INT_MIN, int maxRange = INT_MAX, string invalidInputMessage = "Invalid input.") {
     int userInput = 0;
     bool validRange = false;
@@ -43,6 +44,7 @@ int requireIntInput(int minRange = INT_MIN, int maxRange = INT_MAX, string inval
 int main() {
     Queue regularPass;
     Queue instantPass;
+
     cout << "Welcome to the Terror Park." << endl
          << endl;
 
@@ -61,8 +63,10 @@ int main() {
             cout << endl;
             cout << "What's your name?" << endl;
             string name;
+            cin.ignore();
             getline(cin, name);
 
+            // Any integer except 1 will be treated as a regular pass
             cout << "Do you have an InstantPass holder? (type 1 for yes)" << endl;
             int hasInstantPass = requireIntInput();
 
@@ -98,6 +102,7 @@ int main() {
             break;
         }
 
+        // This would (should) never happen
         default: {
             cout << "what?" << endl;
             break;
