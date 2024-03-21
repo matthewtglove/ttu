@@ -48,7 +48,7 @@ public:
         return (!head);
     }
 
-    void endqueue(string newRider) {
+    void enqueue(string newRider) {
         this->nodesCount++;
         QueueNode *newNode = new QueueNode;
         newNode->riderName = newRider;

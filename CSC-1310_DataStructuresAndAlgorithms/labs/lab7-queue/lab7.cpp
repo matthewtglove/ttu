@@ -5,7 +5,7 @@
     Purpose: Using a queue because that's cool 👍
 */
 
-#include "queue.h"
+#include "Queue.h"
 
 int requireIntInput(int minRange = INT_MIN, int maxRange = INT_MAX, string invalidInputMessage = "Invalid input.") {
     int userInput = 0;
@@ -67,10 +67,10 @@ int main() {
             int hasInstantPass = requireIntInput();
 
             if (hasInstantPass == 1) {
-                instantPass.endqueue(name);
+                instantPass.enqueue(name);
                 break;
             }
-            regularPass.endqueue(name);
+            regularPass.enqueue(name);
             break;
         }
 
