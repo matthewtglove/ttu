@@ -1,0 +1,361 @@
+Welcome to the Terror Park.
+
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+There are no riders in line.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+An InstantPass rider was boarded onto the ride.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+An InstantPass rider was boarded onto the ride.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+An InstantPass rider was boarded onto the ride.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+An InstantPass rider was boarded onto the ride.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+An InstantPass rider was boarded onto the ride.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+An InstantPass rider was boarded onto the ride.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+An InstantPass rider was boarded onto the ride.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+A regular pass rider was boarded onto the ride.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+A regular pass rider was boarded onto the ride.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+A regular pass rider was boarded onto the ride.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+A regular pass rider was boarded onto the ride.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: Wrong. You lose. Good day sir. Please enter 1 to 3
+
+What's your name?
+Do you have an InstantPass holder? (type 1 for yes)
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+An InstantPass rider was boarded onto the ride.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+An InstantPass rider was boarded onto the ride.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+An InstantPass rider was boarded onto the ride.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+An InstantPass rider was boarded onto the ride.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+An InstantPass rider was boarded onto the ride.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+An InstantPass rider was boarded onto the ride.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+An InstantPass rider was boarded onto the ride.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+An InstantPass rider was boarded onto the ride.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+An InstantPass rider was boarded onto the ride.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+An InstantPass rider was boarded onto the ride.
+
+What to do?
+1.	Add a rider to the waiting line (do it you won't)
+2.	Remove a rider from the queue (their turn to ride)
+3.	Leave the park (why?)
+CHOICE: 
+Too many people died? That's a shame.
+
+See you soon.
+Oh shoot, I am sorry, our park is closed so Jan Levinson will not get to ride today.
+Oh shoot, I am sorry, our park is closed so David Wallace will not get to ride today.
+Oh shoot, I am sorry, our park is closed so Michael Scott will not get to ride today.

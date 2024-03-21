@@ -7,6 +7,39 @@
 
 #include "queue.h"
 
+int requireIntInput(int minRange = INT_MIN, int maxRange = INT_MAX, string invalidInputMessage = "Invalid input.") {
+    int userInput = 0;
+    bool validRange = false;
+    do {
+        int convertedInput;
+        bool successfulConversion = false;
+        do {
+            try {
+                string input;
+                getline(cin, input);
+                // Should fail if user did not input a number
+                convertedInput = stoi(input);
+                successfulConversion = true;
+            } catch (...) {
+                if (minRange == INT_MIN && maxRange == INT_MAX) {
+                    cout << invalidInputMessage << " Please enter an integer." << endl;
+                } else {
+                    cout << invalidInputMessage << " Please enter an integer " << minRange << " to " << maxRange << endl;
+                }
+            };
+        } while (!(successfulConversion));
+
+        userInput = convertedInput;
+
+        validRange = (userInput >= minRange && userInput <= maxRange);
+        if (!validRange) {
+            cout << invalidInputMessage << " Please enter " << minRange << " to " << maxRange << endl;
+        }
+    } while (!validRange);
+
+    return userInput;
+}
+
 int main() {
     Queue regularPass;
     Queue instantPass;
@@ -21,10 +54,8 @@ int main() {
         cout << "2.\tRemove a rider from the queue (their turn to ride)" << endl;
         cout << "3.\tLeave the park (why?)" << endl;
 
-        int menuChoice;
         cout << "CHOICE: ";
-        cin >> menuChoice;
-        cin.ignore();
+        int menuChoice = requireIntInput(1, 3, "Wrong. You lose. Good day sir.");
         switch (menuChoice) {
         case 1: {
             cout << endl;
@@ -33,9 +64,7 @@ int main() {
             getline(cin, name);
 
             cout << "Do you have an InstantPass holder? (type 1 for yes)" << endl;
-            int hasInstantPass;
-            cin >> hasInstantPass;
-            cin.ignore();
+            int hasInstantPass = requireIntInput();
 
             if (hasInstantPass == 1) {
                 instantPass.endqueue(name);

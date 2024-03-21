@@ -39,11 +39,12 @@ public:
             cout << "Oh shoot, I am sorry, our park is closed so " << deleteNode->riderName << " will not get to ride today." << endl;
             delete deleteNode;
         }
+        nodesCount = 0;
         head = nullptr;
         tail = nullptr;
     }
 
-    bool isEmpty() {
+    bool isEmpty() const {
         return (!head);
     }
 
