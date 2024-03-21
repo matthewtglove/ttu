@@ -63,15 +63,17 @@ public:
         tail->next = newNode;
         tail = newNode;
     }
-    void dequeue() {
-        nodesCount--;
+    string dequeue() {
         if (isEmpty()) {
             cout << "The queue is empty" << endl;
-            return;
+            return "EMPTY";
         }
+        nodesCount--;
         QueueNode *deleteNode = head;
+        string rider = deleteNode->riderName;
         head = head->next;
         delete deleteNode;
+        return rider;
     }
 };
 

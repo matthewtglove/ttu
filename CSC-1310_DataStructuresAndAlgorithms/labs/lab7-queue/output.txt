@@ -53,7 +53,7 @@ What to do?
 2.	Remove a rider from the queue (their turn to ride)
 3.	Leave the park (why?)
 CHOICE: 
-An InstantPass rider was boarded onto the ride.
+An InstantPass rider, Jim Halpert, was boarded onto the ride.
 
 What to do?
 1.	Add a rider to the waiting line (do it you won't)
@@ -108,70 +108,70 @@ What to do?
 2.	Remove a rider from the queue (their turn to ride)
 3.	Leave the park (why?)
 CHOICE: 
-An InstantPass rider was boarded onto the ride.
+An InstantPass rider, Pam Beesly, was boarded onto the ride.
 
 What to do?
 1.	Add a rider to the waiting line (do it you won't)
 2.	Remove a rider from the queue (their turn to ride)
 3.	Leave the park (why?)
 CHOICE: 
-An InstantPass rider was boarded onto the ride.
+An InstantPass rider, Andy Bernard, was boarded onto the ride.
 
 What to do?
 1.	Add a rider to the waiting line (do it you won't)
 2.	Remove a rider from the queue (their turn to ride)
 3.	Leave the park (why?)
 CHOICE: 
-An InstantPass rider was boarded onto the ride.
+An InstantPass rider, Robert California, was boarded onto the ride.
 
 What to do?
 1.	Add a rider to the waiting line (do it you won't)
 2.	Remove a rider from the queue (their turn to ride)
 3.	Leave the park (why?)
 CHOICE: 
-An InstantPass rider was boarded onto the ride.
+An InstantPass rider, Kevin Malone, was boarded onto the ride.
 
 What to do?
 1.	Add a rider to the waiting line (do it you won't)
 2.	Remove a rider from the queue (their turn to ride)
 3.	Leave the park (why?)
 CHOICE: 
-An InstantPass rider was boarded onto the ride.
+An InstantPass rider, Meredith Palmer, was boarded onto the ride.
 
 What to do?
 1.	Add a rider to the waiting line (do it you won't)
 2.	Remove a rider from the queue (their turn to ride)
 3.	Leave the park (why?)
 CHOICE: 
-An InstantPass rider was boarded onto the ride.
+An InstantPass rider, Angela Martin, was boarded onto the ride.
 
 What to do?
 1.	Add a rider to the waiting line (do it you won't)
 2.	Remove a rider from the queue (their turn to ride)
 3.	Leave the park (why?)
 CHOICE: 
-A regular pass rider was boarded onto the ride.
+A regular pass rider, Dwight Schrute, was boarded onto the ride.
 
 What to do?
 1.	Add a rider to the waiting line (do it you won't)
 2.	Remove a rider from the queue (their turn to ride)
 3.	Leave the park (why?)
 CHOICE: 
-A regular pass rider was boarded onto the ride.
+A regular pass rider, Stanley Hudson, was boarded onto the ride.
 
 What to do?
 1.	Add a rider to the waiting line (do it you won't)
 2.	Remove a rider from the queue (their turn to ride)
 3.	Leave the park (why?)
 CHOICE: 
-A regular pass rider was boarded onto the ride.
+A regular pass rider, Oscar Martinez, was boarded onto the ride.
 
 What to do?
 1.	Add a rider to the waiting line (do it you won't)
 2.	Remove a rider from the queue (their turn to ride)
 3.	Leave the park (why?)
 CHOICE: 
-A regular pass rider was boarded onto the ride.
+A regular pass rider, Phyllis Vance, was boarded onto the ride.
 
 What to do?
 1.	Add a rider to the waiting line (do it you won't)
@@ -283,70 +283,70 @@ What to do?
 2.	Remove a rider from the queue (their turn to ride)
 3.	Leave the park (why?)
 CHOICE: 
-An InstantPass rider was boarded onto the ride.
+An InstantPass rider, Roy Anderson, was boarded onto the ride.
 
 What to do?
 1.	Add a rider to the waiting line (do it you won't)
 2.	Remove a rider from the queue (their turn to ride)
 3.	Leave the park (why?)
 CHOICE: 
-An InstantPass rider was boarded onto the ride.
+An InstantPass rider, Toby Flenderson, was boarded onto the ride.
 
 What to do?
 1.	Add a rider to the waiting line (do it you won't)
 2.	Remove a rider from the queue (their turn to ride)
 3.	Leave the park (why?)
 CHOICE: 
-An InstantPass rider was boarded onto the ride.
+An InstantPass rider, Kelly Kapoor, was boarded onto the ride.
 
 What to do?
 1.	Add a rider to the waiting line (do it you won't)
 2.	Remove a rider from the queue (their turn to ride)
 3.	Leave the park (why?)
 CHOICE: 
-An InstantPass rider was boarded onto the ride.
+An InstantPass rider, Karen Filipelli, was boarded onto the ride.
 
 What to do?
 1.	Add a rider to the waiting line (do it you won't)
 2.	Remove a rider from the queue (their turn to ride)
 3.	Leave the park (why?)
 CHOICE: 
-An InstantPass rider was boarded onto the ride.
+An InstantPass rider, Creed Bratton, was boarded onto the ride.
 
 What to do?
 1.	Add a rider to the waiting line (do it you won't)
 2.	Remove a rider from the queue (their turn to ride)
 3.	Leave the park (why?)
 CHOICE: 
-An InstantPass rider was boarded onto the ride.
+An InstantPass rider, Darryl Philbin, was boarded onto the ride.
 
 What to do?
 1.	Add a rider to the waiting line (do it you won't)
 2.	Remove a rider from the queue (their turn to ride)
 3.	Leave the park (why?)
 CHOICE: 
-An InstantPass rider was boarded onto the ride.
+An InstantPass rider, Erin Hannon, was boarded onto the ride.
 
 What to do?
 1.	Add a rider to the waiting line (do it you won't)
 2.	Remove a rider from the queue (their turn to ride)
 3.	Leave the park (why?)
 CHOICE: 
-An InstantPass rider was boarded onto the ride.
+An InstantPass rider, Gabe Lewis, was boarded onto the ride.
 
 What to do?
 1.	Add a rider to the waiting line (do it you won't)
 2.	Remove a rider from the queue (their turn to ride)
 3.	Leave the park (why?)
 CHOICE: 
-An InstantPass rider was boarded onto the ride.
+An InstantPass rider, Holly Flax, was boarded onto the ride.
 
 What to do?
 1.	Add a rider to the waiting line (do it you won't)
 2.	Remove a rider from the queue (their turn to ride)
 3.	Leave the park (why?)
 CHOICE: 
-An InstantPass rider was boarded onto the ride.
+An InstantPass rider, Nellie Bertram, was boarded onto the ride.
 
 What to do?
 1.	Add a rider to the waiting line (do it you won't)

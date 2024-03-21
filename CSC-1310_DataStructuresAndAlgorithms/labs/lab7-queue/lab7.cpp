@@ -77,13 +77,13 @@ int main() {
         case 2: {
             cout << endl;
             if (!instantPass.isEmpty()) {
-                instantPass.dequeue();
-                cout << "An InstantPass rider was boarded onto the ride." << endl;
+                string rider = instantPass.dequeue();
+                cout << "An InstantPass rider, " << rider << ", was boarded onto the ride." << endl;
                 break;
             }
             if (!regularPass.isEmpty()) {
-                regularPass.dequeue();
-                cout << "A regular pass rider was boarded onto the ride." << endl;
+                string rider = regularPass.dequeue();
+                cout << "A regular pass rider, " << rider << ", was boarded onto the ride." << endl;
                 break;
             }
             cout << "There are no riders in line." << endl;
