@@ -1,0 +1,3 @@
+zig c++ -std=c++11 file.cpp -o file.exe -target x86_64-windows-gnu
+zig c++ -std=c++11 lab7.cpp -o lab7.exe -target x86_64-windows-gnu
+zig c++ -std=c++11 lab8.cpp -o lab8.exe -target x86_64-windows-gnu
