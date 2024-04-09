@@ -2,7 +2,7 @@
     Title: GraphList.h
     Author: Matthew Love
     Date: 2024-04-03, Wed
-    Purpose: Generates an Adjacency list with input graph data
+    Purpose: A graph class of type int
 */
 
 #ifndef GRAPHLIST_H
@@ -23,6 +23,10 @@ private:
     int edgeCount;
 public:
     GraphList(int nodeCount) {
+        if (nodeCount <= 0) {
+            cout << "Node count must be greater than 0" << endl;
+            return;
+        }
         this->nodeCount = nodeCount;
         this->edgeCount = 0;
         headArray = new ListNode *[nodeCount];
@@ -34,7 +38,20 @@ public:
     }
 
     ~GraphList() {
-        // TODO: delete each linked list
+        // Deletes each linked list
+        for(int i = 0; i < nodeCount; i++) {
+            ListNode *currentNode = headArray[i];
+
+            // Deletes from the head of the linked list to the tail
+            while(currentNode->next != nullptr) {
+                ListNode *tempNode = currentNode;
+                currentNode = currentNode->next;
+                delete tempNode;
+            }
+            delete currentNode;
+        }
+
+        delete [] headArray;
     }
 
     void addEdge(int fromNode, int toNode) {
@@ -42,11 +59,13 @@ public:
             cout << "fronNode with value " << fromNode << " does not exist in the graph." << endl;
             return;
         }
+
         if(toNode >= nodeCount) {
             cout << "toNode with value " << toNode << " does not exist in the graph." << endl;
             return;
         }
         
+        cout << "Adding an edge from " << fromNode << " to " << toNode << endl;
         for(int i = 0; i < nodeCount; i++) {
             if(headArray[i]->value == fromNode) {
                 ListNode *newNode = new ListNode;
@@ -54,7 +73,7 @@ public:
 
                 // Finds the order to insert into the linked list
                 ListNode *currentNode = headArray[i];
-                while(newNode->value > currentNode->next->value || currentNode->next == nullptr) {
+                while(currentNode->next != nullptr && newNode->value > currentNode->next->value) {
                     currentNode = currentNode->next;
                 }
                 newNode->next = currentNode->next;
@@ -64,6 +83,18 @@ public:
             }
         }
     }
+
+    void printGraph() {
+        cout << "Adjacency List:" << endl;
+        for(int i = 0; i < nodeCount; i++) {
+            ListNode *currentNode = headArray[i];
+            while(currentNode->next != nullptr) {
+                cout << currentNode->value << " --> ";
+                currentNode = currentNode->next;
+            }
+            cout << currentNode->value << " --> NULL" << endl;
+        }
+     }
 };
 
 #endif
