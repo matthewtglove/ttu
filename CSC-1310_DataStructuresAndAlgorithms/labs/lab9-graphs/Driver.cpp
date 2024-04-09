@@ -27,6 +27,7 @@ int main() {
 
     int fromNode;
     int toNode;
+    // Stops reading the file at blank line or end of file
     while(inFile >> fromNode >> toNode) {        
         graph.addEdge(fromNode, toNode);
     }

@@ -38,7 +38,6 @@ public:
     }
 
     ~GraphList() {
-        // Deletes each linked list
         for(int i = 0; i < nodeCount; i++) {
             ListNode *currentNode = headArray[i];
 
@@ -55,6 +54,7 @@ public:
     }
 
     void addEdge(int fromNode, int toNode) {
+        // Since the node values start at 0, nodeCount will always be 1 greater than the highest node value
         if(fromNode >= nodeCount) {
             cout << "fronNode with value " << fromNode << " does not exist in the graph." << endl;
             return;
@@ -71,7 +71,7 @@ public:
                 ListNode *newNode = new ListNode;
                 newNode->value = toNode;
 
-                // Finds the order to insert into the linked list
+                // Finds the order to insert into the linked list (ascending order)
                 ListNode *currentNode = headArray[i];
                 while(currentNode->next != nullptr && newNode->value > currentNode->next->value) {
                     currentNode = currentNode->next;
