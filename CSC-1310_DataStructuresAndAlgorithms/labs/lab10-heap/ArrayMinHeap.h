@@ -14,7 +14,7 @@ using namespace std;
 class ArrayMinHeap {
 private:
     Creature *heapArray;
-    int capacity;
+    int heapCapacity;
     int heapSize;
 
     void swap(Creature *x, Creature *y) {
@@ -22,8 +22,6 @@ private:
         *x = *y;
         *y = temp;
     }
-
-    // TODO: Need to convert to Creature
 
     int parent(int i) {
         return (i - 1) / 2;
@@ -38,8 +36,8 @@ private:
 public:
     ArrayMinHeap(int capacity) {
         this->heapSize = 0;
-        this->capacity = capacity;
-        this->heapArray = new int[capacity];
+        this->heapCapacity = capacity;
+        this->heapArray = new Creature[capacity];
     }
     ~ArrayMinHeap() {
         delete[] heapArray;
@@ -49,17 +47,40 @@ public:
         return (heapSize == 0);
     }
 
-    int peek() {
+    int getNodeCount() {
+        return heapSize;
+    }
+
+    int getHeight() {
+        return ceil(log2(heapSize + 1));
+    }
+
+    Creature peek() {
         if (isEmpty()) {
             cout << "Error: the heap is empty." << endl;
-            return -1;
+            // Returns an empty creature
+            return Creature();
         }
         return heapArray[0];
     }
 
-    minHeapify(int i);
+    void minHeapify(int i) {
+        int l = left(i);
+        int r = right(i);
+        int smallest = i;
+        if (l < heapSize && heapArray[l].getName() < heapArray[i].getName()) {
+            smallest = l;
+        }
+        if (r < heapSize && heapArray[r].getName() < heapArray[smallest].getName()) {
+            smallest = r;
+        }
+        if (smallest != i) {
+            swap(&heapArray[i], &heapArray[smallest]);
+            minHeapify(smallest);
+        }
+    }
 
-    bool remove() {
+    bool remove(Creature &creature) {
         if (isEmpty()) {
             cout << "Error: the heap is empty." << endl;
             return false;
@@ -69,14 +90,58 @@ public:
             return true;
         }
 
-        int root = heapArray[0];
+        // To return the creature that is passed in by reference
+        creature = heapArray[0];
+        // Assigns the last value to the first index in the array
         heapArray[0] = heapArray[heapSize - 1];
         heapSize--;
+        // Then fixes the heap so that it follows the rule
         minHeapify(0);
         return true;
     }
 
-    // void minHeapify(int) {
-    //     int
-    // }
+    void resizeArray() {
+        // Creates new array
+        Creature *newArray = new Creature[heapCapacity * 2];
+        heapCapacity *= 2;
+
+        // Copies creatures over to the new array
+        for (int i = 0; i < heapSize; i++) {
+            newArray[i] = heapArray[i];
+        }
+
+        // Deletes the old array
+        delete[] heapArray;
+
+        // heapArray now points to the new array
+        heapArray = newArray;
+    }
+
+    void insert(Creature creature) {
+        // Don't actually need this check
+        // if (isEmpty()) {
+        //     heapArray[0] = creature;
+        //     heapSize++;
+        //     return;
+        // }
+
+        if (heapSize == heapCapacity) {
+            resizeArray();
+        }
+
+        heapArray[heapSize] = creature;
+        heapSize++;
+    }
+
+    void display() {
+        for (int i = 0; i < heapSize; i++) {
+            heapArray[i].printCreature();
+        }
+    }
+
+    void saveToFile() {
+        for (int i = 0; i < heapSize; i++) {
+            heapArray[i].printCreatureToFile("CreatureOutput.txt");
+        }
+    }
 };
