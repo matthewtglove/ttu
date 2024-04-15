@@ -141,7 +141,7 @@ public:
 
     void saveToFile() {
         for (int i = 0; i < heapSize; i++) {
-            heapArray[i].printCreatureToFile("CreatureOutput.txt");
+            heapArray[i].printCreatureToFile("creatureOutput.txt");
         }
     }
 };

@@ -6,15 +6,11 @@
 #include <iostream>
 using namespace std;
 
-void enterMagicalCreature(ArrayMinHeap);
-void enterMagicalCreatureFromFile(ArrayMinHeap);
-void deleteCreature(ArrayMinHeap);
-void printCreatures(ArrayMinHeap);
-void saveCreaturesToFile(ArrayMinHeap);
-
-/* TODO:
-- Add the 3rd list option to call the remove function and remove the top item on the heap
-*/
+void enterMagicalCreature(ArrayMinHeap &);
+void enterMagicalCreatureFromFile(ArrayMinHeap &);
+void deleteCreature(ArrayMinHeap &);
+void printCreatures(ArrayMinHeap &);
+void saveCreaturesToFile(ArrayMinHeap &);
 
 int main() {
     int choice;
@@ -27,13 +23,14 @@ int main() {
         cout << "\n\nWhat would you like to do?\n";
         cout << "\t1.  Enter Magical Creature\n";
         cout << "\t2.  List/Print Creatures.\n";
-        cout << "\t3.  End Program.\n";
+        cout << "\t3.  Remove a creature.\n";
+        cout << "\t4.  End Program.\n";
         cout << "\tEnter 1, 2, or 3.\n";
         cout << "CHOICE:  ";
         cin >> choice;
 
-        while (choice < 1 || choice > 3) {
-            cout << "\nYour choice was invalid.  Choose a number 1 through 3.\n";
+        while (choice < 1 || choice > 4) {
+            cout << "\nYour choice was invalid.  Choose a number 1 through 4.\n";
             cout << "CHOICE: ";
             cin >> choice;
         }
@@ -62,24 +59,43 @@ int main() {
             break;
 
         case 2:
+            // Print if heap not empty
+            if (creatureHeap.getNodeCount() == 0) {
+                cout << "There are no creatures." << endl;
+                break;
+            }
             printCreatures(creatureHeap);
             break;
 
         case 3:
+            // Remove if heap is not empty
+            if (creatureHeap.getNodeCount() == 0) {
+                cout << "There are no creatures." << endl;
+                break;
+            }
+            Creature *removeCreature;
+            creatureHeap.remove(*removeCreature);
+            cout << "Removed the creature with the below details:\n"
+                 << endl;
+            removeCreature->printCreature();
+            break;
+
+        case 4:
             cout << "\nWould you like to save your creature list to a file? (y or n)  ";
             cin >> response;
             if (tolower(response) == 'y')
                 saveCreaturesToFile(creatureHeap);
             cout << "\n\nGOODBYE!\n";
 
+            break;
         } // end of switch
 
-    } while (choice != 3);
+    } while (choice != 4);
 
     return 0;
 } // end of main
 
-void enterMagicalCreature(ArrayMinHeap creatureHeap) {
+void enterMagicalCreature(ArrayMinHeap &creatureHeap) {
     string name, desc;
     float cost;
     bool dangerous;
@@ -104,8 +120,6 @@ void enterMagicalCreature(ArrayMinHeap creatureHeap) {
         // create a creature
         Creature newCreature(name, desc, dangerous, cost);
 
-        // FIXME: Seg fault at this point, probably insert function
-
         // insert creature in the tree
         creatureHeap.insert(newCreature);
 
@@ -115,7 +129,7 @@ void enterMagicalCreature(ArrayMinHeap creatureHeap) {
     } while (tolower(response) == 'y');
 }
 
-void enterMagicalCreatureFromFile(ArrayMinHeap creatureHeap) {
+void enterMagicalCreatureFromFile(ArrayMinHeap &creatureHeap) {
     ifstream inputFile;
     char filename[100];
     cout << "\n\nWhat is the name of the file you want to read from?\n";
@@ -166,11 +180,11 @@ void enterMagicalCreatureFromFile(ArrayMinHeap creatureHeap) {
          << numCreatures << " creatures from " << filename << " have been read from the file.\n";
 }
 
-void printCreatures(ArrayMinHeap creatureHeap) {
+void printCreatures(ArrayMinHeap &creatureHeap) {
     creatureHeap.display();
 }
 
-void saveCreaturesToFile(ArrayMinHeap creatureHeap) {
+void saveCreaturesToFile(ArrayMinHeap &creatureHeap) {
     string filename;
     Creature tempCreature;
 
