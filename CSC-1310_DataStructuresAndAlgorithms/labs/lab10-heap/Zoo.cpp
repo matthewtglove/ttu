@@ -8,7 +8,7 @@ using namespace std;
 
 void enterMagicalCreature(ArrayMinHeap &);
 void enterMagicalCreatureFromFile(ArrayMinHeap &);
-void deleteCreature(ArrayMinHeap &);
+// void deleteCreature(ArrayMinHeap &);
 void printCreatures(ArrayMinHeap &);
 void saveCreaturesToFile(ArrayMinHeap &);
 
