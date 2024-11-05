@@ -1,8 +1,7 @@
 import unittest
-
 from student import Student
 
-def TestStudent(unittest_TestCase):
+class TestStudent(unittest.TestCase):
     def setUp(self):
         self.s1 = Student("John", "Doe", 3.0)
 
