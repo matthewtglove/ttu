@@ -1,0 +1,8 @@
+---
+all:
+  children:
+    devops:
+      hosts:
+        demo:
+          ansible_ssh_host: 10.128.0.7
+
