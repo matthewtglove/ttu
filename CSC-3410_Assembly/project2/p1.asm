@@ -15,12 +15,21 @@ SECTION .data
     outputText db "The sum is: "
     lenOutputText equ $ - outputText
 
+    newline db 10
+    lenNewline equ $ - newline
+
 SECTION .bss
     num1 resb 2
     num2 resb 2
-    ; Understand what these are for
     answer resb 1
-    nl resb 1
+
+print_newline:
+    MOV eax, SYS_WRITE
+    MOV ebx, STDOUT
+    MOV ecx, newline
+    MOV edx, lenNewline
+    int 0x80
+    RET
 
 SECTION .text
     global _start
@@ -45,12 +54,14 @@ _start:
     MOV ecx, prompt2
     MOV edx, lenPrompt2
     int 0x80
+    CALL print_newline
 
     MOV eax, SYS_READ
     MOV ebx, STDIN
     MOV ecx, num2
     MOV edx, 2
     int 0x80
+    CALL print_newline
 
     ; Print answer
 
@@ -67,19 +78,20 @@ _start:
     SUB eax, '0'
     SUB ebx, '0'
 
+    ; Here's what we've been waiting for!
     ADD eax, ebx
 
     ; Converting back to text
     ADD eax, '0'
 
     MOV [answer], eax
-    MOV BYTE [nl], 10
 
     MOV eax, SYS_WRITE
     MOV ebx, STDOUT
     MOV ecx, answer
     MOV edx, 2
     int 0x80
+    CALL print_newline
 
 exit:
     MOV eax, SYS_EXIT
