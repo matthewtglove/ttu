@@ -43,13 +43,11 @@ JOIN instructor i ON te.ID = i.id
 WHERE i.name = 'Gold'
 
 -- 7. Names and IDs of students who received an A grade for both courses CS-315 and CS-347.
-SELECT s.ID, s.name
+SELECT DISTINCT s.ID, s.name
 FROM student s
 JOIN takes t ON s.ID = t.ID
 WHERE t.grade = 'A'
 AND t.course_id IN ('CS-315', 'CS-347')
-GROUP BY s.ID, s.name
-HAVING COUNT(DISTINCT t.course_id) = 2
 
 -- 8. IDs of courses that have prerequisites.
 SELECT DISTINCT p.course_id 
