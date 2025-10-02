@@ -4,7 +4,7 @@ STDIN equ 0
 STDOUT equ 1
 SYS_EXIT equ 1
 
-; Assumption: expects only a single digit input and answer
+; Assumption: expects only a single digit input and answer. And a non-zero second digit.
 
 SECTION .data
     prompt1 db "Enter a digit: "
@@ -13,8 +13,11 @@ SECTION .data
     prompt2 db "Enter a second digit: "
     lenPrompt2 equ $ - prompt2
 
-    outputText db "The sum is: "
-    lenOutputText equ $ - outputText
+    outputText1 db "The quotient is: "
+    lenOutputText1 equ $ - outputText1
+
+    outputText2 db "The remainder is: "
+    lenOutputText2 equ $ - outputText2
 
     newline db 10
     lenNewline equ $ - newline
@@ -22,7 +25,8 @@ SECTION .data
 SECTION .bss
     num1 resb 2
     num2 resb 2
-    answer resb 1
+    quotient resb 1
+    remainder resb 1
 
 SECTION .text
     global _start
@@ -66,30 +70,47 @@ _start:
 
     ; Print answer
 
-    MOV eax, SYS_WRITE
-    MOV ebx, STDOUT
-    MOV ecx, outputText
-    MOV edx, lenOutputText
-    int 0x80
-
-    MOV eax, [num1]
-    MOV ebx, [num2]
+    XOR ax, ax
+    XOR bx, bx
+    MOV ax, [num1]
+    MOV bx, [num2]
 
     ; Converting to number ('0' = 64)
-    SUB eax, '0'
-    SUB ebx, '0'
+    SUB ax, '0'
+    SUB bx, '0'
 
     ; Here's what we've been waiting for!
-    ADD eax, ebx
+    IDIV bx
 
     ; Converting back to text
-    ADD eax, '0'
+    ADD al, '0'
+    ADD ah, '0'
 
-    MOV [answer], eax
+    MOV [quotient], al
+    MOV [remainder], ah
 
     MOV eax, SYS_WRITE
     MOV ebx, STDOUT
-    MOV ecx, answer
+    MOV ecx, outputText1
+    MOV edx, lenOutputText1
+    int 0x80
+
+    MOV eax, SYS_WRITE
+    MOV ebx, STDOUT
+    MOV ecx, quotient
+    MOV edx, 2
+    int 0x80
+    CALL print_newline
+
+    MOV eax, SYS_WRITE
+    MOV ebx, STDOUT
+    MOV ecx, outputText2
+    MOV edx, lenOutputText2
+    int 0x80
+
+    MOV eax, SYS_WRITE
+    MOV ebx, STDOUT
+    MOV ecx, remainder
     MOV edx, 2
     int 0x80
     CALL print_newline

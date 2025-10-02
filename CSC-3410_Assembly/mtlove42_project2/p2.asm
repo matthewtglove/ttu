@@ -13,7 +13,7 @@ SECTION .data
     prompt2 db "Enter a second digit: "
     lenPrompt2 equ $ - prompt2
 
-    outputText db "The sum is: "
+    outputText db "The product is: "
     lenOutputText equ $ - outputText
 
     newline db 10
@@ -72,20 +72,23 @@ _start:
     MOV edx, lenOutputText
     int 0x80
 
-    MOV eax, [num1]
-    MOV ebx, [num2]
+    XOR ax, ax
+    XOR bx, bx
+    MOV ax, [num1]
+    MOV bx, [num2]
 
     ; Converting to number ('0' = 64)
-    SUB eax, '0'
-    SUB ebx, '0'
+    SUB ax, '0'
+    SUB bx, '0'
 
     ; Here's what we've been waiting for!
-    ADD eax, ebx
+    IMUL bx
 
     ; Converting back to text
-    ADD eax, '0'
+    ADD ax, '0'
+    ADD bx, '0'
 
-    MOV [answer], eax
+    MOV [answer], al
 
     MOV eax, SYS_WRITE
     MOV ebx, STDOUT
