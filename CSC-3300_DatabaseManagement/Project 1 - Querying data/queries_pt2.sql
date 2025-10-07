@@ -77,7 +77,6 @@ AND te.semester = 'Fall'
 GROUP BY i.id
 
 -- 8. Include the course ID, title, and department name for each course, along with the corresponding prerequisite course ID, title, and department name.
--- TODO: Fix department always returning null
 SELECT 
 	c.course_id AS Course, 
 	c.title AS Title, 
