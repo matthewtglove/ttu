@@ -100,7 +100,7 @@ _start:
     MOV eax, SYS_WRITE
     MOV ebx, STDOUT
     MOV ecx, quotient
-    MOV edx, 2
+    MOV edx, 1
     int 0x80
     CALL print_newline
 
@@ -113,7 +113,7 @@ _start:
     MOV eax, SYS_WRITE
     MOV ebx, STDOUT
     MOV ecx, remainder
-    MOV edx, 2
+    MOV edx, 1
     int 0x80
     CALL print_newline
 
