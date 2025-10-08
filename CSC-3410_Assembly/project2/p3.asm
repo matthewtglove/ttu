@@ -72,21 +72,23 @@ _start:
 
     XOR ax, ax
     XOR bx, bx
-    MOV ax, [num1]
-    MOV bx, [num2]
 
-    ; Converting to number ('0' = 64)
-    SUB ax, '0'
-    SUB bx, '0'
+    MOV al, [num1]
+    SUB al, '0'
+    MOV ah, 0
+
+    MOV bl, [num2]
+    SUB bl, '0'
+    MOV bh, 0
 
     ; Here's what we've been waiting for!
-    IDIV bx
+    IDIV bl
 
     ; Converting back to text
     ADD al, '0'
-    ADD ah, '0'
-
     MOV [quotient], al
+
+    ADD ah, '0'
     MOV [remainder], ah
 
     MOV eax, SYS_WRITE
