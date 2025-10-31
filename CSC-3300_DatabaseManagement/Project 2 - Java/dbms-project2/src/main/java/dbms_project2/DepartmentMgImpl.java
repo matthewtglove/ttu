@@ -34,6 +34,8 @@ public class DepartmentMgImpl implements DepartmentMg {
      */
     public int addDepartment(Connection connection, String dept_name, String building, BigDecimal budget)
             throws SQLException {
+        // These are technically redundant checks since they are already done in the
+        // view layer
         if (dept_name == null || dept_name.length() > 20) {
             throw new IllegalArgumentException("Department name must be 20 characters or less");
         }
@@ -65,6 +67,11 @@ public class DepartmentMgImpl implements DepartmentMg {
      * @throws SQLException if a database error occurs
      */
     public int updateDepartmentBuilding(Connection connection, String dept_name, String building) throws SQLException {
+        // These are technically redundant checks since they are already done in the
+        // view layer
+        if (dept_name == null || dept_name.length() > 20) {
+            throw new IllegalArgumentException("Department name must be 20 characters or less");
+        }
         if (building == null || building.length() > 15) {
             throw new IllegalArgumentException("Building name must be 15 characters or less");
         }
@@ -89,6 +96,11 @@ public class DepartmentMgImpl implements DepartmentMg {
      * @throws SQLException if a database error occurs
      */
     public int updateDepartmentBudget(Connection connection, String dept_name, BigDecimal budget) throws SQLException {
+        // These are technically redundant checks since they are already done in the
+        // view layer
+        if (dept_name == null || dept_name.length() > 20) {
+            throw new IllegalArgumentException("Department name must be 20 characters or less");
+        }
         if (budget == null || budget.intValue() < 1 || budget.intValue() > 10000000000L) {
             throw new IllegalArgumentException("Budget must be between 1 and 10000000000.00");
         }
@@ -117,6 +129,11 @@ public class DepartmentMgImpl implements DepartmentMg {
      */
     public int updateDepartmentBuildingAndBudget(Connection connection, String dept_name, String building,
             BigDecimal budget) throws SQLException {
+        // These are technically redundant checks since they are already done in the
+        // view layer
+        if (dept_name == null || dept_name.length() > 20) {
+            throw new IllegalArgumentException("Department name must be 20 characters or less");
+        }
         if (building == null || building.length() > 15) {
             throw new IllegalArgumentException("Building name must be 15 characters or less");
         }
@@ -145,6 +162,18 @@ public class DepartmentMgImpl implements DepartmentMg {
      * @throws SQLException if a database error occurs
      */
     public int removeDepartment(Connection connection, String dept_name) throws SQLException {
+        // These are technically redundant checks since they are already done in the
+        // view layer
+        if (dept_name == null || dept_name.length() > 20) {
+            throw new IllegalArgumentException("Department name must be 20 characters or less");
+        }
+        if (building == null || building.length() > 15) {
+            throw new IllegalArgumentException("Building name must be 15 characters or less");
+        }
+        if (budget == null || budget.intValue() < 1 || budget.intValue() > 10000000000L) {
+            throw new IllegalArgumentException("Budget must be between 1 and 10000000000.00");
+        }
+
         PreparedStatement statement = connection.prepareStatement("DELETE FROM department WHERE dept_name = ?");
         statement.setString(1, dept_name);
         statement.executeUpdate();
