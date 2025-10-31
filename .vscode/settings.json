@@ -64,5 +64,6 @@
     ],
     "java.project.referencedLibraries": [
         "CSC-3300_DatabaseManagement/Project 2 - Java/DBMS-Project2-Java/lib/mysql-connector-j-9.5.0.jar"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
