@@ -57,5 +57,12 @@
         "stack": "cpp",
         "variant": "cpp",
         "algorithm": "cpp"
-    }
+    },
+    "java.project.sourcePaths": [
+        "CSC-3300_DatabaseManagement/Project 2 - Java/DBMS-Project2-Java/src",
+        "CSC-3300_DatabaseManagement/Project 2 - Java/src"
+    ],
+    "java.project.referencedLibraries": [
+        "CSC-3300_DatabaseManagement/Project 2 - Java/DBMS-Project2-Java/lib/mysql-connector-j-9.5.0.jar"
+    ]
 }
