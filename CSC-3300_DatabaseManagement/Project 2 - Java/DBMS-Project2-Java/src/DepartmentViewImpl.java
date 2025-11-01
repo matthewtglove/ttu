@@ -6,7 +6,7 @@ public class DepartmentViewImpl implements DepartmentView {
 
     public void retrieveDepartments(Connection conn) throws SQLException {
         DepartmentMgImpl departmentMg = new DepartmentMgImpl();
-        departmentMg.retrieveDepartments(conn);
+        System.out.println(departmentMg.retrieveDepartments(conn));
     }
 
     /**
@@ -41,12 +41,20 @@ public class DepartmentViewImpl implements DepartmentView {
             // less");
             return -1;
         }
-        if (budgetDecimal == null || budgetDecimal.intValue() < 1 || budgetDecimal.intValue() > 10000000000L) {
-            throw new IllegalArgumentException("Budget must be between 1 and 10000000000.00");
+        if (budgetDecimal == null || budgetDecimal.compareTo(new BigDecimal("1")) < 0
+                || budgetDecimal.compareTo(new BigDecimal("10000000000")) >= 0) {
+            // throw new IllegalArgumentException("Budget must be between 1 and
+            // 10000000000.00");
+            return -1;
         }
 
         DepartmentMgImpl departmentMg = new DepartmentMgImpl();
-        return departmentMg.addDepartment(conn, dept_name, building, budgetDecimal);
+        if (departmentMg.addDepartment(conn, dept_name, building, budgetDecimal) == 0) {
+            System.out.println("Department not added.");
+            return 0;
+        }
+        System.out.println("Department " + dept_name + " added successfully.");
+        return 1;
     }
 
     /**
@@ -74,7 +82,12 @@ public class DepartmentViewImpl implements DepartmentView {
         }
 
         DepartmentMgImpl departmentMg = new DepartmentMgImpl();
-        return departmentMg.updateDepartmentBuilding(conn, dept_name, building);
+        if (departmentMg.updateDepartmentBuilding(conn, dept_name, building) == 0) {
+            System.out.println("Department building not updated.");
+            return 0;
+        }
+        System.out.println("Department building updated successfully to " + building + ".");
+        return 1;
     }
 
     /**
@@ -102,14 +115,20 @@ public class DepartmentViewImpl implements DepartmentView {
             // less");
             return -1;
         }
-        if (budgetDecimal == null || budgetDecimal.intValue() < 1 || budgetDecimal.intValue() > 10000000000L) {
+        if (budgetDecimal == null || budgetDecimal.compareTo(new BigDecimal("1")) < 0
+                || budgetDecimal.compareTo(new BigDecimal("10000000000")) >= 0) {
             // throw new IllegalArgumentException("Budget must be between 1 and
             // 10000000000.00");
             return -1;
         }
 
         DepartmentMgImpl departmentMg = new DepartmentMgImpl();
-        return departmentMg.updateDepartmentBudget(conn, dept_name, budgetDecimal);
+        if (departmentMg.updateDepartmentBudget(conn, dept_name, budgetDecimal) == 0) {
+            System.out.println("Department budget not updated.");
+            return 0;
+        }
+        System.out.println("Department budget updated successfully to " + budgetDecimal + ".");
+        return 1;
     }
 
     /**
@@ -146,14 +165,21 @@ public class DepartmentViewImpl implements DepartmentView {
             // less");
             return -1;
         }
-        if (budgetDecimal == null || budgetDecimal.intValue() < 1 || budgetDecimal.intValue() > 10000000000L) {
+        if (budgetDecimal == null || budgetDecimal.compareTo(new BigDecimal("1")) < 0
+                || budgetDecimal.compareTo(new BigDecimal("10000000000")) >= 0) {
             // throw new IllegalArgumentException("Budget must be between 1 and
             // 10000000000.00");
             return -1;
         }
 
         DepartmentMgImpl departmentMg = new DepartmentMgImpl();
-        return departmentMg.updateDepartmentBuildingAndBudget(conn, dept_name, building, budgetDecimal);
+        if (departmentMg.updateDepartmentBuildingAndBudget(conn, dept_name, building, budgetDecimal) == 0) {
+            System.out.println("Department building and budget not updated.");
+            return 0;
+        }
+        System.out.println("Department building updated successfully to " + building + ".");
+        System.out.println("Department budget updated successfully to " + budgetDecimal + ".");
+        return 1;
     }
 
     /**
@@ -173,6 +199,11 @@ public class DepartmentViewImpl implements DepartmentView {
         }
 
         DepartmentMgImpl departmentMg = new DepartmentMgImpl();
-        return departmentMg.removeDepartment(conn, dept_name);
+        if (departmentMg.removeDepartment(conn, dept_name) == 0) {
+            System.out.println("Department not removed.");
+            return 0;
+        }
+        System.out.println("Department " + dept_name + " removed successfully.");
+        return 1;
     }
 }
