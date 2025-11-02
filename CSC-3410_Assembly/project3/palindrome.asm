@@ -27,11 +27,15 @@ SECTION .text
     global _start
 
 print_newline:
+    MOV eax, esi
+
     MOV eax, SYS_WRITE
     MOV ebx, STDOUT
     MOV ecx, newline
     MOV edx, lenNewline
     int 0x80
+
+    MOV esi, eax
     RET
 
 is_palindrome:
@@ -102,7 +106,7 @@ _start:
     ADD esp, 8
 
     ; Print result
-    CMP eax, 0
+    CMP eax, 1
     JE print_palindrome_success
     JMP print_palindrome_fail
 
@@ -112,6 +116,7 @@ print_palindrome_success:
     MOV ecx, msgSuccess
     MOV edx, lenMsgSuccess
     int 0x80
+    CALL print_newline
     JMP _start
 
 print_palindrome_fail:
@@ -120,6 +125,7 @@ print_palindrome_fail:
     MOV ecx, msgFail
     MOV edx, lenMsgFail
     int 0x80
+    CALL print_newline
     JMP _start
 
 exit:
@@ -129,6 +135,7 @@ exit:
     MOV ecx, msgGoodbye
     MOV edx, lenMsgGoodbye
     int 0x80
+    CALL print_newline
 
     MOV eax, SYS_EXIT
     MOV ebx, 0
