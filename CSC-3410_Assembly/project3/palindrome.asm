@@ -98,6 +98,11 @@ _start:
     ; String length (ignore newline at end)
     DEC eax
     MOV esi, eax
+    CMP byte [buffer + esi], 10
+    JNE .no_newline
+    DEC esi
+    .no_newline:
+
 
     ; Call palindrome check
     PUSH esi
