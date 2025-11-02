@@ -27,15 +27,15 @@ SECTION .text
     global _start
 
 print_newline:
-    MOV eax, esi
+    ; MOV eax, esi
 
-    MOV eax, SYS_WRITE
-    MOV ebx, STDOUT
-    MOV ecx, newline
-    MOV edx, lenNewline
-    int 0x80
+    ; MOV eax, SYS_WRITE
+    ; MOV ebx, STDOUT
+    ; MOV ecx, newline
+    ; MOV edx, lenNewline
+    ; int 0x80
 
-    MOV esi, eax
+    ; MOV esi, eax
     RET
 
 is_palindrome:
@@ -98,11 +98,6 @@ _start:
     ; String length (ignore newline at end)
     DEC eax
     MOV esi, eax
-    CMP byte [buffer + esi], 10
-    JNE .no_newline
-    DEC esi
-    .no_newline:
-
 
     ; Call palindrome check
     PUSH esi
