@@ -8,35 +8,20 @@ SECTION .data
     promptInput db "Please enter a string (blank to exit): "
     lenPromptInput equ $ - promptInput
 
-    msgSuccess db "✅ Hooray! This is a palindrome"
+    msgSuccess db "✅ Hooray! This is a palindrome", 10
     lenMsgSuccess equ $ - msgSuccess
 
-    msgFail db "❌ Nope, that's not a palindrome"
+    msgFail db "❌ Nope, that's not a palindrome", 10
     lenMsgFail equ $ - msgFail
 
-    msgGoodbye db "👋 Goodbye"
+    msgGoodbye db "👋 Goodbye", 10
     lenMsgGoodbye equ $ - msgGoodbye
-
-    newline db 10
-    lenNewline equ $ - newline
 
 SECTION .bss
     buffer resb 1024
 
 SECTION .text
     global _start
-
-print_newline:
-    ; MOV eax, esi
-
-    ; MOV eax, SYS_WRITE
-    ; MOV ebx, STDOUT
-    ; MOV ecx, newline
-    ; MOV edx, lenNewline
-    ; int 0x80
-
-    ; MOV esi, eax
-    RET
 
 is_palindrome:
     ; Save the old base pointer to the stack
@@ -89,7 +74,6 @@ _start:
     MOV ecx, buffer
     MOV edx, 1024
     int 0x80
-    CALL print_newline
 
     ; Check exit
     CMP byte [buffer], 10
@@ -116,7 +100,6 @@ print_palindrome_success:
     MOV ecx, msgSuccess
     MOV edx, lenMsgSuccess
     int 0x80
-    CALL print_newline
     JMP _start
 
 print_palindrome_fail:
@@ -125,17 +108,14 @@ print_palindrome_fail:
     MOV ecx, msgFail
     MOV edx, lenMsgFail
     int 0x80
-    CALL print_newline
     JMP _start
 
 exit:
-    CALL print_newline
     MOV eax, SYS_WRITE
     MOV ebx, STDOUT
     MOV ecx, msgGoodbye
     MOV edx, lenMsgGoodbye
     int 0x80
-    CALL print_newline
 
     MOV eax, SYS_EXIT
     MOV ebx, 0
