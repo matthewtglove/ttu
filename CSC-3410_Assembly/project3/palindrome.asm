@@ -102,7 +102,7 @@ _start:
     ADD esp, 8
 
     ; Print result
-    CMP eax, 1
+    CMP eax, 0
     JE print_palindrome_success
     JMP print_palindrome_fail
 
