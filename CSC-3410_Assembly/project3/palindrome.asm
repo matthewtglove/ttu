@@ -119,6 +119,7 @@ print_palindrome_fail:
     MOV ebx, STDOUT
     MOV ecx, msgFail
     MOV edx, lenMsgFail
+    int 0x80
     JMP _start
 
 exit:
