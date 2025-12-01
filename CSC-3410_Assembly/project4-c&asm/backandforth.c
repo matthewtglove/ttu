@@ -17,7 +17,8 @@ int fact(int n) {
 
 extern void palindrome_check();
 int is_palindromeC(char *s) {
-    s = strtok(s, "\n"); // remove newline if present
+    // remove newline if present
+    s = strtok(s, "\n");
 
     int left = 0;
     int right = strlen(s) - 1;
@@ -36,7 +37,7 @@ int is_palindromeC(char *s) {
 
 int main() {
     // --- Menu --- //
-    char menuChoice[4];
+    char menuChoice[8];
     int runMenu = 1;
 
     while (runMenu) {
@@ -55,8 +56,8 @@ int main() {
         switch (menuChoice[0]) {
         case '1':
             // --- Part 1 --- //
-            char intStr1[4];
-            char intStr2[4];
+            char intStr1[8];
+            char intStr2[8];
             printf("Enter first number: ");
             if (!fgets(intStr1, sizeof intStr1, stdin)) {
                 fprintf(stderr, "Error reading input, exiting program\n");
@@ -79,6 +80,9 @@ int main() {
                 fprintf(stderr, "Error reading input, exiting program\n");
                 return 1;
             }
+
+            // remove newline for display purposes
+            strPal[strcspn(strPal, "\n")] = 0;
 
             if (is_palindromeASM(strPal)) {
                 printf("✔ %s is a palindrome\n", strPal);

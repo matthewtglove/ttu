@@ -35,6 +35,8 @@ section .text
 addstr:
     PUSH ebp
     MOV ebp, esp
+    ; preserve ebx (callee-saved)
+    PUSH ebx
 
     ; atoi(a)
     PUSH dword [ebp + 8]
@@ -50,6 +52,8 @@ addstr:
     ADD eax, ebx
     ; return is now in eax (sum of integers)
 
+    ; restore ebx
+    POP ebx
     MOV esp, ebp
     POP ebp
     RET
@@ -57,9 +61,14 @@ addstr:
 ; --- PART 2 --- ;
 ; int is_palindromeASM(char *s)
 is_palindromeASM:
+    PUSH ebp
+    MOV ebp, esp
+    PUSH esi
+    PUSH edi
+
     ; Get string (which is at esp + 4)
     ; ESI -> string
-    MOV esi, [esp + 4]
+    MOV esi, [esp + 8]
 
     ; Find length
     MOV ecx, 0
@@ -75,7 +84,8 @@ length_loop:
 length_found:
     ; right index of string = length - 1
     DEC ecx
-    MOV edi, 0  ; left index
+    ; left index
+    MOV edi, 0 
 
 palindrome_loop:
     CMP edi, ecx
@@ -96,10 +106,15 @@ palindrome_loop:
 palindrome_success:
     MOV eax, 1
     ; return is now in eax (holds 1 for palindrome)
-    RET
 palindrome_fail:
     MOV eax, 0
     ; return is now in eax (holds 0 for not palindrome)
+
+palindrome_done:
+    POP edi
+    POP esi
+    MOV esp, ebp
+    POP ebp
     RET
 
 ; --- PART 3 --- ;
@@ -132,6 +147,9 @@ factstr:
 ; --- PART 4 --- ;
 ; void palindrome_check()
 palindrome_check:
+    ; preserve ebx (callee-saved)
+    PUSH ebx
+
     ; Get input
     MOV eax, SYS_WRITE
     MOV ebx, STDOUT
@@ -161,6 +179,9 @@ print_palindrome_success:
     MOV edx, lenMsgSuccess
     int 0x80
 
+    ; restore ebx
+    POP ebx
+
     RET
 
 print_palindrome_fail:
@@ -169,5 +190,8 @@ print_palindrome_fail:
     MOV ecx, msgFail
     MOV edx, lenMsgFail
     int 0x80
+
+    ; restore ebx
+    POP ebx
 
     RET
