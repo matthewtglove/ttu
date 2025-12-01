@@ -65,10 +65,12 @@ is_palindromeASM:
     MOV ebp, esp
     PUSH esi
     PUSH edi
+    ; preserve ebx (callee-saved)
+    PUSH ebx
 
     ; Get string (which is at esp + 4)
     ; ESI -> string
-    MOV esi, [esp + 8]
+    MOV esi, [ebp + 8]
 
     ; Find length
     MOV ecx, 0
@@ -106,11 +108,15 @@ palindrome_loop:
 palindrome_success:
     MOV eax, 1
     ; return is now in eax (holds 1 for palindrome)
+    JMP palindrome_done
 palindrome_fail:
     MOV eax, 0
     ; return is now in eax (holds 0 for not palindrome)
+    JMP palindrome_done
 
 palindrome_done:
+    ; restore ebx
+    POP ebx
     POP edi
     POP esi
     MOV esp, ebp

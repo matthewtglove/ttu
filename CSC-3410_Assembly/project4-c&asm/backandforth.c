@@ -99,6 +99,10 @@ int main() {
                 fprintf(stderr, "Error reading input, exiting program\n");
                 return 1;
             }
+
+            // remove newline for display purposes
+            intFact[strcspn(intFact, "\n")] = 0;
+
             printf("%s factorial is: %d\n", intFact, factstr(intFact));
             break;
 
@@ -108,7 +112,7 @@ int main() {
             break;
 
         case '0':
-            printf("Exiting program\n");
+            printf("👋 Goodbye\n");
             runMenu = 0;
             break;
 
