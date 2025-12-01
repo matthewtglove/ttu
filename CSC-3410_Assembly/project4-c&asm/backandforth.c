@@ -15,7 +15,21 @@ int fact(int n) {
 }
 
 extern void palindrome_check();
-int is_palindromeC(char *s);
+int is_palindromeC(char *s) {
+    int left = 0;
+    int right = strlen(s) - 1;
+
+    while (left < right) {
+        if (s[left] != s[right]) {
+            // is NOT a palindrome
+            return 0;
+        }
+        left++;
+        right--;
+    }
+    // is a palindrome
+    return 1;
+}
 
 int main() {
     // --- Menu --- //
@@ -61,9 +75,9 @@ int main() {
         }
 
         if (is_palindromeASM(strPal)) {
-            printf("✘ %s is NOT a palindrome\n", strPal);
+            printf("✔ %s is a palindrome\n", strPal);
         } else {
-            printf("✔ %s is NOT a palindrome\n", strPal);
+            printf("✘ %s is NOT a palindrome\n", strPal);
         }
         break;
 
@@ -75,18 +89,12 @@ int main() {
             fprintf(stderr, "Error reading input, exiting program\n");
             return 1;
         }
-        printf("The factorial is: %d\n", fact(factstr(intFact)));
+        printf("The factorial is: %d\n", factstr(intFact));
         break;
 
     case '4':
         // --- Print 4 --- //
-        // Get input from user ASM with palindrome_check();
-
-        if (is_palindromeC(strPal2)) {
-            printf("✘ %s is NOT a palindrome\n", strPal2);
-        } else {
-            printf("✔ %s is NOT a palindrome\n", strPal2);
-        }
+        palindrome_check();
         break;
 
     case '0':

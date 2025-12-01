@@ -9,28 +9,52 @@ extern atoi
 
 global is_palindromeASM
 
+global factstr
+extern fact
+
+extern is_palindrome
+
+SECTION .data
+    promptInput db "Please enter a string (blank to exit): "
+    lenPromptInput equ $ - promptInput
+
+    msgSuccess db "✅ Hooray! This is a palindrome", 10
+    lenMsgSuccess equ $ - msgSuccess
+
+    msgFail db "❌ Nope, that's not a palindrome", 10
+    lenMsgFail equ $ - msgFail
+
+SECTION .bss
+    buffer resb 1024
+
 section .text
 
 ; --- PART 1 --- ;
 ; int addstr(char *a, char *b)
 addstr:
+    PUSH ebp
+    MOV ebp, esp
+
     ; atoi(a)
-    PUSH dword [esp + 4]
+    PUSH dword [ebp + 8]
     CALL atoi
     ADD esp, 4
     MOV ebx, eax
 
     ; atoi(b)
-    PUSH dword [esp + 8]
+    PUSH dword [ebp + 12]
     CALL atoi
     ADD esp, 4
-    MOV ebx, eax
 
     ADD eax, ebx
+    ; return is now in eax (sum of integers)
 
+    MOV esp, ebp
+    POP ebp
     RET
 
 ; --- PART 2 --- ;
+; int is_palindromeASM(char *s)
 is_palindromeASM:
     ; Get string (which is at esp + 4)
     ; ESI -> string
@@ -70,36 +94,84 @@ palindrome_loop:
 
 palindrome_success:
     MOV eax, 1
+    ; return is now in eax (holds 1 for palindrome)
     RET
 palindrome_fail:
     MOV eax, 0
+    ; return is now in eax (holds 0 for not palindrome)
     RET
 
 ; --- PART 3 --- ;
+; int factstr(char *s)
 factstr:
-    ; The C driver will prompt and read a 
-    ; string from the user. 
-    ; The the C driver will call the factstr() 
-    ; function.  The factstr() 
-    ; function which will  convert the 
-    ; string argument to integer by calling 
-    ; the atoi() C library function. factstr() 
-    ; will then call the C function fact() to  
-    ; obtain the factorial of the integer, 
-    ; and then pass the answer back to the 
-    ; C driver, which will then print it. 
+    PUSH ebp
+    MOV ebp, esp
+
+    ; atoi(s)
+    PUSH dword [ebp + 8]
+    CALL atoi
+    ; eax now holds the integer value
+
+    ; cleanup argument
+    ADD esp, 4
+
+    ; Push eax as argument to fact
+    PUSH eax
+    CALL fact
+
+    ; cleanup argument
+    ADD esp, 4
+
+    ; return is now in eax (holds the factorial result)
+
+    MOV esp, ebp
+    POP ebp
+    RET
 
 ; --- PART 4 --- ;
+; void palindrome_check()
 palindrome_check:
-    ; The C driver will immediately call 
-    ; the assembler function 
-    ; palindrome_check. 
-    ; This assembler function will then 
-    ; prompt and read a string from the 
-    ; user. 
-    ; Next, palindrome_check() will call 
-    ; the is_palindrome() function written 
-    ; in C 
-    ; to determine if the string is a 
-    ; palindrome, and then print the 
-    ; results.
+    ; Get input
+    MOV eax, SYS_WRITE
+    MOV ebx, STDOUT
+    MOV ecx, promptInput
+    MOV edx, lenPromptInput
+    int 0x80
+    MOV eax, SYS_READ
+    MOV ebx, STDIN
+    MOV ecx, buffer
+    MOV edx, 1024
+    int 0x80
+
+    ; String length (ignore newline at end)
+    DEC eax
+    MOV esi, eax
+
+    ; Call palindrome check
+    PUSH esi
+    PUSH buffer
+    CALL is_palindrome
+    ADD esp, 8
+
+    ; Print result
+    CMP eax, 1
+    JE print_palindrome_success
+    JMP print_palindrome_fail
+
+print_palindrome_success:
+    MOV eax, SYS_WRITE
+    MOV ebx, STDOUT
+    MOV ecx, msgSuccess
+    MOV edx, lenMsgSuccess
+    int 0x80
+
+    RET
+
+print_palindrome_fail:
+    MOV eax, SYS_WRITE
+    MOV ebx, STDOUT
+    MOV ecx, msgFail
+    MOV edx, lenMsgFail
+    int 0x80
+
+    RET
