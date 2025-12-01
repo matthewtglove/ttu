@@ -4,7 +4,7 @@ STDIN equ 0
 STDOUT equ 1
 SYS_EXIT equ 1
 
-global add_digits
+global addstr
 extern atoi
 
 global is_palindromeASM
@@ -12,7 +12,8 @@ global is_palindromeASM
 global factstr
 extern fact
 
-extern is_palindrome
+global palindrome_check
+extern is_palindromeC
 
 SECTION .data
     promptInput db "Please enter a string (blank to exit): "
@@ -145,7 +146,7 @@ palindrome_check:
 
     ; Call palindrome check (passing in the pointer "buffer" to the string)
     PUSH buffer
-    CALL is_palindrome
+    CALL is_palindromeC
     ADD esp, 4
 
     ; Print result
