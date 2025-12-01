@@ -4,31 +4,29 @@ STDIN equ 0
 STDOUT equ 1
 SYS_EXIT equ 1
 
-SECTION .data
-    ; --- PART 2 --- ;
-    ; --- PART 3 --- ;
-    ; --- PART 4 --- ;
-
-SECTION .bss
     ; --- PART 1 --- ;
-    num1 resb 2
-    num2 resb 2
-    answer resb 1
+global add_digits
+extern atoi
 
-    ; --- PART 2 --- ;
-    ; --- PART 3 --- ;
-    ; --- PART 4 --- ;
+section .text
 
+; int addstr(char *a, char *b)
 addstr:
-    ; The C driver will prompt and read 
-    ; two strings from the user. 
-    ; Then the C driver will call the 
-    ; addstr() assembly function. 
-    ; Finally, the C driver will print the 
-    ; results from the assembly function. 
-    ; Note, the assemby function must call 
-    ; the atoi() C Library function to  
-    ; Convert the strings to integers. 
+    ; atoi(a)
+    PUSH dword [esp + 4]
+    CALL atoi
+    ADD esp, 4
+    MOV ebx, eax
+
+    ; atoi(b)
+    PUSH dword [esp + 8]
+    CALL atoi
+    ADD esp, 4
+    MOV ebx, eax
+
+    ADD eax, ebx
+
+    RET
 
 is_palindromeASM:
     ; The C driver will prompt and read a 

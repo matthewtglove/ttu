@@ -64,7 +64,7 @@ _start:
     int 0x80
     CALL print_newline
 
-    ; Print answer
+    ; Calculate and print answer
 
     MOV eax, SYS_WRITE
     MOV ebx, STDOUT
