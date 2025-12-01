@@ -16,7 +16,7 @@ global palindrome_check
 extern is_palindromeC
 
 SECTION .data
-    promptInput db "Please enter a string (blank to exit): "
+    promptInput db "Please enter a string: "
     lenPromptInput equ $ - promptInput
 
     msgSuccess db "✅ Hooray! This is a palindrome", 10
