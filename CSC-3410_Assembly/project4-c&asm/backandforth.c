@@ -41,7 +41,7 @@ int main() {
     int runMenu = 1;
 
     while (runMenu) {
-        printf("Select an option:\n");
+        printf("\nSelect an option:\n");
         printf("\t1. Add two numbers together\n");
         printf("\t2. Test if a string is a palindrome (C -> ASM)\n");
         printf("\t3. Print the factorial of a number\n");
@@ -85,9 +85,9 @@ int main() {
             strPal[strcspn(strPal, "\n")] = 0;
 
             if (is_palindromeASM(strPal)) {
-                printf("✔ %s is a palindrome\n", strPal);
+                printf("✅ %s is a palindrome\n", strPal);
             } else {
-                printf("✘ %s is NOT a palindrome\n", strPal);
+                printf("❌ %s is NOT a palindrome\n", strPal);
             }
             break;
 
@@ -99,7 +99,7 @@ int main() {
                 fprintf(stderr, "Error reading input, exiting program\n");
                 return 1;
             }
-            printf("The factorial is: %d\n", factstr(intFact));
+            printf("%s factorial is: %d\n", intFact, factstr(intFact));
             break;
 
         case '4':
