@@ -67,7 +67,7 @@ int main() {
 
     case '2':
         // --- Part 2 --- //
-        char strPal[256];
+        char strPal[1024];
         printf("Enter some text: ");
         if (!fgets(strPal, sizeof strPal, stdin)) {
             fprintf(stderr, "Error reading input, exiting program\n");
@@ -85,7 +85,7 @@ int main() {
         // --- Part 3 --- //
         char intFact[64];
         printf("Enter a number to calculate factorial: ");
-        if (!fgets(strPal, sizeof strPal, stdin)) {
+        if (!fgets(intFact, sizeof intFact, stdin)) {
             fprintf(stderr, "Error reading input, exiting program\n");
             return 1;
         }

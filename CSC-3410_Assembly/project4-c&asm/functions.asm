@@ -143,15 +143,10 @@ palindrome_check:
     MOV edx, 1024
     int 0x80
 
-    ; String length (ignore newline at end)
-    DEC eax
-    MOV esi, eax
-
-    ; Call palindrome check
-    PUSH esi
+    ; Call palindrome check (passing in the pointer "buffer" to the string)
     PUSH buffer
     CALL is_palindrome
-    ADD esp, 8
+    ADD esp, 4
 
     ; Print result
     CMP eax, 1
