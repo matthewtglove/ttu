@@ -37,8 +37,9 @@ int is_palindromeC(char *s) {
 int main() {
     // --- Menu --- //
     char menuChoice[4];
+    int runMenu = 1;
 
-    while (menuChoice[0] != '0') {
+    while (runMenu) {
         printf("Select an option:\n");
         printf("\t1. Add two numbers together\n");
         printf("\t2. Test if a string is a palindrome (C -> ASM)\n");
@@ -104,7 +105,8 @@ int main() {
 
         case '0':
             printf("Exiting program\n");
-            return 0;
+            runMenu = 0;
+            break;
 
         default:
             printf("Invalid option selected, exiting program\n");
