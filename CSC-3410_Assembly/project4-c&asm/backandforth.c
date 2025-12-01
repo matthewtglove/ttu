@@ -48,7 +48,7 @@ int main() {
             return 1;
         }
 
-        printf("Resulting string from adding two together: %s\n", addstr(intStr1, intStr2));
+        printf("Result: %d\n", addstr(intStr1, intStr2));
         break;
 
     case '2':
