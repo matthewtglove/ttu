@@ -29,14 +29,7 @@ addstr:
     RET
 
 is_palindromeASM:
-    ; The C driver will prompt and read a 
-    ; string from the user. 
-    ; Then the C driver will call the 
-    ; is_palindrome function and 
-    ; print its results.  You may use the 
-    ; is_palindrome() function 
-    ; that you wrote in the previous 
-    ; assignment.
+    ; 
 
 factstr:
     ; The C driver will prompt and read a 
