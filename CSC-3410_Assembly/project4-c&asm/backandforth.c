@@ -17,6 +17,8 @@ int fact(int n) {
 
 extern void palindrome_check();
 int is_palindromeC(char *s) {
+    s = strtok(s, "\n"); // remove newline if present
+
     int left = 0;
     int right = strlen(s) - 1;
 
