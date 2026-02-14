@@ -120,7 +120,7 @@ def poisson_probability(k, lambda_val, cumulative=False):
 
 
 # ==============================================================================
-# 4. Continuous Probability Distributions
+# 4. Continuous Probability Distributions (NOW INCLUDES EXPONENTIAL)
 # ==============================================================================
 
 def normal_dist_cdf(x, mu, sigma):
@@ -156,6 +156,25 @@ def inverse_gamma(p, alpha, beta):
     if p < 0 or p > 1 or alpha <= 0 or beta <= 0:
         return "Error: Invalid parameters for Inverse Gamma function."
     return stats.gamma.ppf(p, a=alpha, scale=beta)
+
+def exponential_dist_cdf(x, mean_life):
+    """
+    5. Exponential Dist CDF: Calculates P(X <= x).
+    Uses the mean (mu) which is 1/lambda.
+    """
+    if mean_life <= 0:
+        return "Error: Mean life must be positive."
+    # scipy uses 'scale' which is the mean (1/lambda)
+    return stats.expon.cdf(x, scale=mean_life)
+
+def inverse_exponential(p, mean_life):
+    """
+    6. Inverse Exponential: Calculates the x-value (quantile) for a given cumulative probability p.
+    This solves for the warranty time (t) in your problem.
+    """
+    if p < 0 or p > 1 or mean_life <= 0:
+        return "Error: Invalid parameters for Inverse Exponential function."
+    return stats.expon.ppf(p, scale=mean_life)
 
 
 # ==============================================================================
@@ -358,6 +377,16 @@ def run_continuous_dist(choice):
         beta = get_float_input("Enter rate parameter (beta): ")
         result = inverse_gamma(p, alpha, beta)
         print(f"Result: X-value (Quantile) = {result:.4f}")
+    elif choice == 5:
+        x = get_float_input("Enter x-value (time): ")
+        mean_life = get_float_input("Enter mean life (mu): ")
+        result = exponential_dist_cdf(x, mean_life)
+        print(f"Result: Exponential CDF P(X<={x}) = {result:.6f}")
+    elif choice == 6:
+        p = get_float_input("Enter cumulative probability (p, e.g., 0.05 for 5% failure): ")
+        mean_life = get_float_input("Enter mean life (mu): ")
+        result = inverse_exponential(p, mean_life)
+        print(f"Result: Warranty Time (x) = {result:.4f} years")
     else:
         print("Invalid choice.")
 
@@ -437,7 +466,8 @@ def main_menu():
         ]),
         4: ("Continuous Probability Distributions", run_continuous_dist, [
             "1. Normal Distribution CDF P(X<=x)", "2. Inverse Normal (Quantile/Z-score)", 
-            "3. Gamma Distribution CDF P(X<=x)", "4. Inverse Gamma (Quantile)"
+            "3. Gamma Distribution CDF P(X<=x)", "4. Inverse Gamma (Quantile)",
+            "5. Exponential Distribution CDF P(X<=x)", "6. Inverse Exponential (Quantile/Time)" # New items
         ]),
         5: ("Inferential Statistics & Hypothesis Testing", run_inferential_stats, [
             "1. Standard Error of Mean", "2. Z-Critical Value (Inverse Normal)", 
@@ -488,8 +518,3 @@ if __name__ == '__main__':
     except Exception as e:
         print(f"\nAn unexpected error occurred: {e}")
         print("Please restart the calculator.")
-
-# Comment out the original example usage block if it was uncommented
-# if __name__ == '__main__':
-#     # Sample Data from Problem 23 (Fall 2021)
-#     ...
