@@ -1,5 +1,6 @@
 .global     box
 .global _box_check_box_
+.global _box_draw_corners_
 
 box:
  
@@ -85,3 +86,37 @@ check_exit:
     add     sp, sp, 16
     ldp     x29, x30, [sp], 16
     ret
+
+; _box_draw_corners_:
+;     stp     x29, x30, [sp, -16]!
+;     mov     x29, sp
+
+;     // w0 = start_row
+;     // w1 = start_col
+;     // w2 = end_row
+;     // w3 = end_col
+    
+;     mov     w4, '+'
+
+;     // top-left
+;     mov     w5, w0
+;     mov     w6, w1
+;     bl      putc_to
+
+;     // top-right
+;     mov     w5, w0
+;     mov     w6, w3
+;     bl      putc_to
+
+;     // bottom-left
+;     mov     w5, w2
+;     mov     w6, w1
+;     bl      putc_to
+
+;     // bottom-right
+;     mov     w5, w2
+;     mov     w6, w3
+;     bl      putc_to
+
+;     ldp     x29, x30, [sp], 16
+;     ret
