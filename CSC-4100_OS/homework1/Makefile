@@ -1,5 +1,5 @@
-CC = aarch64-linux-gnu-gcc
-LD = aarch64-linux-gnu-ld
+CC = gcc
+LD = ld
 CFLAGS = -g -pedantic -Wall -Wextra -fPIC -std=gnu2x
 ASFLAGS = -g
 
