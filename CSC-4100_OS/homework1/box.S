@@ -95,7 +95,10 @@ check_exit:
 
 // --- Draw the corners --- //
 _box_draw_corners_:
-    stp     x29, x30, [sp, -16]!
+    // Save FP, LR, and callee-saved registers (x19-x22)
+    stp     x29, x30, [sp, -48]!
+    stp     x19, x20, [sp, 16]
+    stp     x21, x22, [sp, 32]
     mov     x29, sp
 
     // w0 = start_row
@@ -103,103 +106,134 @@ _box_draw_corners_:
     // w2 = end_row
     // w3 = end_col
     
+    // Move arguments to safe registers (w19-w22)
+    mov     w19, w0
+    mov     w20, w1
+    mov     w21, w2
+    mov     w22, w3
+
     // top-left
-    mov     w5, w0
-    mov     w6, w1
-    mov     w4, '+'
+    mov     w0, w19
+    mov     w1, w20
+    mov     w2, '+'
     bl      putc_to
 
     // top-right
-    mov     w5, w0
-    mov     w6, w3
-    mov     w4, '+'
+    mov     w0, w19
+    mov     w1, w22
+    mov     w2, '+'
     bl      putc_to
 
     // bottom-left
-    mov     w5, w2
-    mov     w6, w1
-    mov     w4, '+'
+    mov     w0, w21
+    mov     w1, w20
+    mov     w2, '+'
     bl      putc_to
 
     // bottom-right
-    mov     w5, w2
-    mov     w6, w3
-    mov     w4, '+'
+    mov     w0, w21
+    mov     w1, w22
+    mov     w2, '+'
     bl      putc_to
 
-    ldp     x29, x30, [sp], 16
+    // Restore registers and return
+    ldp     x19, x20, [sp, 16]
+    ldp     x21, x22, [sp, 32]
+    ldp     x29, x30, [sp], 48
     ret
 
 // --- Draw the top and bottom lines --- //
 _box_draw_top_bottom_:
-    stp     x29, x30, [sp, -16]!
+    // Save FP, LR, and callee-saved registers (x19-x24)
+    stp     x29, x30, [sp, -64]!
+    stp     x19, x20, [sp, 16]
+    stp     x21, x22, [sp, 32]
+    stp     x23, x24, [sp, 48]
     mov     x29, sp
 
-    // w0 = start_row
-    // w1 = start_col
-    // w2 = end_row
-    // w3 = end_col
+    // w0 = start_row, w1 = start_col, w2 = end_row, w3 = end_col
+    // Save to safe registers
+    mov     w19, w0
+    mov     w20, w1
+    mov     w21, w2
+    mov     w22, w3
 
     // Draw top line
-    mov     w5, w0          // row for top line
-    add     w6, w1, 1       // starting column for top line (start_col + 1)
-    sub     w7, w3, 1       // ending column for top line (end_col - 1)
+    add     w23, w20, 1       // w23 = current col (start_col + 1)
+    sub     w24, w22, 1       // w24 = limit (end_col - 1)
 top_line_loop:
-    cmp     w6, w7
+    cmp     w23, w24
     bgt     top_line_done
-    mov     w4, '-'
+    mov     w0, w19           // row
+    mov     w1, w23           // col
+    mov     w2, '-'           // char
     bl      putc_to
-    add     w6, w6, 1       // move to the next column
+    add     w23, w23, 1       // move to the next column
     b       top_line_loop
 top_line_done:
     // Draw bottom line
-    mov     w5, w2          // row for bottom line
-    add     w6, w1, 1       // starting column for bottom line (start_col + 1)
-    sub     w7, w3, 1       // ending column for bottom line (end_col - 1)
+    add     w23, w20, 1       // w23 = current col (start_col + 1)
+    sub     w24, w22, 1       // w24 = limit (end_col - 1)
 bottom_line_loop:
-    cmp     w6, w7
+    cmp     w23, w24
     bgt     bottom_line_done
-    mov     w4, '-'
+    mov     w0, w21           // row (end_row)
+    mov     w1, w23           // col
+    mov     w2, '-'           // char
     bl      putc_to
-    add     w6, w6, 1       // move to the next column
+    add     w23, w23, 1       // move to the next column
     b       bottom_line_loop
 bottom_line_done:
-    ldp     x29, x30, [sp], 16
+    ldp     x19, x20, [sp, 16]
+    ldp     x21, x22, [sp, 32]
+    ldp     x23, x24, [sp, 48]
+    ldp     x29, x30, [sp], 64
     ret
 
 // --- Draw the left and right lines --- //
 _box_draw_right_left_:
-    stp     x29, x30, [sp, -16]!
+    // Save FP, LR, and callee-saved registers (x19-x24)
+    stp     x29, x30, [sp, -64]!
+    stp     x19, x20, [sp, 16]
+    stp     x21, x22, [sp, 32]
+    stp     x23, x24, [sp, 48]
     mov     x29, sp
 
-    // w0 = start_row
-    // w1 = start_col
-    // w2 = end_row
-    // w3 = end_col
+    // w0 = start_row, w1 = start_col, w2 = end_row, w3 = end_col
+    // Save to safe registers
+    mov     w19, w0
+    mov     w20, w1
+    mov     w21, w2
+    mov     w22, w3
 
     // Draw right line
-    add     w5, w0, 1       // starting row for right line (start_row + 1)
-    mov     w6, w1          // column for the right line
-    sub     w7, w2, 1       // ending row for right line (end_row - 1)
+    add     w23, w19, 1       // w23 = current row (start_row + 1)
+    sub     w24, w21, 1       // w24 = limit (end_row - 1)
 right_line_loop:
-    cmp     w5, w7
+    cmp     w23, w24
     bgt     right_line_done
-    mov     w4, '|'
+    mov     w0, w23           // row
+    mov     w1, w20           // col (start_col)
+    mov     w2, '|'           // char
     bl      putc_to
-    add     w5, w5, 1       // move to the next row
+    add     w23, w23, 1       // move to the next row
     b       right_line_loop
 right_line_done:
     // Draw left line
-    add     w5, w0, 1       // starting row for left line (start_row + 1)
-    mov     w6, w3          // column for the left line
-    sub     w7, w2, 1       // ending row for left line (end_row - 1)
+    add     w23, w19, 1       // w23 = current row (start_row + 1)
+    sub     w24, w21, 1       // w24 = limit (end_row - 1)
 left_line_loop:
-    cmp     w5, w7
+    cmp     w23, w24
     bgt     left_line_done
-    mov     w4, '|'
+    mov     w0, w23           // row
+    mov     w1, w22           // col (end_col)
+    mov     w2, '|'           // char
     bl      putc_to
-    add     w5, w5, 1       // move to the next row
+    add     w23, w23, 1       // move to the next row
     b       left_line_loop
 left_line_done:
-    ldp     x29, x30, [sp], 16
+    ldp     x19, x20, [sp, 16]
+    ldp     x21, x22, [sp, 32]
+    ldp     x23, x24, [sp, 48]
+    ldp     x29, x30, [sp], 64
     ret
