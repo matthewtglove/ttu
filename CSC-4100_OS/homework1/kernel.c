@@ -29,8 +29,9 @@ int main(void) {
     box(srow, scol, erow, ecol);
     print_to(24, 59, "Hello world");
 
-    while (1) {
-        // Inifinite loop
-    };
+    // Unnecessary
+    // while (1) {
+    //     // Inifinite loop
+    // };
     return 0;
 }
