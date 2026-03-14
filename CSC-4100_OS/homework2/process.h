@@ -15,8 +15,8 @@ Create core type definitions in process.h:
 
 // Define the process control block (PCB) structure
 typedef struct pcb {
-    uint64_t sp;  // Stack pointer
-    uint32_t pid; // Process ID
+    uint64_t sp;      // Stack pointer
+    uint32_t pid;     // Process ID
     struct pcb *next; // Pointer to next PCB in queue
 } PCB_t;
 
@@ -36,7 +36,6 @@ int spawn_process(int (*pfun)());
 void dispatch_select(void);
 void dispatch_restore(void);
 void dispatch(void);
-void go(void);
 
 void q_enqueue(PCB_Q_t *q, PCB_t *pcb);
 PCB_t *q_dequeue(PCB_Q_t *q);

@@ -1,10 +1,6 @@
 .text
 .align 2
 
-.global go
-go:
-    b restore_context
-
 .global dispatch
 dispatch:
     // 1)	subtract 16*16 from the stack
