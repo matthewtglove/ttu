@@ -281,7 +281,7 @@ int p_probe_ptr(void) {
 }
 
 int p_probe_arr_init(void) {
-    char message[] = "Process 1: 0";
+    const char *message = "Process 1: 0";
     while (1) {
         print_to(10, 1, message);
         putc_to(8, 2, 'A');
