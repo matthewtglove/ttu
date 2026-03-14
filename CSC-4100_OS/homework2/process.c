@@ -237,6 +237,33 @@ int p_probe_locals(void) {
     }
 }
 
+int p_probe_steps(void) {
+    putc_to(8, 0, '1');
+    print_to(9, 0, "lit");
+    putc_to(8, 1, '2');
+
+    char message[] = "Process 1: 0";
+    putc_to(8, 2, '3');
+    print_to(10, 1, message);
+    putc_to(8, 3, '4');
+
+    unsigned long long num = 1ULL;
+    unsigned int count = 0;
+
+    while (1) {
+        if ((num & 1ULL) != 0ULL) {
+            count++;
+            if (count > 9U) {
+                count = 0;
+            }
+            message[11] = (char)('0' + count);
+            print_to(10, 1, message);
+            putc_to(8, 4, '5');
+        }
+        num++;
+    }
+}
+
 int p1(void) {
     char message[] = "Process 1: 0";
     unsigned long long num = 1ULL;

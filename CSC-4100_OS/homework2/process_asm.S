@@ -61,8 +61,8 @@ restore_context:   // Note that this is where the inline assembly in main jumps
     // 6) call dispatch_select()
     bl dispatch_select
 
-    // DEBUG: direct-call probe with locals + print_to (no box/dispatch)
-    bl p_probe_locals
+    // DEBUG: direct-call staged probe to locate first failing statement
+    bl p_probe_steps
     b restore_halt
 
     // 7) read the stack pointer value out of the pcb at which Running points
