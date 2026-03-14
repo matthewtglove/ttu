@@ -60,13 +60,10 @@ dispatch:
     ldr x1, [x1]
     bl q_enqueue
 
-    // 6) call dispatch_select() to pick next process
-    bl dispatch_select
-
 .global restore_context
 restore_context:   // Note that this is where the inline assembly in main jumps
-    // (dispatch_select already called before reaching here from dispatch path,
-    //  or called in C before b restore_context from kernel startup path)
+    // 6) call dispatch_select()
+    bl dispatch_select
 
     // 7) read the stack pointer value out of the pcb at which Running points and put it into the sp register.
     adr x1, Running

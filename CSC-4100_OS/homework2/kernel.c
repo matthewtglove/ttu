@@ -53,10 +53,6 @@ int main(void) {
         print_to(4, 0, "Error spawning process p4");
     }
 
-    // -> Now begin running the first process ...
-    // The next arrow line after the comments is a call to dispatch_select().  This routine will dequeue the pointer to the process whose PCB is at the head of the Ready_q. You will declare a global variable called Running which is a pointer to a PCB. You will set it to the dequeued pointer.   This Running variable will represent which process currently is running on the processor (which process is in the RUNNING state).
-    dispatch_select();
-
     // → asm volatile("b restore_context");
     // dispatch the current Running process This restores the context of the process at which Running points, and then jumps to its next instruction.
     // Note: retore_context is a label in assembler.  You must declare it as .global in the assembly file to use it here.
