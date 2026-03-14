@@ -1,6 +1,6 @@
 CC = gcc
 LD = ld
-CFLAGS = -g -pedantic -Wall -Wextra -fPIC -std=gnu2x
+CFLAGS = -g -pedantic -Wall -Wextra -std=gnu2x
 ASFLAGS = -g
 
 # Targets
