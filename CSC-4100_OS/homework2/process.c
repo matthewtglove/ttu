@@ -84,13 +84,6 @@ int spawn_process(int (*code_address)()) {
 
 void dispatch_select(void) {
     Running = q_dequeue(Ready_q);
-    if (Running == 0) {
-        print_to(7, 0, "P: dispatch null ");
-    } else {
-        char status[] = "P: dispatch X";
-        status[12] = (char)('0' + Running->pid);
-        print_to(7, 0, status);
-    }
 }
 
 extern void restore_context(void);

@@ -67,13 +67,20 @@ restore_context:   // Note that this is where the inline assembly in main jumps
     // 6) call dispatch_select()
     bl dispatch_select
 
-    // DEBUG marker: returned from dispatch_select
-    mov w0, #0
+    // DEBUG marker: returned from dispatch_select — check Running
+    adr x1, Running
+    ldr x0, [x1]    // x0 = Running PCB pointer
     mov w1, #71
-    mov w2, #'S'
+    cbz x0, .Lnull_running
+    mov w2, #'S'       // Running is non-null
+    b .Ldebug_s
+.Lnull_running:
+    mov w2, #'N'       // Running is null (empty queue)
+.Ldebug_s:
+    mov w0, #0
     bl putc_to
 
-    // 7) read the stack pointer value out of the pcb at which Running points and put it into the sp register.
+    // 7) read the stack pointer value out of the pcb at which Running points
     adr x1, Running
     ldr x0, [x1]    // x0 = Running PCB pointer
     cbz x0, restore_halt
