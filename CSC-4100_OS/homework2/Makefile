@@ -13,7 +13,7 @@ kernel.o: kernel.c
 	$(CC) $(CFLAGS) -MMD -c kernel.c -o kernel.o
 
 process.o: process.c process.h
-	$(CC) $(CFLAGS) -MMD -c process.c -o process.o
+	$(CC) $(CFLAGS) -fno-stack-protector -MMD -c process.c -o process.o
 
 queue.o: queue.c process.h
 	$(CC) $(CFLAGS) -MMD -c queue.c -o queue.o
