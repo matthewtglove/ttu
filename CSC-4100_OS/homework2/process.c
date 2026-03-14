@@ -132,6 +132,9 @@ int p1(void) {
             num = 1ULL;
         }
 
+        for (volatile unsigned long long pause = 0; pause < 50000ULL; pause++) {
+        }
+
         dispatch();
     }
 }
@@ -157,6 +160,9 @@ int p2(void) {
         num++;
         if (num > 4000000000ULL) {
             num = 1ULL;
+        }
+
+        for (volatile unsigned long long pause = 0; pause < 50000ULL; pause++) {
         }
 
         dispatch();
@@ -186,6 +192,9 @@ int p3(void) {
             num = 1ULL;
         }
 
+        for (volatile unsigned long long pause = 0; pause < 50000ULL; pause++) {
+        }
+
         dispatch();
     }
 }
@@ -211,6 +220,9 @@ int p4(void) {
         num++;
         if (num > 4000000000ULL) {
             num = 1ULL;
+        }
+
+        for (volatile unsigned long long pause = 0; pause < 50000ULL; pause++) {
         }
 
         dispatch();
