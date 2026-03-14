@@ -8,7 +8,7 @@ go:
 .global dispatch
 dispatch:
     // 1)	subtract 16*16 from the stack
-    sub sp, sp, #264
+    sub sp, sp, #256
 
     // 2)	copy all registers to the stack the stack (in the order x0,x1,...,x30)
     str x0,  [sp, #0]
@@ -110,7 +110,7 @@ restore_context:   // Note that this is where the inline assembly in main jumps
     ldr x30, [sp, #240]
 
     // 10) add 16*16 to sp
-    add sp, sp, #264
+    add sp, sp, #256
 
     // 11) return
     ret
