@@ -181,8 +181,9 @@ restore_context:   // Note that this is where the inline assembly in main jumps
     // 10) add 16*16 to sp
     add sp, sp, #264
 
-    // 11) jump to saved PC
-    br x9
+    // 11) call saved PC as a normal C function entry
+    blr x9
+    b restore_halt
 
 restore_halt:
     b restore_halt
