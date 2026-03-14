@@ -1,5 +1,10 @@
 #include "process.h"
 
+void q_init(PCB_Q_t *q) {
+    q->head = 0;
+    q->tail = 0;
+}
+
 void q_enqueue(PCB_Q_t *q, PCB_t *pcb) {
     // If the queue is empty, set head and tail to the new PCB
     if (q->head == 0) {
