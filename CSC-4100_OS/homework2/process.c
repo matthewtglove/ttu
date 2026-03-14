@@ -1,4 +1,5 @@
 #include "process.h"
+#include "libos.h"
 
 PCB_Q_t Ready_q_storage;
 PCB_Q_t *Ready_q = &Ready_q_storage;
@@ -65,4 +66,128 @@ extern void restore_context(void);
 void dispatch_restore(void) {
     asm volatile("b restore_context");
     __builtin_unreachable();
+}
+
+static int is_prime(unsigned long long n) {
+    if (n < 2ULL) {
+        return 0;
+    }
+
+    unsigned long long half = n / 2ULL;
+    for (unsigned long long divisor = 2ULL; divisor <= half; divisor++) {
+        if ((n % divisor) == 0ULL) {
+            return 0;
+        }
+        dispatch();
+    }
+
+    return 1;
+}
+
+int p1(void) {
+    char message[] = "Process 1: 0";
+    unsigned long long num = 1ULL;
+    unsigned int count = 0;
+
+    box(9, 23, 11, 39);
+    print_to(10, 25, message);
+
+    while (1) {
+        if (is_prime(num)) {
+            count++;
+            if (count > 9U) {
+                count = 0;
+            }
+            message[11] = (char)('0' + count);
+            print_to(10, 25, message);
+        }
+
+        num++;
+        if (num > 4000000000ULL) {
+            num = 1ULL;
+        }
+
+        dispatch();
+    }
+}
+
+int p2(void) {
+    char message[] = "Process 2: 0";
+    unsigned long long num = 1ULL;
+    unsigned int count = 0;
+
+    box(13, 23, 15, 39);
+    print_to(14, 25, message);
+
+    while (1) {
+        if (is_prime(num)) {
+            count++;
+            if (count > 9U) {
+                count = 0;
+            }
+            message[11] = (char)('0' + count);
+            print_to(14, 25, message);
+        }
+
+        num++;
+        if (num > 4000000000ULL) {
+            num = 1ULL;
+        }
+
+        dispatch();
+    }
+}
+
+int p3(void) {
+    char message[] = "Process 3: 0";
+    unsigned long long num = 1ULL;
+    unsigned int count = 0;
+
+    box(9, 49, 11, 65);
+    print_to(10, 51, message);
+
+    while (1) {
+        if (is_prime(num)) {
+            count++;
+            if (count > 9U) {
+                count = 0;
+            }
+            message[11] = (char)('0' + count);
+            print_to(10, 51, message);
+        }
+
+        num++;
+        if (num > 4000000000ULL) {
+            num = 1ULL;
+        }
+
+        dispatch();
+    }
+}
+
+int p4(void) {
+    char message[] = "Process 4: 0";
+    unsigned long long num = 1ULL;
+    unsigned int count = 0;
+
+    box(13, 49, 15, 65);
+    print_to(14, 51, message);
+
+    while (1) {
+        if (is_prime(num)) {
+            count++;
+            if (count > 9U) {
+                count = 0;
+            }
+            message[11] = (char)('0' + count);
+            print_to(14, 51, message);
+        }
+
+        num++;
+        if (num > 4000000000ULL) {
+            num = 1ULL;
+        }
+
+        dispatch();
+    }
 }

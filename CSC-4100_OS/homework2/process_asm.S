@@ -54,18 +54,22 @@ dispatch:
     str x4, [x1]    // Then store the new sp in x4 to the PCB
 
     // 5) call enqueue passing it address of ReadyQ and the value of Running
-restore_context:   // Note that this is where the inline assembly in main jumps
-    adr x0, Ready_q   // Put the address of Ready_q into x0
-    adr x1, Running   // Put the address of Running into x1
-    ldr x1, [x1]      // Put the value of Running into x1
-    bl q_enqueue      // Call q_enqueue(Ready_q, Running)
+    adr x0, Ready_q
+    ldr x0, [x0]
+    adr x1, Running
+    ldr x1, [x1]
+    bl q_enqueue
 
     // 6) call dispatch_select()
+
+.global restore_context
+restore_context:   // Note that this is where the inline assembly in main jumps
     bl dispatch_select
 
-    // 7) read the stack pointer value out of the pcb at which Running points and put it into the sp register. The code should look like the following:
+    // 7) read the stack pointer value out of the pcb at which Running points and put it into the sp register.
     adr x1, Running
-    str x0, [x1]    // Put the first value in the PCB (sp) into the Running variable
+    ldr x0, [x1]    // x0 = Running PCB pointer
+    cbz x0, restore_halt
     ldr x2, [x0]    // x2 now has the value of sp
     mov sp, x2      // sp now has the top of stack for the chosen process
 
@@ -111,3 +115,6 @@ restore_context:   // Note that this is where the inline assembly in main jumps
 
     // 11) return
     ret
+
+restore_halt:
+    b restore_halt
