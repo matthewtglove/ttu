@@ -79,8 +79,8 @@ restore_context:   // Note that this is where the inline assembly in main jumps
     mov w2, #'A'
     bl putc_to
 
-    // DEBUG: bypass full context restore — directly call p1 to test if it runs at all
-    bl p1
+    // DEBUG: bypass full context restore — directly call minimal probe process
+    bl p_probe
     b restore_halt
 
     // (full context restore path — temporarily bypassed for diagnostic)

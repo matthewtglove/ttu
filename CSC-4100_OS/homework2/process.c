@@ -109,6 +109,13 @@ static int is_prime(unsigned long long n) {
     return 1;
 }
 
+int p_probe(void) {
+    while (1) {
+        putc_to(8, 0, '*');
+        dispatch();
+    }
+}
+
 int p1(void) {
     char message[] = "Process 1: 0";
     unsigned long long num = 1ULL;
