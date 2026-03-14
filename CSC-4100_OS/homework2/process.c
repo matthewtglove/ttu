@@ -211,6 +211,12 @@ int p1_probe(void) {
     }
 }
 
+int p_min(void) {
+    while (1) {
+        putc_to(8, 0, 'M');
+    }
+}
+
 int p1(void) {
     char message[] = "Process 1: 0";
     unsigned long long num = 1ULL;

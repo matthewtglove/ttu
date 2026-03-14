@@ -61,8 +61,8 @@ restore_context:   // Note that this is where the inline assembly in main jumps
     // 6) call dispatch_select()
     bl dispatch_select
 
-    // DEBUG: direct-call near-p1 probe to isolate p1 logic from dispatch restore path
-    bl p1_probe
+    // DEBUG: direct-call ultra-minimal process to isolate calling path
+    bl p_min
     b restore_halt
 
     // 7) read the stack pointer value out of the pcb at which Running points
