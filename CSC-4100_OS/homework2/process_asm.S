@@ -127,13 +127,7 @@ restore_context:   // Note that this is where the inline assembly in main jumps
     // 10) add 16*16 to sp
     add sp, sp, #264
 
-    // DEBUG marker: ready to return into process code
-    mov w0, #0
-    mov w1, #72
-    mov w2, #'T'
-    bl putc_to
-
-    // 11) return
+    // 11) return (x30 = process entry address, loaded above)
     ret
 
 restore_halt:
