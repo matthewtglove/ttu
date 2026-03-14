@@ -134,8 +134,8 @@ restore_context:   // Note that this is where the inline assembly in main jumps
     // 10) add 16*16 to sp
     add sp, sp, #264
 
-    // 11) return (x30 = process entry address, loaded above)
-    ret
+    // 11) jump to saved PC in x30
+    br x30
 
 restore_halt:
     b restore_halt
