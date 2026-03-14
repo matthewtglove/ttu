@@ -122,7 +122,14 @@ restore_context:   // Note that this is where the inline assembly in main jumps
     ldr x27, [sp, #216]
     ldr x28, [sp, #224]
     ldr x29, [sp, #232]
-    ldr x30, [sp, #240]
+
+    // DEBUG: about to load x30 and ret — bl is safe here, x30 loaded next
+    mov w0, #0
+    mov w1, #72
+    mov w2, #'U'
+    bl putc_to
+
+    ldr x30, [sp, #240]   // x30 = process entry address
 
     // 10) add 16*16 to sp
     add sp, sp, #264
