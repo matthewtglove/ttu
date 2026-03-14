@@ -84,6 +84,13 @@ int spawn_process(int (*code_address)()) {
 
 void dispatch_select(void) {
     Running = q_dequeue(Ready_q);
+    if (Running == 0) {
+        print_to(7, 0, "P: dispatch null ");
+    } else {
+        char status[] = "P: dispatch X";
+        status[12] = (char)('0' + Running->pid);
+        print_to(7, 0, status);
+    }
 }
 
 extern void restore_context(void);
@@ -114,6 +121,7 @@ int p1(void) {
     unsigned long long num = 1ULL;
     unsigned int count = 0;
 
+    print_to(1, 40, "P1 entered");
     box(9, 23, 11, 39);
     print_to(10, 25, message);
 
@@ -141,6 +149,7 @@ int p2(void) {
     unsigned long long num = 1ULL;
     unsigned int count = 0;
 
+    print_to(2, 40, "P2 entered");
     box(13, 23, 15, 39);
     print_to(14, 25, message);
 
@@ -168,6 +177,7 @@ int p3(void) {
     unsigned long long num = 1ULL;
     unsigned int count = 0;
 
+    print_to(3, 40, "P3 entered");
     box(9, 49, 11, 65);
     print_to(10, 51, message);
 
@@ -195,6 +205,7 @@ int p4(void) {
     unsigned long long num = 1ULL;
     unsigned int count = 0;
 
+    print_to(4, 40, "P4 entered");
     box(13, 49, 15, 65);
     print_to(14, 51, message);
 
