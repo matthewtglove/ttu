@@ -61,10 +61,6 @@ restore_context:   // Note that this is where the inline assembly in main jumps
     // 6) call dispatch_select()
     bl dispatch_select
 
-    // DEBUG stage 3: local char-array initialization + print_to probe
-    bl p_probe_arr_init
-    b restore_halt
-
     // 7) read the stack pointer value out of the pcb at which Running points
     adr x1, Running
     ldr x0, [x1]    // x0 = Running PCB pointer

@@ -289,7 +289,7 @@ int p_probe_arr_init(void) {
 }
 
 int p1(void) {
-    char message[] = "Process 1: 0";
+    static char message[] = "Process 1: 0";
     unsigned long long num = 1ULL;
     unsigned int count = 0;
     unsigned int srow, scol, erow, ecol, prow, pcol;
@@ -319,7 +319,7 @@ int p1(void) {
 }
 
 int p2(void) {
-    char message[] = "Process 2: 0";
+    static char message[] = "Process 2: 0";
     unsigned long long num = 1ULL;
     unsigned int count = 0;
     unsigned int srow, scol, erow, ecol, prow, pcol;
@@ -348,7 +348,7 @@ int p2(void) {
 }
 
 int p3(void) {
-    char message[] = "Process 3: 0";
+    static char message[] = "Process 3: 0";
     unsigned long long num = 1ULL;
     unsigned int count = 0;
     unsigned int srow, scol, erow, ecol, prow, pcol;
@@ -377,7 +377,7 @@ int p3(void) {
 }
 
 int p4(void) {
-    char message[] = "Process 4: 0";
+    static char message[] = "Process 4: 0";
     unsigned long long num = 1ULL;
     unsigned int count = 0;
     unsigned int srow, scol, erow, ecol, prow, pcol;
