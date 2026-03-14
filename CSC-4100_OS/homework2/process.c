@@ -17,7 +17,8 @@ uint64_t *alloc_stack(uint64_t count) {
     if (count > STACK_WORDS) {
         return 0;
     }
-    if (next_stack_idx >= MAX_PROCS) return 0;
+    if (next_stack_idx >= MAX_PROCS)
+        return 0;
     return stack_pool[next_stack_idx++];
 }
 
@@ -25,7 +26,8 @@ static PCB_t pcb_pool[MAX_PROCS];
 static int next_pcb_idx = 0;
 
 PCB_t *alloc_pcb() {
-    if (next_pcb_idx >= MAX_PROCS) return 0;
+    if (next_pcb_idx >= MAX_PROCS)
+        return 0;
     return &pcb_pool[next_pcb_idx++];
 }
 
@@ -46,10 +48,10 @@ int spawn_process(int (*code_address)()) {
     uint64_t *sp = stackptr + 1024;
 
     // create context that will set gen purpose regs to 0
-    // loop i from 0 to 31 (inclusive)
+    // loop i from 0 to 32 (inclusive)
     //     decrement sp
     // 	set the uint64_t at which sp points to 0
-    for (int i = 0; i < 32; i++) {
+    for (int i = 0; i <= 32; i++) {
         sp--;
         *sp = 0;
     }
