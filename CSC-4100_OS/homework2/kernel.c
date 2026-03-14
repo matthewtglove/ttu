@@ -26,8 +26,6 @@ int main(void) {
     int height = (erow - srow) + 1;
     clear_scr(srow, scol, width, height);
 
-    box(srow, scol, erow, ecol);
-    // print_to(24, 59, "Hello world");
     print_to(0, 0, "Running processes");
 
     // → call q_init(Ready_q)
