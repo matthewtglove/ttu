@@ -64,8 +64,20 @@ restore_context:   // Note that this is where the inline assembly in main jumps
     // mov w2, #'R'
     // bl putc_to
 
+    // DEBUG: before dispatch_select
+    mov w0, #7
+    mov w1, #0
+    mov w2, #'B'
+    bl putc_to
+
     // 6) call dispatch_select()
     bl dispatch_select
+
+    // DEBUG: after dispatch_select
+    mov w0, #7
+    mov w1, #2
+    mov w2, #'A'
+    bl putc_to
 
     // DEBUG: bypass full context restore — directly call p1 to test if it runs at all
     bl p1
