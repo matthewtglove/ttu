@@ -182,6 +182,35 @@ static void get_process_layout(unsigned int process_index,
     }
 }
 
+int p1_probe(void) {
+    char message[] = "Process 1: 0";
+    unsigned long long num = 1ULL;
+    unsigned int count = 0;
+    unsigned int srow, scol, erow, ecol, prow, pcol;
+
+    get_process_layout(1U, &srow, &scol, &erow, &ecol, &prow, &pcol);
+    box(srow, scol, erow, ecol);
+    print_to(prow, pcol, message);
+
+    while (1) {
+        if ((num & 1ULL) != 0ULL) {
+            count++;
+            if (count > 9U) {
+                count = 0;
+            }
+            message[11] = (char)('0' + count);
+            print_to(prow, pcol, message);
+        }
+
+        num++;
+        if (num > 4000000000ULL) {
+            num = 1ULL;
+        }
+
+        // intentionally no dispatch() in this probe
+    }
+}
+
 int p1(void) {
     char message[] = "Process 1: 0";
     unsigned long long num = 1ULL;
