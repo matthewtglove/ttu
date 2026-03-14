@@ -217,6 +217,26 @@ int p_min(void) {
     }
 }
 
+int p_probe_locals(void) {
+    char message[] = "Process 1: 0";
+    unsigned long long num = 1ULL;
+    unsigned int count = 0;
+    unsigned int row = 10U;
+    unsigned int col = 1U;
+
+    while (1) {
+        if ((num & 1ULL) != 0ULL) {
+            count++;
+            if (count > 9U) {
+                count = 0;
+            }
+            message[11] = (char)('0' + count);
+            print_to(row, col, message);
+        }
+        num++;
+    }
+}
+
 int p1(void) {
     char message[] = "Process 1: 0";
     unsigned long long num = 1ULL;
