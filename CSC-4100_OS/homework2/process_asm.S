@@ -58,8 +58,20 @@ dispatch:
 
 .global restore_context
 restore_context:   // Note that this is where the inline assembly in main jumps
+    // DEBUG marker: entered restore_context
+    mov w0, #0
+    mov w1, #70
+    mov w2, #'R'
+    bl putc_to
+
     // 6) call dispatch_select()
     bl dispatch_select
+
+    // DEBUG marker: returned from dispatch_select
+    mov w0, #0
+    mov w1, #71
+    mov w2, #'S'
+    bl putc_to
 
     // 7) read the stack pointer value out of the pcb at which Running points and put it into the sp register.
     adr x1, Running
@@ -107,6 +119,12 @@ restore_context:   // Note that this is where the inline assembly in main jumps
 
     // 10) add 16*16 to sp
     add sp, sp, #264
+
+    // DEBUG marker: ready to return into process code
+    mov w0, #0
+    mov w1, #72
+    mov w2, #'T'
+    bl putc_to
 
     // 11) return
     ret
