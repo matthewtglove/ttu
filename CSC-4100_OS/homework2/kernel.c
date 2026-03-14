@@ -26,7 +26,7 @@ int main(void) {
     int height = (erow - srow) + 1;
     clear_scr(srow, scol, width, height);
 
-    print_to(0, 0, "Running processes");
+    print_to(srow, scol, "Running processes");
 
     // → call q_init(Ready_q)
     // initialize Ready queue data structure. The prototype for q_init is: void q_init(Queue_t *)
