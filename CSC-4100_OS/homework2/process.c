@@ -109,89 +109,13 @@ static int is_prime(unsigned long long n) {
     return 1;
 }
 
-static void get_process_layout(unsigned int process_index,
-                               unsigned int *srow,
-                               unsigned int *scol,
-                               unsigned int *erow,
-                               unsigned int *ecol,
-                               unsigned int *prow,
-                               unsigned int *pcol) {
-    unsigned int width = (unsigned int)term_txtwidth();
-
-    if (width >= 66U) {
-        if (process_index == 1U) {
-            *srow = 9U;
-            *scol = 23U;
-            *erow = 11U;
-            *ecol = 39U;
-            *prow = 10U;
-            *pcol = 25U;
-        } else if (process_index == 2U) {
-            *srow = 13U;
-            *scol = 23U;
-            *erow = 15U;
-            *ecol = 39U;
-            *prow = 14U;
-            *pcol = 25U;
-        } else if (process_index == 3U) {
-            *srow = 9U;
-            *scol = 49U;
-            *erow = 11U;
-            *ecol = 65U;
-            *prow = 10U;
-            *pcol = 51U;
-        } else {
-            *srow = 13U;
-            *scol = 49U;
-            *erow = 15U;
-            *ecol = 65U;
-            *prow = 14U;
-            *pcol = 51U;
-        }
-        return;
-    }
-
-    if (process_index == 1U) {
-        *srow = 9U;
-        *scol = 0U;
-        *erow = 11U;
-        *ecol = 13U;
-        *prow = 10U;
-        *pcol = 1U;
-    } else if (process_index == 2U) {
-        *srow = 13U;
-        *scol = 0U;
-        *erow = 15U;
-        *ecol = 13U;
-        *prow = 14U;
-        *pcol = 1U;
-    } else if (process_index == 3U) {
-        *srow = 9U;
-        *scol = 14U;
-        *erow = 11U;
-        *ecol = 27U;
-        *prow = 10U;
-        *pcol = 15U;
-    } else {
-        *srow = 13U;
-        *scol = 14U;
-        *erow = 15U;
-        *ecol = 27U;
-        *prow = 14U;
-        *pcol = 15U;
-    }
-}
-
 int p1(void) {
     static char message[] = "Process 1: 0";
     unsigned long long num = 1ULL;
     unsigned int count = 0;
-    unsigned int srow, scol, erow, ecol, prow, pcol;
 
-    get_process_layout(1U, &srow, &scol, &erow, &ecol, &prow, &pcol);
-
-    box(srow, scol, erow, ecol);
-    print_to(prow, pcol, message);
+    box(9, 23, 11, 39);
+    print_to(10, 25, message);
 
     while (1) {
         if (is_prime(num)) {
@@ -200,7 +124,7 @@ int p1(void) {
                 count = 0;
             }
             message[11] = (char)('0' + count);
-            print_to(prow, pcol, message);
+            print_to(10, 25, message);
         }
 
         num++;
@@ -216,11 +140,9 @@ int p2(void) {
     static char message[] = "Process 2: 0";
     unsigned long long num = 1ULL;
     unsigned int count = 0;
-    unsigned int srow, scol, erow, ecol, prow, pcol;
 
-    get_process_layout(2U, &srow, &scol, &erow, &ecol, &prow, &pcol);
-    box(srow, scol, erow, ecol);
-    print_to(prow, pcol, message);
+    box(13, 23, 15, 39);
+    print_to(14, 25, message);
 
     while (1) {
         if (is_prime(num)) {
@@ -229,7 +151,7 @@ int p2(void) {
                 count = 0;
             }
             message[11] = (char)('0' + count);
-            print_to(prow, pcol, message);
+            print_to(14, 25, message);
         }
 
         num++;
@@ -245,11 +167,9 @@ int p3(void) {
     static char message[] = "Process 3: 0";
     unsigned long long num = 1ULL;
     unsigned int count = 0;
-    unsigned int srow, scol, erow, ecol, prow, pcol;
 
-    get_process_layout(3U, &srow, &scol, &erow, &ecol, &prow, &pcol);
-    box(srow, scol, erow, ecol);
-    print_to(prow, pcol, message);
+    box(9, 49, 11, 65);
+    print_to(10, 51, message);
 
     while (1) {
         if (is_prime(num)) {
@@ -258,7 +178,7 @@ int p3(void) {
                 count = 0;
             }
             message[11] = (char)('0' + count);
-            print_to(prow, pcol, message);
+            print_to(10, 51, message);
         }
 
         num++;
@@ -274,11 +194,9 @@ int p4(void) {
     static char message[] = "Process 4: 0";
     unsigned long long num = 1ULL;
     unsigned int count = 0;
-    unsigned int srow, scol, erow, ecol, prow, pcol;
 
-    get_process_layout(4U, &srow, &scol, &erow, &ecol, &prow, &pcol);
-    box(srow, scol, erow, ecol);
-    print_to(prow, pcol, message);
+    box(13, 49, 15, 65);
+    print_to(14, 51, message);
 
     while (1) {
         if (is_prime(num)) {
@@ -287,7 +205,7 @@ int p4(void) {
                 count = 0;
             }
             message[11] = (char)('0' + count);
-            print_to(prow, pcol, message);
+            print_to(14, 51, message);
         }
 
         num++;
