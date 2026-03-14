@@ -58,42 +58,19 @@ dispatch:
 
 .global restore_context
 restore_context:   // Note that this is where the inline assembly in main jumps
-    // DEBUG marker: entered restore_context
-    // mov w0, #0
-    // mov w1, #70
-    // mov w2, #'R'
-    // bl putc_to
-
-    // DEBUG: before dispatch_select
-    mov w0, #7
-    mov w1, #0
-    mov w2, #'B'
-    bl putc_to
-
     // 6) call dispatch_select()
     bl dispatch_select
 
-    // DEBUG: after dispatch_select
-    mov w0, #7
-    mov w1, #2
-    mov w2, #'A'
-    bl putc_to
-
-    // DEBUG: bypass full context restore — directly call minimal probe process
-    bl p_probe
-    b restore_halt
-
-    // (full context restore path — temporarily bypassed for diagnostic)
     // 7) read the stack pointer value out of the pcb at which Running points
-    // adr x1, Running
+    adr x1, Running
     ldr x0, [x1]    // x0 = Running PCB pointer
     cbz x0, restore_halt
     ldr x2, [x0]    // x2 now has the value of sp
     mov sp, x2      // sp now has the top of stack for the chosen process
 
-    // 8) skip SPSR_EL1 restore during startup/debug isolation
-    // ldr x0, [sp, 16*15+8]
-    // msr SPSR_EL1, x0
+    // 8) restore the PSTATE from the stack
+    ldr x0, [sp, 16*15+8]
+    msr SPSR_EL1, x0
 
     // 9) copy all register values for x0-x30 from the stack at which sp points into those registers.
     ldr x0, [sp, #0]
