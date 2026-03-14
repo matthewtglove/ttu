@@ -114,6 +114,7 @@ int p1(void) {
     unsigned long long num = 1ULL;
     unsigned int count = 0;
 
+    print_to(8, 0, "p1 alive");
     print_to(1, 40, "P1 entered");
     box(9, 23, 11, 39);
     print_to(10, 25, message);

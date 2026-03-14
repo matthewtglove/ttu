@@ -17,6 +17,14 @@ int clear_scr(int start_row, int start_col, int width, int height) {
 }
 
 int main(void) {
+    char dims[] = "HW: 00x00";
+    int h = term_txtheight();
+    int w = term_txtwidth();
+    dims[4] = (char)('0' + ((h / 10) % 10));
+    dims[5] = (char)('0' + (h % 10));
+    dims[7] = (char)('0' + ((w / 10) % 10));
+    dims[8] = (char)('0' + (w % 10));
+
     // Requirements: srow=21, scol=49, erow=27, ecol=79
     unsigned int srow = 21;
     unsigned int scol = 49;
@@ -27,6 +35,7 @@ int main(void) {
     clear_scr(srow, scol, width, height);
     // box(srow, scol, erow, ecol);
     print_to(0, 0, "Running processes");
+    print_to(0, 20, dims);
 
     // → call q_init(Ready_q)
     // initialize Ready queue data structure. The prototype for q_init is: void q_init(Queue_t *)
