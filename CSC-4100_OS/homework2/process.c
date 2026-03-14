@@ -6,6 +6,27 @@ PCB_Q_t *Ready_q = &Ready_q_storage;
 PCB_t *Running = 0;
 uint32_t next_pid = 1;
 
+// Static pool allocators (bare-metal: no malloc)
+#define MAX_PROCS 8
+#define STACK_WORDS 1024
+
+static uint64_t stack_pool[MAX_PROCS][STACK_WORDS];
+static int next_stack_idx = 0;
+
+uint64_t *alloc_stack(uint64_t count) {
+    (void)count;
+    if (next_stack_idx >= MAX_PROCS) return 0;
+    return stack_pool[next_stack_idx++];
+}
+
+static PCB_t pcb_pool[MAX_PROCS];
+static int next_pcb_idx = 0;
+
+PCB_t *alloc_pcb() {
+    if (next_pcb_idx >= MAX_PROCS) return 0;
+    return &pcb_pool[next_pcb_idx++];
+}
+
 int spawn_process(int (*code_address)()) {
     // code_address is the pointer to the function that contains the process code
 
