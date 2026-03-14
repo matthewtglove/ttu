@@ -264,6 +264,30 @@ int p_probe_steps(void) {
     }
 }
 
+int p_probe_ints(void) {
+    unsigned int count = 0U;
+    while (1) {
+        count++;
+        putc_to(8, 0, (char)('0' + (count % 10U)));
+    }
+}
+
+int p_probe_ptr(void) {
+    const char *message = "Process 1: 0";
+    while (1) {
+        print_to(10, 1, message);
+        putc_to(8, 1, 'P');
+    }
+}
+
+int p_probe_arr_init(void) {
+    char message[] = "Process 1: 0";
+    while (1) {
+        print_to(10, 1, message);
+        putc_to(8, 2, 'A');
+    }
+}
+
 int p1(void) {
     char message[] = "Process 1: 0";
     unsigned long long num = 1ULL;

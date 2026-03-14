@@ -1,6 +1,6 @@
 CC = gcc
 LD = ld
-CFLAGS = -g -pedantic -Wall -Wextra -std=gnu2x -ffreestanding -fno-stack-protector -fno-pie -fno-pic
+CFLAGS = -g -pedantic -Wall -Wextra -std=gnu2x
 ASFLAGS = -g
 
 # Targets
