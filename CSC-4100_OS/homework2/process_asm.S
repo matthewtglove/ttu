@@ -129,22 +129,15 @@ restore_context:   // Note that this is where the inline assembly in main jumps
     mov w2, #'U'
     bl putc_to
 
-    // Load saved PC/return target and keep it in x9 across debug call
-    ldr x9, [sp, #240]
-
-    // DEBUG: show whether saved target is zero (Z) or non-zero (V)
-    cbz x9, .Ltarget_zero
-    mov w2, #'V'
-    b .Ltarget_mark
-.Ltarget_zero:
-    mov w2, #'Z'
-.Ltarget_mark:
+    // DEBUG marker only; do not keep branch target in caller-saved regs across bl
     mov w0, #0
     mov w1, #73
+    mov w2, #'V'
     bl putc_to
 
-    // Also restore x30 from saved context (needed when resuming after dispatch)
-    mov x30, x9
+    // Restore saved PC/return target after debug calls
+    ldr x30, [sp, #240]
+    ldr x9,  [sp, #240]
 
     // 10) add 16*16 to sp
     add sp, sp, #264
