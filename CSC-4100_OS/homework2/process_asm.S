@@ -59,26 +59,26 @@ dispatch:
 .global restore_context
 restore_context:   // Note that this is where the inline assembly in main jumps
     // DEBUG marker: entered restore_context
-    mov w0, #0
-    mov w1, #70
-    mov w2, #'R'
-    bl putc_to
+    // mov w0, #0
+    // mov w1, #70
+    // mov w2, #'R'
+    // bl putc_to
 
     // 6) call dispatch_select()
     bl dispatch_select
 
     // DEBUG marker: returned from dispatch_select — check Running
-    adr x1, Running
-    ldr x0, [x1]    // x0 = Running PCB pointer
-    mov w1, #71
-    cbz x0, .Lnull_running
-    mov w2, #'S'       // Running is non-null
-    b .Ldebug_s
-.Lnull_running:
-    mov w2, #'N'       // Running is null (empty queue)
-.Ldebug_s:
-    mov w0, #0
-    bl putc_to
+    // adr x1, Running
+    // ldr x0, [x1]    // x0 = Running PCB pointer
+    // mov w1, #71
+    // cbz x0, .Lnull_running
+    // mov w2, #'S'       // Running is non-null
+    // b .Ldebug_s
+    // .Lnull_running:
+    // mov w2, #'N'       // Running is null (empty queue)
+    // .Ldebug_s:
+    // mov w0, #0
+    // bl putc_to
 
     // 7) read the stack pointer value out of the pcb at which Running points
     adr x1, Running
@@ -87,9 +87,9 @@ restore_context:   // Note that this is where the inline assembly in main jumps
     ldr x2, [x0]    // x2 now has the value of sp
     mov sp, x2      // sp now has the top of stack for the chosen process
 
-    // 8) restore the PSTATE from the stack
-    ldr x0, [sp, 16*15+8] // Load PSTATE into x0
-    msr SPSR_EL1, x0       // Restore PSTATE
+    // 8) skip SPSR_EL1 restore during startup/debug isolation
+    // ldr x0, [sp, 16*15+8]
+    // msr SPSR_EL1, x0
 
     // 9) copy all register values for x0-x30 from the stack at which sp points into those registers.
     ldr x0, [sp, #0]
@@ -123,67 +123,14 @@ restore_context:   // Note that this is where the inline assembly in main jumps
     ldr x28, [sp, #224]
     ldr x29, [sp, #232]
 
-    // DEBUG: about to load x30 and ret — bl is safe here, x30 loaded next
-    mov w0, #0
-    mov w1, #72
-    mov w2, #'U'
-    bl putc_to
-
-    // DEBUG marker only; do not keep branch target in caller-saved regs across bl
-    mov w0, #0
-    mov w1, #73
-    mov w2, #'V'
-    bl putc_to
-
-    // Restore saved PC/return target after debug calls
+    // Restore saved PC/return target
     ldr x30, [sp, #240]
-    ldr x9,  [sp, #240]
-
-    // DEBUG: identify which process entry address is in x9
-    adrp x10, p1
-    add  x10, x10, :lo12:p1
-    cmp  x9, x10
-    beq  .Lpc_p1
-    adrp x10, p2
-    add  x10, x10, :lo12:p2
-    cmp  x9, x10
-    beq  .Lpc_p2
-    adrp x10, p3
-    add  x10, x10, :lo12:p3
-    cmp  x9, x10
-    beq  .Lpc_p3
-    adrp x10, p4
-    add  x10, x10, :lo12:p4
-    cmp  x9, x10
-    beq  .Lpc_p4
-    mov  w2, #'X'
-    b    .Lpc_mark
-.Lpc_p1:
-    mov  w2, #'1'
-    b    .Lpc_mark
-.Lpc_p2:
-    mov  w2, #'2'
-    b    .Lpc_mark
-.Lpc_p3:
-    mov  w2, #'3'
-    b    .Lpc_mark
-.Lpc_p4:
-    mov  w2, #'4'
-.Lpc_mark:
-    mov  w0, #0
-    mov  w1, #74
-    bl   putc_to
-
-    // Reload in case debug call clobbered caller-saved regs
-    ldr x30, [sp, #240]
-    ldr x9,  [sp, #240]
 
     // 10) add 16*16 to sp
     add sp, sp, #264
 
-    // 11) call saved PC as a normal C function entry
-    blr x9
-    b restore_halt
+    // 11) return into saved process entry
+    ret
 
 restore_halt:
     b restore_halt
