@@ -10,11 +10,13 @@ uint32_t next_pid = 1;
 #define MAX_PROCS 8
 #define STACK_WORDS 1024
 
-static uint64_t stack_pool[MAX_PROCS][STACK_WORDS];
+static uint64_t stack_pool[MAX_PROCS][STACK_WORDS] __attribute__((aligned(16)));
 static int next_stack_idx = 0;
 
 uint64_t *alloc_stack(uint64_t count) {
-    (void)count;
+    if (count > STACK_WORDS) {
+        return 0;
+    }
     if (next_stack_idx >= MAX_PROCS) return 0;
     return stack_pool[next_stack_idx++];
 }
