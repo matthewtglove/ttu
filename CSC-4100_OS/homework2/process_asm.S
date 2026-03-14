@@ -139,6 +139,45 @@ restore_context:   // Note that this is where the inline assembly in main jumps
     ldr x30, [sp, #240]
     ldr x9,  [sp, #240]
 
+    // DEBUG: identify which process entry address is in x9
+    adrp x10, p1
+    add  x10, x10, :lo12:p1
+    cmp  x9, x10
+    beq  .Lpc_p1
+    adrp x10, p2
+    add  x10, x10, :lo12:p2
+    cmp  x9, x10
+    beq  .Lpc_p2
+    adrp x10, p3
+    add  x10, x10, :lo12:p3
+    cmp  x9, x10
+    beq  .Lpc_p3
+    adrp x10, p4
+    add  x10, x10, :lo12:p4
+    cmp  x9, x10
+    beq  .Lpc_p4
+    mov  w2, #'X'
+    b    .Lpc_mark
+.Lpc_p1:
+    mov  w2, #'1'
+    b    .Lpc_mark
+.Lpc_p2:
+    mov  w2, #'2'
+    b    .Lpc_mark
+.Lpc_p3:
+    mov  w2, #'3'
+    b    .Lpc_mark
+.Lpc_p4:
+    mov  w2, #'4'
+.Lpc_mark:
+    mov  w0, #0
+    mov  w1, #74
+    bl   putc_to
+
+    // Reload in case debug call clobbered caller-saved regs
+    ldr x30, [sp, #240]
+    ldr x9,  [sp, #240]
+
     // 10) add 16*16 to sp
     add sp, sp, #264
 
