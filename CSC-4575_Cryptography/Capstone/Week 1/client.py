@@ -13,7 +13,12 @@ def encrypt_payload(plaintext: bytes, key: bytes) -> tuple[bytes, bytes, bytes]:
     3. Create an encryptor object and encrypt the plaintext.
     4. Return the (nonce, ciphertext, tag).
     """
-    pass # Students implement this
+    nonce = os.urandom(12)
+    cipher = Cipher(algorithms.AES(key), modes.GCM(nonce))
+    encryptor = cipher.encryptor()
+    ciphertext = encryptor.update(plaintext) + encryptor.finalize()
+    tag = encryptor.tag
+    return (nonce, ciphertext, tag)
 
 def start_client():
     # Docker automatically resolves container names to internal IPs
@@ -25,6 +30,7 @@ def start_client():
     
     # --- Cryptographic Implementation goes here ---
     # TODO: Call encrypt_payload() with the message and PSK.
+    nonce, ciphertext, tag = encrypt_payload(message, PSK)
     
     # Network Transmission
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -35,6 +41,7 @@ def start_client():
             # TODO: Transmit the data. 
             # Format requirement: nonce (12 bytes) + tag (16 bytes) + ciphertext
             # Example: s.sendall(nonce + tag + ciphertext)
+            s.sendall(nonce + tag + ciphertext)
             
             print("[*] Encrypted payload sent over the wire.")
         except ConnectionRefusedError:
