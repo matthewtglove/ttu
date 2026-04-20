@@ -7,6 +7,32 @@ setup_EVT:
     msr VBAR_EL1, x0
     ret
 
+.global init_timer
+init_timer:
+    stp x29, x30, [sp, -16]!
+    bl clear_timer
+
+    // Route core 0 virtual counter interrupt to core 0 IRQ.
+    ldr x0, =0x40000040
+    mov x1, #0x08
+    str w1, [x0]
+
+    // Enable virtual timer.
+    mov x0, #1
+    msr CNTV_CTL_EL0, x0
+
+    ldp x29, x30, [sp], 16
+    ret
+
+.global clear_timer
+clear_timer:
+    // Schedule next timer interrupt for 1/20 second.
+    mrs x0, CNTFRQ_EL0
+    mov x1, #20
+    udiv x0, x0, x1
+    msr CNTV_TVAL_EL0, x0
+    ret
+
 // Exception vector table (16 entries, 128 bytes each).
 .align 11
 vector_table:
@@ -54,58 +80,59 @@ unsupported_halt:
 
 .global dispatch
 dispatch:
-    // 1)	subtract 16*16 from the stack
-    sub sp, sp, #264
+    // Disable IRQ while we switch processes.
+    msr DAIFSet, #0x2
 
-    // 2)	copy all registers to the stack the stack (in the order x0,x1,...,x30)
-    str x0,  [sp, #0]
-    str x1,  [sp, #8]
-    str x2,  [sp, #16]
-    str x3,  [sp, #24]
-    str x4,  [sp, #32]
-    str x5,  [sp, #40]
-    str x6,  [sp, #48]
-    str x7,  [sp, #56]
-    str x8,  [sp, #64]
-    str x9,  [sp, #72]
-    str x10, [sp, #80]
-    str x11, [sp, #88]
-    str x12, [sp, #96]
-    str x13, [sp, #104]
-    str x14, [sp, #112]
-    str x15, [sp, #120]
-    str x16, [sp, #128]
-    str x17, [sp, #136]
-    str x18, [sp, #144]
-    str x19, [sp, #152]
-    str x20, [sp, #160]
-    str x21, [sp, #168]
-    str x22, [sp, #176]
-    str x23, [sp, #184]
-    str x24, [sp, #192]
-    str x25, [sp, #200]
-    str x26, [sp, #208]
-    str x27, [sp, #216]
-    str x28, [sp, #224]
-    str x29, [sp, #232]
-    str x30, [sp, #240]
+    // Save process x1 on the EL1 stack so x1 can hold SP_EL0.
+    sub sp, sp, #16
+    str x1, [sp]
 
-    // 3)	put the PSTATE into the stack with the following code:
-    mrs x0, SPSR_EL1 // Save PSTATE
-    str x0, [sp, 16*15+8]
+    // x1 = current process stack pointer (EL0 stack).
+    mrs x1, SP_EL0
+    sub x1, x1, #272
 
-    // 4)	store the new sp value into the pcb where Running points (note that you cannot move sp into memory directly, you have to do something like: 
-    adr x1, Running
-    ldr x1, [x1]    // Put the first value in the PCB (sp) into x1
-    mov x4, sp      // We can't str sp directly, so put sp into x4
-    str x4, [x1]    // Then store the new sp in x4 to the PCB
+    // Save x0 and the original process x1 first.
+    str x0, [x1, #0]
+    ldr x0, [sp]
+    str x0, [x1, #8]
 
-    // 5) call enqueue passing it address of ReadyQ and the value of Running
+    // Save x2..x30 into the process stack frame.
+    stp x2, x3, [x1, #16]
+    stp x4, x5, [x1, #32]
+    stp x6, x7, [x1, #48]
+    stp x8, x9, [x1, #64]
+    stp x10, x11, [x1, #80]
+    stp x12, x13, [x1, #96]
+    stp x14, x15, [x1, #112]
+    stp x16, x17, [x1, #128]
+    stp x18, x19, [x1, #144]
+    stp x20, x21, [x1, #160]
+    stp x22, x23, [x1, #176]
+    stp x24, x25, [x1, #192]
+    stp x26, x27, [x1, #208]
+    stp x28, x29, [x1, #224]
+    str x30, [x1, #240]
+
+    // Save process PSTATE and exception return address.
+    mrs x0, SPSR_EL1
+    str x0, [x1, #248]
+    mrs x0, ELR_EL1
+    str x0, [x1, #256]
+
+    // Save new process stack pointer in Running->sp.
+    adr x0, Running
+    ldr x0, [x0]
+    str x1, [x0]
+
+    // Enqueue the old Running process.
     adr x0, Ready_q
     ldr x0, [x0]
     adr x1, Running
     ldr x1, [x1]
     bl q_enqueue
+
+    // Drop temporary EL1 stack storage for x1.
+    add sp, sp, #16
 
 .global restore_context
 restore_context:   // Note that this is where the inline assembly in main jumps

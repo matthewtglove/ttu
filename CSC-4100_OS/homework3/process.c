@@ -47,8 +47,8 @@ int spawn_process(int (*code_address)()) {
         *sp = 0;
     }
 
-    // Place the entry function where x30/LR will be restored from.
-    *(sp + 30) = (uint64_t)code_address;
+    // Place the entry function in the exception return address slot.
+    *(sp + 32) = (uint64_t)code_address;
 
     // Allocate and initialize the PCB for this process.
     PCB_t *pcb = alloc_pcb();
