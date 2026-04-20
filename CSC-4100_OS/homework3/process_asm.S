@@ -136,60 +136,58 @@ dispatch:
 
 .global restore_context
 restore_context:   // Note that this is where the inline assembly in main jumps
-    // 6) call dispatch_select()
+    // Pick the next ready process.
     bl dispatch_select
 
-    // 7) read the stack pointer value out of the pcb at which Running points
-    adr x1, Running
-    ldr x0, [x1]    // x0 = Running PCB pointer
+    // x1 = saved process frame pointer from Running->sp.
+    adr x0, Running
+    ldr x0, [x0]
     cbz x0, restore_halt
-    ldr x2, [x0]    // x2 now has the value of sp
-    mov sp, x2      // sp now has the top of stack for the chosen process
+    ldr x1, [x0]
 
-    // 8) restore the PSTATE from the stack
-    ldr x0, [sp, 16*15+8]
+    // Restore PSTATE and exception return address.
+    ldr x0, [x1, #248]
     msr SPSR_EL1, x0
+    ldr x0, [x1, #256]
+    msr ELR_EL1, x0
 
-    // 9) copy all register values for x0-x30 from the stack at which sp points into those registers.
-    ldr x0, [sp, #0]
-    ldr x1, [sp, #8]
-    ldr x2, [sp, #16]
-    ldr x3, [sp, #24]
-    ldr x4, [sp, #32]
-    ldr x5, [sp, #40]
-    ldr x6, [sp, #48]
-    ldr x7, [sp, #56]
-    ldr x8, [sp, #64]
-    ldr x9, [sp, #72]
-    ldr x10, [sp, #80]
-    ldr x11, [sp, #88]
-    ldr x12, [sp, #96]
-    ldr x13, [sp, #104]
-    ldr x14, [sp, #112]
-    ldr x15, [sp, #120]
-    ldr x16, [sp, #128]
-    ldr x17, [sp, #136]
-    ldr x18, [sp, #144]
-    ldr x19, [sp, #152]
-    ldr x20, [sp, #160]
-    ldr x21, [sp, #168]
-    ldr x22, [sp, #176]
-    ldr x23, [sp, #184]
-    ldr x24, [sp, #192]
-    ldr x25, [sp, #200]
-    ldr x26, [sp, #208]
-    ldr x27, [sp, #216]
-    ldr x28, [sp, #224]
-    ldr x29, [sp, #232]
+    // SP_EL0 must point to the process stack top after the saved frame.
+    mov x0, x1
+    add x0, x0, #272
+    msr SP_EL0, x0
 
-    // Restore saved PC/return target
-    ldr x30, [sp, #240]
+    // Restore process GPRs except x0/x1 and x29/x30 for now.
+    ldp x2, x3, [x1, #16]
+    ldp x4, x5, [x1, #32]
+    ldp x6, x7, [x1, #48]
+    ldp x8, x9, [x1, #64]
+    ldp x10, x11, [x1, #80]
+    ldp x12, x13, [x1, #96]
+    ldp x14, x15, [x1, #112]
+    ldp x16, x17, [x1, #128]
+    ldp x18, x19, [x1, #144]
+    ldp x20, x21, [x1, #160]
+    ldp x22, x23, [x1, #176]
+    ldp x24, x25, [x1, #192]
+    ldp x26, x27, [x1, #208]
 
-    // 10) add 16*16 to sp
-    add sp, sp, #264
+    // Re-arm the timer for the next preemption tick.
+    sub sp, sp, #16
+    stp x0, x1, [sp]
+    bl clear_timer
+    ldp x0, x1, [sp]
+    add sp, sp, #16
 
-    // 11) return into saved process entry
-    ret
+    // Restore remaining process registers.
+    ldr x28, [x1, #224]
+    ldr x29, [x1, #232]
+    ldr x30, [x1, #240]
+    ldr x0, [x1, #0]
+    ldr x1, [x1, #8]
+
+    // Re-enable IRQ and return from exception into EL0.
+    msr DAIFClr, #0x2
+    eret
 
 restore_halt:
     b restore_halt
