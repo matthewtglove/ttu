@@ -170,6 +170,7 @@ restore_context:   // Note that this is where the inline assembly in main jumps
     ldp x22, x23, [x1, #176]
     ldp x24, x25, [x1, #192]
     ldp x26, x27, [x1, #208]
+    ldr x28, [x1, #224]
 
     // Re-arm the timer for the next preemption tick.
     sub sp, sp, #16
@@ -179,7 +180,6 @@ restore_context:   // Note that this is where the inline assembly in main jumps
     add sp, sp, #16
 
     // Restore remaining process registers.
-    ldr x28, [x1, #224]
     ldr x29, [x1, #232]
     ldr x30, [x1, #240]
     ldr x0, [x1, #0]
