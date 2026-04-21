@@ -81,6 +81,8 @@ def start_client():
             print("[-] Connection refused. Is Bob's server running?")
         except ConnectionError as e:
             print(f"[-] Handshake failed: {e}")
+        except ValueError as e:
+            print(f"[-] Invalid peer public key or cryptographic parameters: {e}")
 
 if __name__ == "__main__":
     start_client()
