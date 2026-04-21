@@ -1,0 +1,54 @@
+CSC 4575: Capstone Project
+Secure Hybrid Pipeline – Week 2
+Department of Computer Science
+Spring 2026
+Format: 3-Week Cumulative Engineering Project (Week 2 Phase)
+Infrastructure: Python 3, Docker (Network Namespaces), Wireshark
+CAE-CD Alignment: CAE-CD KUs (BCY, ACR, CSP, IAS)
+1 Week 2 Overview: The Asymmetric Bootstrap
+In Week 1, you successfully secured a data payload using AES-256-GCM. However, you relied on a
+hardcoded Pre-Shared Key (PSK). In the real world, relying on pre-shared keys over unmonitored
+networks is impossible—this is the Key Distribution Problem.
+This week, you will delete the hardcoded PSK. You will implement an Elliptic Curve Diffie-
+Hellman (ECDH) key exchange to dynamically negotiate a shared secret over the public socket.
+You will then pass this mathematical secret through a Key Derivation Function (HKDF) to
+safely generate the 32-byte symmetric key needed for your Week 1 AES-GCM cipher.
+2 Cryptographic Implementation Goals
+You will use the cryptography.hazmat.primitives.asymmetric.x25519 module for the key ex-
+change, utilizing the modern X25519 elliptic curve.
+2.1 Phase A: The ECDH Handshake
+1. Key Generation: Both the Client (Alice) and the Server (Bob) must generate ephemeral
+private keys (a and b) using X25519PrivateKey.generate().
+2. Public Key Extraction: Both parties extract their public keys (A = aG and B = bG) and
+serialize them into raw bytes for transmission.
+3. The Exchange: Alice sends A to Bob. Bob sends B to Alice.
+4. The Shared Scalar: Both parties use their private key and the other party’s public key to
+compute the shared secret S.
+1
+2.2 Phase B: Key Derivation (HKDF)
+The shared scalar S resulting from elliptic curve operations is not uniformly random and should
+never be used directly as an AES key. You must pass S through an HMAC-based Key Derivation
+Function (HKDF) using SHA-256 to derive a cryptographically safe 32-byte key.
+2.3 Phase C: AI Research & Validation Task
+1. The Prompt: Ask a Generative AI (e.g., Gemini, ChatGPT): “Compare the elliptic curves
+X25519 and NIST P-256. What are the historical security concerns regarding the NIST curve,
+and why was X25519 developed as an alternative?”
+2. The Validation: Read the AI’s output. Then, look up RFC 7748 (Elliptic Curves for
+Security).
+3. The Deliverable: In your lab report, write a 1-paragraph summary evaluating the AI’s
+claims. Did the AI accurately describe the difference between Weierstrass curves and Mont-
+gomery curves? Do you believe the historical concerns surrounding the NIST curves are valid
+engineering concerns or conspiracy theories? Justify your answer.
+2.4 Phase D: Week 2 Verification (Wireshark)
+Run your updated client and server. Capture the entire transaction in Wireshark.
+•Proof 1 (The Handshake): Take a screenshot of the TCP stream in Wireshark. You must
+clearly highlight the exchange of the 32-byte public keys occurring in plaintext over the wire.
+•Proof 2 (The Payload): Highlight the subsequent transmission. Prove that despite the
+public keys being visible, the resulting AES-GCM payload remains encrypted and completely
+indistinguishable from random noise.
+3 Looking Ahead (Preview)
+By the end of Week 2, you have a functional hybrid cryptosystem. However, it is currently vulner-
+able to an active Man-in-the-Middle (MitM) attack. Because the public keys are exchanged
+without authentication, an attacker could intercept the connection and negotiate separate keys
+with both Alice and Bob. In Week 3, we will introduce long-term RSA or ECDSA identity keys
+to digitally sign the exchange, closing this vulnerability.
