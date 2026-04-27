@@ -1,0 +1,52 @@
+CSC 4575: Capstone Project
+Secure Hybrid Pipeline – Week 3
+Department of Computer Science
+Spring 2026
+Format: 3-Week Cumulative Engineering Project (Week 3 Phase)
+Infrastructure: Python 3, Docker (Network Namespaces), Wireshark
+CAE-CD Alignment: CAE-CD KUs (BCY, ACR, CSP, IAS)
+1 Week 3 Overview: Identity & Integrity
+Your Week 2 implementation successfully solved the Key Distribution Problem using an Elliptic
+Curve Diffie-Hellman (ECDH) exchange. However, it introduced a catastrophic new vulnerability:
+an active Man-in-the-Middle (MitM) attack. Because your ephemeral X25519 public keys were
+sent in plaintext without any proof of origin, an attacker could intercept the connection, establish
+two separate shared secrets (one with Alice, one with Bob), and quietly decrypt and re-encrypt the
+traffic in real time.
+This week, you will close this vulnerability by introducing Identity. You will use long-term
+RSA-2048 keys to digitally sign your ephemeral ECDH public points before transmission.
+2 Cryptographic Implementation Goals
+You must update your handshake logic to incorporate RSA digital signatures. To do this, you will
+use the cryptography.hazmat library, specifically the asymmetric.padding.PSS module.
+2.1 Phase A: Long-Term Key Generation
+We have provided a utility script named generate keys.py. Run this script once on your host ma-
+chine to generate alice private.pem, alice public.pem, bob private.pem, and bob public.pem.
+Note: In a real-world scenario, public keys are distributed via Digital Certificates (X.509). For this
+lab, we will simulate a trusted out-of-band exchange by simply loading the peer’s public key from
+disk.
+2.2 Phase B: The Authenticated Handshake
+Modify your Week 2 Client and Server code to perform the following:
+1. Load Identity: Load your own RSA private key and your peer’s RSA public key from the
+.pem files.
+1
+2. Sign: After generating your ephemeral X25519 public key, use your RSA private key to
+generate a digital signature of those public bytes.
+3. Transmit: Send both the 256-byte signature and the 32-byte X25519 public key over the
+socket.
+4. Verify: When you receive your peer’s transmission, use their RSA public key to verify the
+signature against the received X25519 bytes. If the verification fails, drop the connection
+immediately (raise an exception).
+2.3 Phase C: AI Research Task (Side-Channel Defense)
+1. The Prompt: Instruct a Generative AI (e.g., Gemini, ChatGPT): “Write a Python script
+demonstrating a timing attack against a standard string comparison (==) used for verifying
+a MAC or Signature. Explain how the O(n) early-exit leak allows an attacker to guess the
+value character-by-character.”
+2. The Validation: Perform a static analysis of the AI’s generated code. Does it accurately
+represent a timing leak?
+3. The Deliverable: In your lab report, explain the timing vulnerability. Then, research and
+explain how Python’s hmac.compare digest() operates in O(1) constant time to thwart this
+specific side-channel attack.
+2.4 Phase D: Final Lab Report Submission
+Congratulations! You have manually built the core architecture of a modern secure protocol (com-
+bining RSA, ECDH, HKDF, and AES-GCM). Compile your final Python scripts, your annotated
+Wireshark captures (from Weeks 1 and 2), and your three AI Research analyses into a single,
+cohesive Laboratory Report. Submit this report to the LMS.
