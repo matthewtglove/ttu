@@ -5,6 +5,8 @@ from cryptography.hazmat.primitives.asymmetric import rsa, padding
 from cryptography.hazmat.primitives.asymmetric import x25519
 from cryptography.hazmat.primitives.kdf.hkdf import HKDF
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.primitives.serialization import Encoding, PublicFormat
+from cryptography.exceptions import InvalidSignature
 
 def load_keys():
     """Loads Alice's private identity key and Bob's public identity key."""
@@ -110,6 +112,12 @@ def start_client():
             
         except ConnectionRefusedError:
             print("[-] Connection refused. Is Bob's server running?")
+        except ConnectionError as e:
+            print(f"[-] Handshake failed: {e}")
+        except InvalidSignature:
+            print("[-] Handshake failed: Invalid signature from Bob. Authentication failed.")
+        except ValueError as e:
+            print(f"[-] Invalid peer public key or cryptographic parameters: {e}")
 
 if __name__ == "__main__":
     start_client()

@@ -5,6 +5,7 @@ from cryptography.hazmat.primitives.asymmetric import x25519
 from cryptography.hazmat.primitives.kdf.hkdf import HKDF
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.exceptions import InvalidTag, InvalidSignature
+from cryptography.hazmat.primitives.serialization import Encoding, PublicFormat
 
 def load_keys():
     """Loads Bob's private identity key and Alice's public identity key."""
@@ -13,6 +14,34 @@ def load_keys():
     with open("alice_public.pem", "rb") as f:
         alice_pub = serialization.load_pem_public_key(f.read())
     return bob_priv, alice_pub
+
+def decrypt_payload(nonce: bytes, ciphertext: bytes, tag: bytes, key: bytes) -> bytes:
+    cipher = Cipher(algorithms.AES(key), modes.GCM(nonce, tag))
+    decryptor = cipher.decryptor()
+    plaintext = decryptor.update(ciphertext) + decryptor.finalize()
+    return plaintext
+
+def recv_exact(sock: socket.socket, size: int) -> bytes:
+    data = b""
+    while len(data) < size:
+        chunk = sock.recv(size - len(data))
+        if not chunk:
+            raise ConnectionError("Connection closed before receiving expected data.")
+        data += chunk
+    return data
+
+def derive_aes_key(shared_secret: bytes) -> bytes:
+    """
+    TODO: Implement HKDF to derive a 32-byte AES key.
+    Use SHA256 as the algorithm, length=32, salt=None, info=b'handshake data'.
+    """
+    hkdf = HKDF(
+        algorithm=hashes.SHA256(),
+        length=32,
+        salt=None,
+        info=b"handshake data",
+    )
+    return hkdf.derive(shared_secret)
 
 def start_server():
     host, port = '0.0.0.0', 65432
