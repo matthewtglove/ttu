@@ -9,7 +9,7 @@ services:
       - ./:/app
     working_dir: /app
     # Install the cryptography library, then keep the container alive
-    command: bash -c "pip install cryptography && sleep infinity"
+    command: bash -c "pip install cryptography && python server.py"
     networks:
       - crypto_net
 
@@ -19,7 +19,7 @@ services:
     volumes:
       - ./:/app
     working_dir: /app
-    command: bash -c "pip install cryptography && sleep infinity"
+    command: bash -c "pip install cryptography && sleep 2 && python client.py"
     networks:
       - crypto_net
     depends_on:
