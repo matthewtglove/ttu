@@ -1,0 +1,87 @@
+CSC 4575: Capstone Project
+Secure Hybrid Pipeline
+Department of Computer Science
+Spring 2026
+Format: 3-Week Cumulative Engineering Project & Final Laboratory Report
+Infrastructure: Python 3, Docker (Network Namespaces), Wireshark
+CAE-CD Alignment: CAE-CD KUs (BCY, ACR, CSP, IAS)
+1 Project Overview
+Over the next three weeks, you will transition from cryptographic theory to practical security
+engineering. You will build a secure, hybrid cryptographic pipeline between two Docker containers
+across a custom bridged network.
+By the end of this capstone, you will have manually implemented the “bootstrapping” process
+used by modern secure protocols (like TLS and Signal): establishing an asymmetric key exchange,
+verifying identity with digital signatures, and securing a bulk data payload using an authenticated
+symmetric cipher.
+Grading Rubric (100 Points Total)
+Your final laboratory report and code submission will be evaluated on the following distribution:
+•60% - Functional & Defensive Codebase: Python implementation using cryptography.hazmat.
+Code must execute without errors and strictly adhere to defensive best practices (e.g., constant-
+time comparisons, secure entropy, zero nonce reuse).
+•20% - Network Verification (Wireshark): Submission of annotated .pcap files proving
+that plaintext data is never exposed on the wire and demonstrating the sequential flow of the
+cryptographic handshake.
+•20% - AI Research & Standards Validation: Accurate documentation of your weekly AI
+research prompts, the AI’s output, and your manual verification of the AI’s claims against official
+NIST/RFC standards.
+2 Week 1: Infrastructure & The Symmetric Payload
+Goal: Establish the network pipeline and secure a data stream using AES-256-GCM with a pre-
+shared key.
+1
+2.1 Phase A: The Infrastructure Setup
+1. Docker Environment: We have provided a docker-compose.yml file that establishes two
+services (alice node and bob node) on a custom bridged network named br-crypto.
+2. Packet Capture: You must attach Wireshark or tcpdump to this specific Docker bridge
+interface on your host VM. This ensures you only capture your application traffic without
+background OS noise.
+3. Skeleton Code: Review the provided server.py and client.py files. They contain stan-
+dard TCP socket boilerplate. Your job is to implement the cryptography.
+2.2 Phase B: Cryptographic Implementation (AES-GCM)
+You must implement the encrypt payload() and decrypt payload() functions using the Python
+cryptography.hazmat.primitives.ciphers module.
+•The Cipher: AES-256 in Galois/Counter Mode (GCM).
+•The Key: For Week 1 only, use the hardcoded 32-byte pre-shared key provided in the
+skeleton file.
+•The Nonce: You must generate a strictly unique 12-byte nonce for every single encryption
+operation using os.urandom().
+•Transmission: Over the socket, you must send the combination of the Nonce, the Ciphertext,
+and the GCM Authentication Tag.
+2.3 Phase C: AI Research & Validation Task
+As covered in Module 3, AI is an explanation amplifier, not an authoritative source.
+1. The Prompt: Ask a Generative AI (e.g., Gemini, ChatGPT, Claude) the following: “Explain
+the mathematical difference between AES-CBC and AES-GCM. Why does AES-GCM fail
+catastrophically if a nonce is reused?”
+2. The Validation: Read the AI’s response. Then, open NIST SP 800-38D (Recommenda-
+tion for Block Cipher Modes of Operation: Galois/Counter Mode).
+3. The Deliverable: Write a 1-paragraph summary in your lab report detailing whether the
+AI’s explanation of Galois field multiplication and nonce constraints aligned with the NIST
+standard. Did the AI hallucinate or oversimplify any mathematical constraints?
+2.4 Phase D: Week 1 Verification
+Run your client and server. Capture the transaction in Wireshark.
+•Proof 1 (Confidentiality): Take a screenshot of the TCP payload in Wireshark. Prove
+that your secret message is indistinguishable from random noise.
+•Proof 2 (Integrity): Temporarily modify your code to flip a single bit in the ciphertext
+before it is processed by decrypt payload(). Take a screenshot of the resulting InvalidTag
+exception, proving your GCM implementation detects tampering.
+2
+3 Lab Execution Instructions
+To execute the Week 1 lab, follow these operational commands on your host machine:
+1. Start the Infrastructure: Run the following command in the directory containing your
+project files:
+docker -compose up -d
+2. Attach Wireshark: Open Wireshark on your host machine and begin capturing on the
+br-crypto interface. Filter the traffic using the display filter: tcp.port == 65432.
+3. Run the Server (Bob): In your terminal, execute:
+docker exec -it bob_node python server.py
+4. Run the Client (Alice): Open a second, separate terminal and execute:
+docker exec -it alice_node python client.py
+5. Shutdown: When you are finished, clean up the Docker environment by running:
+docker -compose down
+4 Looking Ahead (Preview)
+•Week 2 (The Asymmetric Bootstrap): You will delete the hardcoded AES key. You
+will implement an Elliptic Curve Diffie-Hellman (ECDH) exchange over the wire (using the
+X25519 curve) to dynamically generate a shared scalar S, which you will pass through an
+HKDF to derive your AES key.
+•Week 3 (Identity & Integrity): You will generate RSA or ECDSA identity keys to digitally
+sign your ephemeral ECDH public points before transmission, thwarting active Man-in-the-
+Middle attacks.
