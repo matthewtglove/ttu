@@ -36,7 +36,7 @@ def recv_exact(sock: socket.socket, size: int) -> bytes:
 
 def derive_aes_key(shared_secret: bytes) -> bytes:
     """
-    TODO: Implement HKDF to derive a 32-byte AES key.
+    DONE: Implement HKDF to derive a 32-byte AES key.
     Must match the Server's HKDF parameters exactly.
     """
     hkdf = HKDF(
@@ -58,16 +58,16 @@ def start_client():
             print(f"[*] Connected to Bob at {host}:{port}")
             
             # --- PHASE 1: AUTHENTICATED ECDH HANDSHAKE ---
-            # TODO: 1. Generate Alice's ephemeral X25519PrivateKey
+            # DONE: 1. Generate Alice's ephemeral X25519PrivateKey
             alice_private_key = x25519.X25519PrivateKey.generate()
 
-            # TODO: 2. Extract Alice's X25519 public bytes
+            # DONE: 2. Extract Alice's X25519 public bytes
             alice_public_bytes = alice_private_key.public_key().public_bytes(
                 encoding=Encoding.Raw,
                 format=PublicFormat.Raw,
             )
             
-            # TODO: 3. Use alice_identity_priv to SIGN the X25519 public bytes using padding.PSS and hashes.SHA256()
+            # DONE: 3. Use alice_identity_priv to SIGN the X25519 public bytes using padding.PSS and hashes.SHA256()
             signature = alice_identity_priv.sign(
                 alice_public_bytes,
                 padding.PSS(
@@ -77,15 +77,15 @@ def start_client():
                 hashes.SHA256()
             )
             
-            # TODO: 4. Send Alice's signature (256 bytes) and Alice's X25519 public key (32 bytes) to Bob.
+            # DONE: 4. Send Alice's signature (256 bytes) and Alice's X25519 public key (32 bytes) to Bob.
             s.sendall(signature + alice_public_bytes)
             
-            # TODO: 5. Receive Bob's data (Format: 256-byte signature + 32-byte X25519 public key)
+            # DONE: 5. Receive Bob's data (Format: 256-byte signature + 32-byte X25519 public key)
             bob_data = recv_exact(s, 288)
             bob_signature = bob_data[:256]
             bob_public_bytes = bob_data[256:]
 
-            # TODO: 6. Use bob_identity_pub to VERIFY Bob's signature against his X25519 public bytes.
+            # DONE: 6. Use bob_identity_pub to VERIFY Bob's signature against his X25519 public bytes.
             bob_identity_pub.verify(
                 bob_signature,
                 bob_public_bytes,
@@ -96,17 +96,17 @@ def start_client():
                 hashes.SHA256()
             )
             
-            # TODO: 7. Compute the shared_secret using the verified X25519 points.
+            # DONE: 7. Compute the shared_secret using the verified X25519 points.
             shared_secret = alice_private_key.exchange(
                 x25519.X25519PublicKey.from_public_bytes(bob_public_bytes)
             )
 
             # --- PHASE 2: KEY DERIVATION ---
-            # TODO: Derive the AES key using HKDF (Same as Week 2)
+            # DONE: Derive the AES key using HKDF (Same as Week 2)
             aes_key = derive_aes_key(shared_secret)
             
             # --- PHASE 3: SECURE PAYLOAD ---
-            # TODO: Encrypt and send the AES-GCM payload (Same as Week 1 & 2)
+            # DONE: Encrypt and send the AES-GCM payload (Same as Week 1 & 2)
             nonce, ciphertext, tag = encrypt_payload(message, aes_key)
             s.sendall(nonce + tag + ciphertext)
             

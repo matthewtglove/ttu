@@ -32,7 +32,7 @@ def recv_exact(sock: socket.socket, size: int) -> bytes:
 
 def derive_aes_key(shared_secret: bytes) -> bytes:
     """
-    TODO: Implement HKDF to derive a 32-byte AES key.
+    DONE: Implement HKDF to derive a 32-byte AES key.
     Use SHA256 as the algorithm, length=32, salt=None, info=b'handshake data'.
     """
     hkdf = HKDF(
@@ -59,16 +59,16 @@ def start_server():
 
             try:
                 # --- PHASE 1: AUTHENTICATED ECDH HANDSHAKE ---
-                # TODO: 1. Generate Bob's ephemeral X25519PrivateKey
+                # DONE: 1. Generate Bob's ephemeral X25519PrivateKey
                 bob_private_key = x25519.X25519PrivateKey.generate()
 
-                # TODO: 2. Extract Bob's X25519 public bytes
+                # DONE: 2. Extract Bob's X25519 public bytes
                 bob_public_bytes = bob_private_key.public_key().public_bytes(
                     encoding=Encoding.Raw,
                     format=PublicFormat.Raw,
                 )
                 
-                # TODO: 3. Use bob_identity_priv to SIGN the X25519 public bytes using padding.PSS and hashes.SHA256()
+                # DONE: 3. Use bob_identity_priv to SIGN the X25519 public bytes using padding.PSS and hashes.SHA256()
                 signature = bob_identity_priv.sign(
                     bob_public_bytes,
                     padding.PSS(
@@ -78,12 +78,12 @@ def start_server():
                     hashes.SHA256()
                 )
                 
-                # TODO: 4. Receive Alice's data (Format: 256-byte signature + 32-byte X25519 public key)
+                # DONE: 4. Receive Alice's data (Format: 256-byte signature + 32-byte X25519 public key)
                 alice_data = recv_exact(conn, 288)
                 alice_signature = alice_data[:256]
                 alice_public_bytes = alice_data[256:]
 
-                # TODO: 5. Use alice_identity_pub to VERIFY Alice's signature against her X25519 public bytes.
+                # DONE: 5. Use alice_identity_pub to VERIFY Alice's signature against her X25519 public bytes.
                 #          (If verification fails, cryptography will raise an InvalidSignature exception. Let it crash the connection.)
                 alice_identity_pub.verify(
                     alice_signature,
@@ -95,20 +95,20 @@ def start_server():
                     hashes.SHA256()
                 )
 
-                # TODO: 6. Send Bob's signature and Bob's X25519 public bytes to Alice.
+                # DONE: 6. Send Bob's signature and Bob's X25519 public bytes to Alice.
                 conn.sendall(signature + bob_public_bytes)
 
-                # TODO: 7. Compute the shared_secret using the verified X25519 points.
+                # DONE: 7. Compute the shared_secret using the verified X25519 points.
                 shared_secret = bob_private_key.exchange(
                     x25519.X25519PublicKey.from_public_bytes(alice_public_bytes)
                 )
 
                 # --- PHASE 2: KEY DERIVATION ---
-                # TODO: Derive the AES key using HKDF (Same as Week 2)
+                # DONE: Derive the AES key using HKDF (Same as Week 2)
                 aes_key = derive_aes_key(shared_secret)
                 
                 # --- PHASE 3: RECEIVE PAYLOAD ---
-                # TODO: Receive and decrypt the AES-GCM payload (Same as Week 1 & 2)
+                # DONE: Receive and decrypt the AES-GCM payload (Same as Week 1 & 2)
                 chunks = []
                 while True:
                         chunk = conn.recv(4096)
@@ -122,8 +122,8 @@ def start_server():
                     return
 
                 if data:
-                        # TODO: Extract nonce, tag, and ciphertext.
-                        # TODO: Call your Week 1 decrypt_payload() using the NEW derived key.
+                        # DONE: Extract nonce, tag, and ciphertext.
+                        # DONE: Call your Week 1 decrypt_payload() using the NEW derived key.
                         if len(data) < 28:
                             print("[-] Payload too short to contain nonce + tag + ciphertext.")
                             return
