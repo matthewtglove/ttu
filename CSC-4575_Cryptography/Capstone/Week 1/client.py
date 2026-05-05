@@ -41,6 +41,9 @@ def start_client():
             # TODO: Transmit the data. 
             # Format requirement: nonce (12 bytes) + tag (16 bytes) + ciphertext
             # Example: s.sendall(nonce + tag + ciphertext)
+            
+            # To make an invalid tag exception:
+            # ciphertext = bytes([ciphertext[0] ^ 0x01]) + ciphertext[1:]
             s.sendall(nonce + tag + ciphertext)
             
             print("[*] Encrypted payload sent over the wire.")
