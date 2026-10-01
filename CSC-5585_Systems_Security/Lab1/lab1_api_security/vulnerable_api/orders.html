@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>VulnMart - Orders</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f3f4f6;
+
+            color: #1f2937;
+        }
+
+
+        /* ================================================================
+           NAVIGATION
+           ================================================================ */
+
+        .navbar {
+
+            height: 60px;
+
+            background: #1f2937;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 30px;
+        }
+
+
+        .brand {
+
+            font-size: 20px;
+
+            font-weight: bold;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .nav-links a {
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            padding: 7px 10px;
+
+            border-radius: 5px;
+        }
+
+
+        .nav-links a:hover {
+
+            background: #374151;
+        }
+
+
+        .logout-button {
+
+            border: none;
+
+            background: #dc2626;
+
+            color: white;
+
+            padding: 7px 12px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            font-size: 14px;
+        }
+
+
+        .logout-button:hover {
+
+            background: #b91c1c;
+        }
+
+
+        /* ================================================================
+           MAIN CONTENT
+           ================================================================ */
+
+        .container {
+
+            width: 100%;
+
+            max-width: 900px;
+
+            margin: 35px auto;
+
+            padding: 0 20px;
+        }
+
+
+        h1 {
+
+            margin-bottom: 5px;
+        }
+
+
+        .subtitle {
+
+            color: #6b7280;
+
+            margin-top: 0;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* ================================================================
+           CARDS
+           ================================================================ */
+
+        .card {
+
+            background: white;
+
+            border-radius: 10px;
+
+            padding: 25px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 3px 12px rgba(
+                    0,
+                    0,
+                    0,
+                    0.08
+                );
+        }
+
+
+        .card h2 {
+
+            margin-top: 0;
+
+            margin-bottom: 20px;
+
+            font-size: 20px;
+        }
+
+
+        /* ================================================================
+           USER ID LOOKUP
+           ================================================================ */
+
+        .lookup-form {
+
+            display: flex;
+
+            gap: 10px;
+        }
+
+
+        .lookup-form input {
+
+            flex: 1;
+
+            padding: 11px;
+
+            border:
+                1px solid #d1d5db;
+
+            border-radius: 5px;
+
+            font-size: 14px;
+        }
+
+
+        .lookup-form button {
+
+            padding: 11px 20px;
+
+            border: none;
+
+            border-radius: 5px;
+
+            background: #2563eb;
+
+            color: white;
+
+            cursor: pointer;
+
+            font-weight: 600;
+        }
+
+
+        .lookup-form button:hover {
+
+            background: #1d4ed8;
+        }
+
+
+        .hint {
+
+            color: #6b7280;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            margin-bottom: 0;
+        }
+
+
+        /* ================================================================
+           ORDERS TABLE
+           ================================================================ */
+
+        .orders-table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+        }
+
+
+        .orders-table th {
+
+            text-align: left;
+
+            padding: 12px;
+
+            background: #f9fafb;
+
+            border-bottom:
+                2px solid #e5e7eb;
+
+            color: #4b5563;
+
+            font-size: 13px;
+        }
+
+
+        .orders-table td {
+
+            padding: 13px 12px;
+
+            border-bottom:
+                1px solid #e5e7eb;
+
+            font-size: 14px;
+        }
+
+
+        .orders-table tr:last-child td {
+
+            border-bottom: none;
+        }
+
+
+        .status {
+
+            display: inline-block;
+
+            padding: 4px 8px;
+
+            border-radius: 12px;
+
+            background: #dcfce7;
+
+            color: #166534;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+
+        .amount {
+
+            font-weight: 600;
+        }
+
+
+        .empty {
+
+            padding: 25px;
+
+            text-align: center;
+
+            color: #6b7280;
+        }
+
+
+        /* ================================================================
+           SECURITY LAB PANEL
+           ================================================================ */
+
+        .lab-warning {
+
+            background: #fff7ed;
+
+            border:
+                1px solid #fed7aa;
+
+            border-radius: 8px;
+
+            padding: 20px;
+
+            margin-top: 20px;
+        }
+
+
+        .lab-warning h3 {
+
+            margin-top: 0;
+
+            color: #c2410c;
+        }
+
+
+        .lab-warning p {
+
+            line-height: 1.6;
+
+            margin-bottom: 8px;
+        }
+
+
+        .request-display {
+
+            margin-top: 15px;
+
+            padding: 12px;
+
+            background: #1f2937;
+
+            color: #e5e7eb;
+
+            border-radius: 5px;
+
+            font-family: monospace;
+
+            font-size: 13px;
+
+            overflow-x: auto;
+        }
+
+
+        .success-message {
+
+            background: #ecfdf5;
+
+            border:
+                1px solid #a7f3d0;
+
+            color: #065f46;
+
+            padding: 12px;
+
+            border-radius: 6px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .error {
+
+            background: #fef2f2;
+
+            border:
+                1px solid #fecaca;
+
+            color: #b91c1c;
+
+            padding: 12px;
+
+            border-radius: 6px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .hidden {
+
+            display: none;
+        }
+
+
+        /* ================================================================
+           RESPONSIVE
+           ================================================================ */
+
+        @media (max-width: 650px) {
+
+            .navbar {
+
+                padding: 0 15px;
+            }
+
+
+            .nav-links a {
+
+                display: none;
+            }
+
+
+            .container {
+
+                margin-top: 20px;
+            }
+
+
+            .lookup-form {
+
+                flex-direction: column;
+            }
+
+
+            .orders-table {
+
+                font-size: 12px;
+            }
+
+
+            .orders-table th,
+            .orders-table td {
+
+                padding: 8px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================================
+     NAVIGATION
+     ====================================================================== -->
+
+<nav class="navbar">
+
+
+    <div class="brand">
+        VulnMart
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="/profile.html">
+            Profile
+        </a>
+
+        <a href="/orders.html">
+            Orders
+        </a>
+
+        <button
+            class="logout-button"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </div>
+
+
+</nav>
+
+
+<!-- =====================================================================
+     MAIN CONTENT
+     ====================================================================== -->
+
+<main class="container">
+
+
+    <h1>
+        My Orders
+    </h1>
+
+
+    <p class="subtitle">
+        View orders associated with a user account
+    </p>
+
+
+    <!-- ================================================================
+         ERROR / SUCCESS MESSAGES
+         ================================================================ -->
+
+    <div
+        id="errorMessage"
+        class="error hidden"
+    ></div>
+
+
+    <div
+        id="successMessage"
+        class="success-message hidden"
+    ></div>
+
+
+    <!-- ================================================================
+         USER ID LOOKUP
+         ================================================================ -->
+
+    <div class="card">
+
+
+        <h2>
+            Order Lookup
+        </h2>
+
+
+        <div class="lookup-form">
+
+
+            <input
+                type="number"
+                id="userIdInput"
+                min="1"
+                placeholder="Enter user ID"
+            >
+
+
+            <button
+                onclick="loadOrders()"
+            >
+                View Orders
+            </button>
+
+
+        </div>
+
+
+        <p class="hint">
+
+            Enter the user ID whose orders you want to retrieve.
+
+            <br>
+
+            <strong>Lab exercise:</strong>
+
+            Start with your own user ID, then change it to
+            another user's ID.
+
+        </p>
+
+
+    </div>
+
+
+    <!-- ================================================================
+         ORDERS
+         ================================================================ -->
+
+    <div class="card">
+
+
+        <h2 id="ordersTitle">
+            Orders
+        </h2>
+
+
+        <div id="ordersContainer">
+
+            Loading orders...
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ================================================================
+         SECURITY LAB
+         ================================================================ -->
+
+    <div class="lab-warning">
+
+
+        <h3>
+            🔎 Lab: BOLA / IDOR
+        </h3>
+
+
+        <p>
+
+            You are authenticated with a JWT belonging to one user.
+
+            The API request contains a user ID that identifies the
+            object being requested.
+
+        </p>
+
+
+        <p>
+
+            <strong>Question:</strong>
+
+            Does the API verify that the authenticated user is
+            authorized to access that user's orders?
+
+        </p>
+
+
+        <p>
+
+            Try changing the user ID from
+
+            <strong>1</strong>
+
+            to
+
+            <strong>2</strong>.
+
+        </p>
+
+
+        <div
+            id="requestDisplay"
+            class="request-display"
+        >
+            Request will appear here...
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+<script>
+
+
+// ============================================================================
+// AUTHENTICATION
+// ============================================================================
+
+const token =
+    localStorage.getItem("token");
+
+
+if (!token) {
+
+    window.location.href = "/";
+
+}
+
+
+// ============================================================================
+// READ USER ID
+// ============================================================================
+//
+// Login redirects Alice to:
+//
+//     /profile.html?user_id=1
+//
+// When navigating to Orders we need to determine which user ID should
+// initially be displayed.
+//
+
+function getInitialUserId() {
+
+
+    // First try the profile URL.
+
+    const profileParams =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const urlUserId =
+        profileParams.get("user_id");
+
+
+    if (urlUserId) {
+
+        return urlUserId;
+
+    }
+
+
+    // ------------------------------------------------------------------------
+    // Otherwise decode the JWT payload.
+    //
+    // Again, this is only used by the frontend to determine which object
+    // to display initially. It is NOT an authorization mechanism.
+    // ------------------------------------------------------------------------
+
+    try {
+
+        const parts =
+            token.split(".");
+
+
+        const payload =
+            JSON.parse(
+                atob(parts[1])
+            );
+
+
+        return payload.user_id;
+
+    } catch (error) {
+
+        console.error(
+            "Unable to decode token:",
+            error
+        );
+
+        return null;
+
+    }
+
+}
+
+
+// ============================================================================
+// INITIALIZE PAGE
+// ============================================================================
+
+const initialUserId =
+    getInitialUserId();
+
+
+if (initialUserId) {
+
+    document.getElementById(
+        "userIdInput"
+    ).value = initialUserId;
+
+
+    loadOrders();
+
+} else {
+
+    showError(
+        "Unable to determine the current user."
+    );
+
+}
+
+
+// ============================================================================
+// LOAD ORDERS
+// ============================================================================
+
+async function loadOrders() {
+
+
+    clearMessages();
+
+
+    const userId =
+        document.getElementById(
+            "userIdInput"
+        ).value;
+
+
+    if (!userId) {
+
+        showError(
+            "Please enter a user ID."
+        );
+
+        return;
+
+    }
+
+
+    // ------------------------------------------------------------------------
+    // Display the actual API request.
+    //
+    // This is useful when demonstrating the lab in class because students
+    // can immediately see that the object identifier changes.
+    // ------------------------------------------------------------------------
+
+    document.getElementById(
+        "requestDisplay"
+    ).textContent =
+
+        "GET /api/users/" +
+        userId +
+        "/orders";
+
+
+    document.getElementById(
+        "ordersContainer"
+    ).innerHTML =
+        "Loading orders...";
+
+
+    document.getElementById(
+        "ordersTitle"
+    ).textContent =
+        "Orders for User " + userId;
+
+
+    try {
+
+
+        // --------------------------------------------------------------------
+        // THE IMPORTANT REQUEST
+        // --------------------------------------------------------------------
+        //
+        // The authentication token does NOT change.
+        //
+        // Only userId changes.
+        //
+        // --------------------------------------------------------------------
+
+        const response =
+            await fetch(
+                "/api/users/" +
+                encodeURIComponent(userId) +
+                "/orders",
+                {
+                    method: "GET",
+
+                    headers: {
+
+                        "Authorization":
+                            "Bearer " + token
+
+                    }
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            showError(
+                data.error ||
+                "Unable to retrieve orders."
+            );
+
+
+            document.getElementById(
+                "ordersContainer"
+            ).innerHTML = "";
+
+
+            return;
+
+        }
+
+
+        renderOrders(
+            data,
+            userId
+        );
+
+
+    } catch (error) {
+
+
+        console.error(
+            "Order request failed:",
+            error
+        );
+
+
+        showError(
+            "Unable to connect to the API."
+        );
+
+
+        document.getElementById(
+            "ordersContainer"
+        ).innerHTML = "";
+
+    }
+
+}
+
+
+// ============================================================================
+// RENDER ORDERS
+// ============================================================================
+
+function renderOrders(
+    orders,
+    userId
+) {
+
+
+    if (!orders || orders.length === 0) {
+
+
+        document.getElementById(
+            "ordersContainer"
+        ).innerHTML = `
+
+            <div class="empty">
+
+                No orders were found for
+                user ${escapeHtml(userId)}.
+
+            </div>
+
+        `;
+
+
+        return;
+
+    }
+
+
+    let html = `
+
+        <table class="orders-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Order ID
+                    </th>
+
+                    <th>
+                        User ID
+                    </th>
+
+                    <th>
+                        Item
+                    </th>
+
+                    <th>
+                        Amount
+                    </th>
+
+                    <th>
+                        Status
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+    `;
+
+
+    for (
+        const order of orders
+    ) {
+
+
+        html += `
+
+            <tr>
+
+                <td>
+                    ${escapeHtml(order.id)}
+                </td>
+
+                <td>
+                    ${escapeHtml(order.user_id)}
+                </td>
+
+                <td>
+                    ${escapeHtml(order.item)}
+                </td>
+
+                <td class="amount">
+                    $${escapeHtml(order.amount)}
+                </td>
+
+                <td>
+
+                    <span class="status">
+
+                        ${escapeHtml(order.status)}
+
+                    </span>
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+
+    html += `
+
+            </tbody>
+
+        </table>
+
+    `;
+
+
+    document.getElementById(
+        "ordersContainer"
+    ).innerHTML = html;
+
+
+    // ------------------------------------------------------------------------
+    // Display a lab message when the requested user differs from the
+    // authenticated user's ID.
+    // ------------------------------------------------------------------------
+
+    try {
+
+
+        const parts =
+            token.split(".");
+
+
+        const payload =
+            JSON.parse(
+                atob(parts[1])
+            );
+
+
+        const authenticatedUserId =
+            String(
+                payload.user_id
+            );
+
+
+        if (
+            authenticatedUserId !==
+            String(userId)
+        ) {
+
+
+            showSuccess(
+
+                "The API returned this user's orders even though " +
+
+                "your JWT belongs to user " +
+
+                authenticatedUserId +
+
+                ". This demonstrates BOLA/IDOR."
+
+            );
+
+        }
+
+    } catch (error) {
+
+        // Ignore token parsing errors here.
+        // The API remains responsible for authentication.
+
+    }
+
+}
+
+
+// ============================================================================
+// SUCCESS MESSAGE
+// ============================================================================
+
+function showSuccess(message) {
+
+
+    const element =
+        document.getElementById(
+            "successMessage"
+        );
+
+
+    element.textContent =
+        message;
+
+
+    element.classList.remove(
+        "hidden"
+    );
+
+}
+
+
+// ============================================================================
+// ERROR MESSAGE
+// ============================================================================
+
+function showError(message) {
+
+
+    const element =
+        document.getElementById(
+            "errorMessage"
+        );
+
+
+    element.textContent =
+        message;
+
+
+    element.classList.remove(
+        "hidden"
+    );
+
+}
+
+
+// ============================================================================
+// CLEAR MESSAGES
+// ============================================================================
+
+function clearMessages() {
+
+
+    document.getElementById(
+        "errorMessage"
+    ).classList.add(
+        "hidden"
+    );
+
+
+    document.getElementById(
+        "successMessage"
+    ).classList.add(
+        "hidden"
+    );
+
+}
+
+
+// ============================================================================
+// BASIC HTML ESCAPING
+// ============================================================================
+
+function escapeHtml(value) {
+
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+
+        return "";
+
+    }
+
+
+    return String(value)
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+
+}
+
+
+// ============================================================================
+// LOGOUT
+// ============================================================================
+
+function logout() {
+
+
+    localStorage.removeItem(
+        "token"
+    );
+
+
+    window.location.href = "/";
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

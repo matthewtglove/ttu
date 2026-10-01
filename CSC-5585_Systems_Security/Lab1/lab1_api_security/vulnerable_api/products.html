@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VulnMart - Product Search</title>
+<style>
+  body { font-family: sans-serif; max-width: 700px; margin: 40px auto; }
+  input { width: 60%; padding: 6px; }
+  button { padding: 6px 12px; }
+  pre { background: #f4f4f4; padding: 12px; overflow-x: auto; white-space: pre-wrap; }
+  table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+  th, td { border: 1px solid #ccc; padding: 6px 10px; text-align: left; }
+</style>
+</head>
+<body>
+
+<h2>VulnMart - Product / User Search</h2>
+<p>Search by username (try normal input first, then a payload):</p>
+
+<input type="text" id="search" placeholder="e.g. alice">
+<button onclick="doSearch()">Search</button>
+
+<h3>Raw response</h3>
+<pre id="output">(results will appear here)</pre>
+
+<h3>Table view</h3>
+<table id="resultsTable">
+  <thead><tr id="tableHead"></tr></thead>
+  <tbody id="tableBody"></tbody>
+</table>
+
+<script>
+async function doSearch() {
+  const search = document.getElementById("search").value;
+  const url = "/api/products?search=" + encodeURIComponent(search);
+
+  const output = document.getElementById("output");
+  const tableHead = document.getElementById("tableHead");
+  const tableBody = document.getElementById("tableBody");
+
+  tableHead.innerHTML = "";
+  tableBody.innerHTML = "";
+
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    output.textContent = JSON.stringify(data, null, 2);
+
+    if (Array.isArray(data) && data.length > 0) {
+      const cols = Object.keys(data[0]);
+      tableHead.innerHTML = cols.map(c => `<th>${c}</th>`).join("");
+      tableBody.innerHTML = data.map(row =>
+        "<tr>" + cols.map(c => `<td>${row[c]}</td>`).join("") + "</tr>"
+      ).join("");
+    }
+  } catch (err) {
+    output.textContent = "Error: " + err;
+  }
+}
+</script>
+
+</body>
+</html>

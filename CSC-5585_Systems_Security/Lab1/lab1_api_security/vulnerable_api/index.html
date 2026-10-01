@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>VulnMart - Login</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f3f4f6;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 4px 20px rgba(0, 0, 0, 0.10);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            margin: 0;
+
+            font-size: 30px;
+
+            color: #1f2937;
+        }
+
+        .logo p {
+            margin-top: 8px;
+
+            color: #6b7280;
+
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            color: #374151;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 11px 12px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 6px;
+
+            font-size: 15px;
+
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 2px rgba(37, 99, 235, 0.15);
+        }
+
+        button {
+            width: 100%;
+
+            padding: 12px;
+
+            margin-top: 5px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        button:disabled {
+            background: #93c5fd;
+
+            cursor: not-allowed;
+        }
+
+        .error {
+            display: none;
+
+            margin-top: 15px;
+
+            padding: 10px;
+
+            border-radius: 5px;
+
+            background: #fef2f2;
+
+            border: 1px solid #fecaca;
+
+            color: #b91c1c;
+
+            font-size: 14px;
+
+            text-align: center;
+        }
+
+        .demo-info {
+            margin-top: 25px;
+
+            padding: 12px;
+
+            background: #f9fafb;
+
+            border-radius: 6px;
+
+            font-size: 13px;
+
+            color: #6b7280;
+
+            line-height: 1.6;
+        }
+
+        .demo-info strong {
+            color: #374151;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="login-container">
+
+
+    <div class="logo">
+
+        <h1>VulnMart</h1>
+
+        <p>API Security Laboratory</p>
+
+    </div>
+
+
+    <form id="loginForm">
+
+
+        <div class="form-group">
+
+            <label for="username">
+                Username
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter username"
+                autocomplete="username"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter password"
+                autocomplete="current-password"
+                required
+            >
+
+        </div>
+
+
+        <button
+            type="submit"
+            id="loginButton"
+        >
+            Login
+        </button>
+
+
+        <div
+            id="errorMessage"
+            class="error"
+        ></div>
+
+
+    </form>
+
+
+    <div class="demo-info">
+
+        <strong>Lab accounts</strong><br>
+
+        Alice: <code>alice / alicepw</code><br>
+
+        Bob: <code>bob / bobpw</code><br>
+
+        Admin: <code>admin / adminpw</code>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+const loginForm =
+    document.getElementById("loginForm");
+
+const loginButton =
+    document.getElementById("loginButton");
+
+const errorMessage =
+    document.getElementById("errorMessage");
+
+
+// ============================================================================
+// LOGIN
+// ============================================================================
+
+loginForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        errorMessage.style.display = "none";
+
+        errorMessage.textContent = "";
+
+
+        const username =
+            document.getElementById("username").value.trim();
+
+        const password =
+            document.getElementById("password").value;
+
+
+        loginButton.disabled = true;
+
+        loginButton.textContent = "Logging in...";
+
+
+        try {
+
+
+            // ----------------------------------------------------------------
+            // Browser -> REST API
+            // ----------------------------------------------------------------
+
+            const response =
+                await fetch(
+                    "/api/login",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            username: username,
+                            password: password
+                        })
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            // ----------------------------------------------------------------
+            // Authentication failed
+            // ----------------------------------------------------------------
+
+            if (!response.ok) {
+
+                errorMessage.textContent =
+                    data.error ||
+                    "Invalid username or password.";
+
+                errorMessage.style.display =
+                    "block";
+
+                return;
+            }
+
+
+            // ----------------------------------------------------------------
+            // Authentication succeeded
+            // ----------------------------------------------------------------
+            //
+            // The server returned a JWT.
+            //
+            // We store it in localStorage so subsequent API requests
+            // can send:
+            //
+            // Authorization: Bearer <token>
+            //
+            // ----------------------------------------------------------------
+
+            localStorage.setItem(
+                "token",
+                data.token
+            );
+
+
+            // ----------------------------------------------------------------
+            // Decode the JWT payload.
+            //
+            // IMPORTANT:
+            //
+            // This does NOT authenticate or authorize the user.
+            //
+            // The token has already been created and signed by the server.
+            //
+            // We are only reading the user_id so the frontend knows
+            // which profile URL to display.
+            //
+            // ----------------------------------------------------------------
+
+            const tokenParts =
+                data.token.split(".");
+
+
+            const payload =
+                JSON.parse(
+                    atob(tokenParts[1])
+                );
+
+
+            // ----------------------------------------------------------------
+            // Redirect to the authenticated user's profile.
+            // ----------------------------------------------------------------
+
+            window.location.href =
+                "/profile.html?user_id=" +
+                encodeURIComponent(
+                    payload.user_id
+                );
+
+
+        } catch (error) {
+
+
+            console.error(
+                "Login error:",
+                error
+            );
+
+
+            errorMessage.textContent =
+                "Unable to connect to the API.";
+
+            errorMessage.style.display =
+                "block";
+
+
+        } finally {
+
+
+            loginButton.disabled = false;
+
+            loginButton.textContent = "Login";
+
+        }
+
+    }
+);
+
+
+// ============================================================================
+// CLEAR OLD TOKEN WHEN RETURNING TO LOGIN
+// ============================================================================
+//
+// This makes the login page behave predictably during the lab.
+// Students can always start a fresh authentication session.
+//
+
+if (
+    window.location.pathname === "/"
+) {
+
+    // Do not automatically log the user in.
+    // The previous token is removed so the student starts clean.
+
+    localStorage.removeItem("token");
+}
+
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+# Python virtual environment
+.venv/
+
+__pycache__/
+
+.vscode/
+
+# Specific lab solution directory
+lab1_api_security/secure_api/
+
+# Secrets and environment configurations
+*.env
+*.pem
+*.key

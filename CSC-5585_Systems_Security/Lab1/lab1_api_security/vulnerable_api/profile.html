@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>VulnMart - Profile</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f3f4f6;
+
+            color: #1f2937;
+        }
+
+
+        /* ================================================================
+           NAVIGATION
+           ================================================================ */
+
+        .navbar {
+
+            height: 60px;
+
+            background: #1f2937;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 30px;
+        }
+
+
+        .brand {
+
+            font-size: 20px;
+
+            font-weight: bold;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .nav-links a {
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            padding: 7px 10px;
+
+            border-radius: 5px;
+        }
+
+
+        .nav-links a:hover {
+
+            background: #374151;
+        }
+
+
+        .logout-button {
+
+            border: none;
+
+            background: #dc2626;
+
+            color: white;
+
+            padding: 7px 12px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            font-size: 14px;
+        }
+
+
+        .logout-button:hover {
+
+            background: #b91c1c;
+        }
+
+
+        /* ================================================================
+           MAIN CONTENT
+           ================================================================ */
+
+        .container {
+
+            width: 100%;
+
+            max-width: 850px;
+
+            margin: 35px auto;
+
+            padding: 0 20px;
+        }
+
+
+        h1 {
+
+            margin-bottom: 5px;
+        }
+
+
+        .subtitle {
+
+            color: #6b7280;
+
+            margin-top: 0;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* ================================================================
+           PROFILE CARD
+           ================================================================ */
+
+        .card {
+
+            background: white;
+
+            border-radius: 10px;
+
+            padding: 25px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 3px 12px rgba(
+                    0,
+                    0,
+                    0,
+                    0.08
+                );
+        }
+
+
+        .card h2 {
+
+            margin-top: 0;
+
+            margin-bottom: 20px;
+
+            font-size: 20px;
+        }
+
+
+        .profile-field {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 13px 0;
+
+            border-bottom:
+                1px solid #e5e7eb;
+        }
+
+
+        .profile-field:last-child {
+
+            border-bottom: none;
+        }
+
+
+        .field-label {
+
+            font-weight: 600;
+
+            color: #4b5563;
+        }
+
+
+        .field-value {
+
+            color: #111827;
+
+            text-align: right;
+
+            word-break: break-word;
+        }
+
+
+        /* ================================================================
+           OBJECT LOOKUP
+           ================================================================ */
+
+        .lookup-form {
+
+            display: flex;
+
+            gap: 10px;
+        }
+
+
+        .lookup-form input {
+
+            flex: 1;
+
+            padding: 10px;
+
+            border:
+                1px solid #d1d5db;
+
+            border-radius: 5px;
+
+            font-size: 14px;
+        }
+
+
+        .lookup-form button {
+
+            padding: 10px 18px;
+
+            border: none;
+
+            border-radius: 5px;
+
+            background: #2563eb;
+
+            color: white;
+
+            cursor: pointer;
+
+            font-weight: 600;
+        }
+
+
+        .lookup-form button:hover {
+
+            background: #1d4ed8;
+        }
+
+
+        .hint {
+
+            margin-top: 12px;
+
+            color: #6b7280;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        /* ================================================================
+           LAB WARNING
+           ================================================================ */
+
+        .lab-warning {
+
+            background: #fff7ed;
+
+            border:
+                1px solid #fed7aa;
+
+            border-radius: 8px;
+
+            padding: 18px;
+
+            margin-top: 20px;
+        }
+
+
+        .lab-warning h3 {
+
+            margin-top: 0;
+
+            color: #c2410c;
+        }
+
+
+        .lab-warning p {
+
+            margin-bottom: 0;
+
+            line-height: 1.6;
+        }
+
+
+        /* ================================================================
+           ERROR
+           ================================================================ */
+
+        .error {
+
+            background: #fef2f2;
+
+            border:
+                1px solid #fecaca;
+
+            color: #b91c1c;
+
+            padding: 12px;
+
+            border-radius: 6px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .hidden {
+
+            display: none;
+        }
+
+
+        /* ================================================================
+           RESPONSIVE
+           ================================================================ */
+
+        @media (max-width: 600px) {
+
+            .navbar {
+
+                padding: 0 15px;
+            }
+
+
+            .nav-links a {
+
+                display: none;
+            }
+
+
+            .container {
+
+                margin-top: 20px;
+            }
+
+
+            .profile-field {
+
+                display: block;
+            }
+
+
+            .field-value {
+
+                text-align: left;
+
+                margin-top: 5px;
+            }
+
+
+            .lookup-form {
+
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================================
+     NAVIGATION
+     ====================================================================== -->
+
+<nav class="navbar">
+
+
+    <div class="brand">
+        VulnMart
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="/profile.html">
+            Profile
+        </a>
+
+        <a href="/orders.html">
+            Orders
+        </a>
+
+        <button
+            class="logout-button"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </div>
+
+
+</nav>
+
+
+<!-- =====================================================================
+     MAIN CONTENT
+     ====================================================================== -->
+
+<main class="container">
+
+
+    <h1>
+        User Profile
+    </h1>
+
+
+    <p class="subtitle">
+        Account information
+    </p>
+
+
+    <!-- ================================================================
+         ERROR MESSAGE
+         ================================================================ -->
+
+    <div
+        id="errorMessage"
+        class="error hidden"
+    ></div>
+
+
+    <!-- ================================================================
+         PROFILE
+         ================================================================ -->
+
+    <div class="card">
+
+
+        <h2>
+            Profile Information
+        </h2>
+
+
+        <div id="profileData">
+
+            Loading profile...
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ================================================================
+         OBJECT LOOKUP
+         ================================================================ -->
+
+    <div class="card">
+
+
+        <h2>
+            View Profile
+        </h2>
+
+
+        <div class="lookup-form">
+
+
+            <input
+                type="number"
+                id="userIdInput"
+                min="1"
+                placeholder="Enter user ID"
+            >
+
+
+            <button
+                onclick="loadRequestedProfile()"
+            >
+                View Profile
+            </button>
+
+
+        </div>
+
+
+        <p class="hint">
+
+            Enter a user ID to request that user's profile
+            from the API.
+
+            <br>
+
+            <strong>
+                Lab hint:
+            </strong>
+
+            You are currently authenticated as one user.
+            What happens if you request another user's ID?
+
+        </p>
+
+
+    </div>
+
+
+    <!-- ================================================================
+         LAB OBSERVATION
+         ================================================================ -->
+
+    <div class="lab-warning">
+
+
+        <h3>
+            🔎 Security Lab: Authentication ≠ Authorization
+        </h3>
+
+
+        <p>
+
+            Your browser sends the same authentication token
+            with every profile request.
+
+            Authentication proves who you are.
+
+            Authorization determines whether you are allowed
+            to access the requested object.
+
+            Try changing the User ID above and observe
+            what happens.
+
+        </p>
+
+
+    </div>
+
+
+</main>
+
+
+<script>
+
+
+// ============================================================================
+// AUTHENTICATION TOKEN
+// ============================================================================
+
+const token =
+    localStorage.getItem("token");
+
+
+// ============================================================================
+// REQUIRE LOGIN
+// ============================================================================
+
+if (!token) {
+
+    window.location.href = "/";
+
+}
+
+
+// ============================================================================
+// GET USER ID FROM URL
+// ============================================================================
+//
+// After login:
+//
+//     /profile.html?user_id=1
+//
+// The login page obtains this ID from the JWT payload.
+//
+// IMPORTANT:
+// The frontend does NOT use this value to authorize anything.
+// The API must perform authorization.
+// The vulnerability is that the API currently does not.
+//
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const initialUserId =
+    params.get("user_id");
+
+
+// ============================================================================
+// LOAD INITIAL PROFILE
+// ============================================================================
+
+if (initialUserId) {
+
+    document.getElementById(
+        "userIdInput"
+    ).value = initialUserId;
+
+    loadProfile(
+        initialUserId
+    );
+
+} else {
+
+    showError(
+        "No user ID was specified."
+    );
+
+}
+
+
+// ============================================================================
+// LOAD PROFILE FROM API
+// ============================================================================
+
+async function loadProfile(userId) {
+
+
+    clearError();
+
+
+    document.getElementById(
+        "profileData"
+    ).innerHTML =
+        "Loading profile...";
+
+
+    try {
+
+
+        // --------------------------------------------------------------------
+        // IMPORTANT LAB REQUEST
+        // --------------------------------------------------------------------
+        //
+        // The JWT belongs to the authenticated user.
+        //
+        // The user_id in the URL determines which object is requested.
+        //
+        // The vulnerable API does not verify that these two identities match.
+        //
+        // --------------------------------------------------------------------
+
+        const response =
+            await fetch(
+                "/api/users/" +
+                encodeURIComponent(userId),
+                {
+                    method: "GET",
+
+                    headers: {
+
+                        "Authorization":
+                            "Bearer " + token
+
+                    }
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            showError(
+                data.error ||
+                "Unable to load profile."
+            );
+
+            document.getElementById(
+                "profileData"
+            ).innerHTML = "";
+
+            return;
+        }
+
+
+        renderProfile(data);
+
+
+    } catch (error) {
+
+
+        console.error(
+            "Profile request failed:",
+            error
+        );
+
+
+        showError(
+            "Unable to connect to the API."
+        );
+
+
+        document.getElementById(
+            "profileData"
+        ).innerHTML = "";
+
+    }
+
+}
+
+
+// ============================================================================
+// RENDER PROFILE
+// ============================================================================
+
+function renderProfile(user) {
+
+
+    document.getElementById(
+        "profileData"
+    ).innerHTML = `
+
+        <div class="profile-field">
+
+            <span class="field-label">
+                User ID
+            </span>
+
+            <span class="field-value">
+                ${escapeHtml(user.id)}
+            </span>
+
+        </div>
+
+
+        <div class="profile-field">
+
+            <span class="field-label">
+                Username
+            </span>
+
+            <span class="field-value">
+                ${escapeHtml(user.username)}
+            </span>
+
+        </div>
+
+
+        <div class="profile-field">
+
+            <span class="field-label">
+                Email
+            </span>
+
+            <span class="field-value">
+                ${escapeHtml(user.email)}
+            </span>
+
+        </div>
+
+
+        <div class="profile-field">
+
+            <span class="field-label">
+                SSN
+            </span>
+
+            <span class="field-value">
+                ${escapeHtml(user.ssn)}
+            </span>
+
+        </div>
+
+
+        <div class="profile-field">
+
+            <span class="field-label">
+                Balance
+            </span>
+
+            <span class="field-value">
+                $${escapeHtml(user.balance)}
+            </span>
+
+        </div>
+
+
+        <div class="profile-field">
+
+            <span class="field-label">
+                Administrator
+            </span>
+
+            <span class="field-value">
+                ${user.is_admin ? "Yes" : "No"}
+            </span>
+
+        </div>
+
+    `;
+
+}
+
+
+// ============================================================================
+// REQUEST ANOTHER PROFILE
+// ============================================================================
+
+function loadRequestedProfile() {
+
+
+    const userId =
+        document.getElementById(
+            "userIdInput"
+        ).value;
+
+
+    if (!userId) {
+
+        showError(
+            "Please enter a user ID."
+        );
+
+        return;
+    }
+
+
+    // ------------------------------------------------------------------------
+    // Update URL.
+    //
+    // This makes the attack visible in the browser:
+    //
+    //     /profile.html?user_id=1
+    //
+    // versus
+    //
+    //     /profile.html?user_id=2
+    //
+    // ------------------------------------------------------------------------
+
+    window.history.pushState(
+        {},
+        "",
+        "/profile.html?user_id=" +
+        encodeURIComponent(userId)
+    );
+
+
+    loadProfile(
+        userId
+    );
+
+}
+
+
+// ============================================================================
+// ERROR HANDLING
+// ============================================================================
+
+function showError(message) {
+
+
+    const element =
+        document.getElementById(
+            "errorMessage"
+        );
+
+
+    element.textContent =
+        message;
+
+
+    element.classList.remove(
+        "hidden"
+    );
+
+}
+
+
+function clearError() {
+
+
+    const element =
+        document.getElementById(
+            "errorMessage"
+        );
+
+
+    element.textContent = "";
+
+
+    element.classList.add(
+        "hidden"
+    );
+
+}
+
+
+// ============================================================================
+// BASIC HTML ESCAPING
+// ============================================================================
+//
+// This is not the focus of the lab, but prevents returned database values
+// from being inserted into the page as raw HTML.
+//
+
+function escapeHtml(value) {
+
+    if (value === null ||
+        value === undefined) {
+
+        return "";
+
+    }
+
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+
+// ============================================================================
+// LOGOUT
+// ============================================================================
+
+function logout() {
+
+    localStorage.removeItem(
+        "token"
+    );
+
+    window.location.href = "/";
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
